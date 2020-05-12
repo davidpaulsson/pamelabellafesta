@@ -2,24 +2,24 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
 
-export const ProjectPageTemplate = ({ title }) => (
-  <div>[ProjectPageTemplate] {title}</div>
+export const ProjectCategoryPageTemplate = ({ title }) => (
+  <div>[ProjectCategoryPageTemplate] {title}</div>
 );
 
-const ProjectPage = ({ data }) => {
+const ProjectCategoryPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
 
   return (
     <Layout>
-      <ProjectPageTemplate title={frontmatter.title} />
+      <ProjectCategoryPageTemplate title={frontmatter.title} />
     </Layout>
   );
 };
 
-export default ProjectPage;
+export default ProjectCategoryPage;
 
 export const pageQuery = graphql`
-  query ProjectPageTemplateByID($id: String!) {
+  query ProjectCategoryPageTemplateByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {
         title
