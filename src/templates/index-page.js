@@ -2,7 +2,9 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
 
-export const IndexPageTemplate = ({ title }) => <div>{title}</div>;
+export const IndexPageTemplate = ({ title }) => (
+  <div>[IndexPageTemplate] {title}</div>
+);
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;

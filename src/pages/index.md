@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-title: pamela
+title: This is the home page
 ---
 
 Startpage
