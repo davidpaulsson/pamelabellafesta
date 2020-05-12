@@ -27,7 +27,7 @@
   },
   "scripts": {
     "clean": "gatsby clean",
-    "build": "gatsby build",
+    "build": "yarn run clean && gatsby build",
     "dev": "gatsby develop",
     "dev:cms": "npx netlify-cms-proxy-server",
     "format": "prettier --write \"{gatsby-*.js,src/**/*.js}\"",
