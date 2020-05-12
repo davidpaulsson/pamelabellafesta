@@ -17,6 +17,7 @@ exports.createPages = ({ actions, graphql }) => {
             }
             frontmatter {
               templateKey
+              category
             }
           }
         }
@@ -32,15 +33,22 @@ exports.createPages = ({ actions, graphql }) => {
 
     posts.forEach((edge) => {
       const id = edge.node.id;
+      const category = edge.node.frontmatter.category;
+      const slug =
+        String(edge.node.frontmatter.templateKey) === 'project-page'
+          ? String(edge.node.frontmatter.category).toLowerCase() +
+            String(edge.node.fields.slug)
+          : edge.node.fields.slug;
+
       createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
+        path: slug,
         component: path.resolve(
           `src/templates/${String(edge.node.frontmatter.templateKey)}.js`,
         ),
         // additional data can be passed via context
         context: {
           id,
+          category,
         },
       });
     });

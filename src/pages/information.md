@@ -1,6 +1,6 @@
 ---
 templateKey: information-page
-title: This is the information page
+title: Information
 ---
 
-information
+This is the information page

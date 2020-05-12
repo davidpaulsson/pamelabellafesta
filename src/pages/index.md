@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-title: This is the home page
+title: Home page
 ---
 
-Startpage
+This is the home page

@@ -2,16 +2,19 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
 
-export const IndexPageTemplate = ({ title }) => (
-  <div>[IndexPageTemplate] {title}</div>
+export const IndexPageTemplate = ({ title, html }) => (
+  <>
+    <h2>{title}</h2>
+    <div dangerouslySetInnerHTML={{ __html: html }} />
+  </>
 );
 
 const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
+  const { frontmatter, html } = data.markdownRemark;
 
   return (
     <Layout>
-      <IndexPageTemplate title={frontmatter.title} />
+      <IndexPageTemplate title={frontmatter.title} html={html} />
     </Layout>
   );
 };
@@ -24,6 +27,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
+      html
     }
   }
 `;
