@@ -19,8 +19,8 @@ const ProjectPage = ({ data }) => {
 export default ProjectPage;
 
 export const pageQuery = graphql`
-  query ProjectPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "project-page" } }) {
+  query ProjectPageTemplateByID($id: String!) {
+    markdownRemark(id: { eq: $id }) {
       frontmatter {
         title
       }
