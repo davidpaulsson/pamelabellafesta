@@ -1,0 +1,25 @@
+.title {
+  @include grid;
+}
+
+.link {
+  display: block;
+
+  width: 100%;
+  padding-bottom: 5.446822686766054%;
+
+  text-indent: -9999px;
+
+  background-image: url('./Wordmark.svg');
+  background-repeat: no-repeat;
+  background-position: 0 center;
+  background-size: contain;
+
+  grid-column: 1 / -1;
+
+  @media (min-width: $bp) {
+    padding-bottom: calculateRem(8px);
+
+    grid-column: 1 / 4;
+  }
+}
