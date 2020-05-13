@@ -1,0 +1,19 @@
+.nav {
+  margin-top: calculateRem(8px);
+}
+
+.list {
+  margin: 0 calculateRem(8px);
+
+  border-top: 1px solid #e6e6e6;
+}
+
+.navItem {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.navItemLink {
+  display: block;
+
+  padding: calculateRem(8px) 0;
+}

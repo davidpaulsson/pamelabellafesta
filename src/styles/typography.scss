@@ -1,7 +1,28 @@
+html {
+  font-size: 100%;
+
+  font-kerning: normal; // Set the default for kerning
+  font-synthesis: none; // Don't allow the font to create sythetic bold/italic
+  text-rendering: optimizeLegibility; // Improve kerning pairs. Caution: Webkit gets funny with this sometimes
+  -webkit-font-smoothing: antialiased; // Improve (or in some cases screw with) safari's legibility somewhat
+}
+
 body {
   font-family: 'HelveticaNeueLTPro-Roman', 'HelveticaNeue-Light',
     'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
     sans-serif;
+  line-height: 16px;
+  line-height: calculateRem(16px);
 
   @include fontSize(14px);
+}
+
+a {
+  text-decoration: none;
+
+  color: var(--color-black);
+
+  &:hover {
+    color: var(--color-dark-gray);
+  }
 }
