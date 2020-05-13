@@ -37,7 +37,7 @@ exports.createPages = ({ actions, graphql }) => {
       const slug =
         String(edge.node.frontmatter.templateKey) === 'project-page'
           ? String(edge.node.frontmatter.category).toLowerCase() +
-            String(edge.node.fields.slug)
+            String(edge.node.fields.slug).replace('projects/', '')
           : edge.node.fields.slug;
 
       createPage({

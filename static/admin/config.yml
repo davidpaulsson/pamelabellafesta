@@ -14,37 +14,56 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  # - name: 'blog'
-  #   label: 'Blog'
-  #   folder: 'src/pages/blog'
-  #   create: true
-  #   slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-  #   fields:
-  #     - {
-  #         label: 'Template Key',
-  #         name: 'templateKey',
-  #         widget: 'hidden',
-  #         default: 'blog-post',
-  #       }
-  #     - { label: 'Title', name: 'title', widget: 'string' }
-  #     - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-  #     - { label: 'Description', name: 'description', widget: 'text' }
-  #     - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean' }
-  #     - { label: 'Featured Image', name: 'featuredimage', widget: image }
-  #     - { label: 'Body', name: 'body', widget: 'markdown' }
-  #     - { label: 'Tags', name: 'tags', widget: 'list' }
-
-  - name: 'pages'
-    label: 'Pages'
+  - name: pages
+    label: Pages
     files:
-      - file: 'src/pages/index.md'
-        label: 'Home Page'
-        name: 'index'
+      - file: src/pages/index.md
+        label: Home Page
+        name: index
         fields:
-          - {
-              label: 'Template Key',
-              name: 'templateKey',
-              widget: 'hidden',
-              default: 'index-page',
-            }
-          - { label: Title, name: title, widget: string }
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: index-page
+
+          - label: Title
+            name: title
+            widget: string
+
+      - file: src/pages/information.md
+        label: Information
+        name: information
+        fields:
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: information-page
+
+          - label: Title
+            name: title
+            widget: string
+
+  - name: projects
+    label: Projects
+    folder: src/pages/projects
+    create: true
+    fields:
+      - label: Template Key
+        name: templateKey
+        widget: hidden
+        default: project-page
+
+      - label: Title
+        name: title
+        widget: string
+
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - label: Editorial
+            value: Editorial
+          - label: Commercial
+            value: Commercial
+          - label: Film
+            value: Film

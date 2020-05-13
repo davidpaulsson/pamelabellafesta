@@ -1,7 +1,7 @@
 ---
 templateKey: project-page
+title: Plaza test
 category: Editorial
-title: Plaza
 ---
 
 Here's some text about Plaza!

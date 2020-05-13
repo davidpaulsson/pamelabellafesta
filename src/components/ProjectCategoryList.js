@@ -18,7 +18,13 @@ const ProjectCategoryList = ({ projects }) => {
 
           return (
             <li key={id}>
-              <Link to={'/' + String(category).toLowerCase() + slug}>
+              <Link
+                to={
+                  '/' +
+                  String(category).toLowerCase() +
+                  slug.replace('projects/', '')
+                }
+              >
                 {title}
               </Link>
             </li>
