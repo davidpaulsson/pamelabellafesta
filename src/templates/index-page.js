@@ -9,11 +9,11 @@ export const IndexPageTemplate = ({ title, html }) => (
   </>
 );
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, location }) => {
   const { frontmatter, html } = data.markdownRemark;
 
   return (
-    <Layout>
+    <Layout {...{ location }}>
       <IndexPageTemplate title={frontmatter.title} html={html} />
     </Layout>
   );

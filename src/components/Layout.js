@@ -5,7 +5,12 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 
-const TemplateWrapper = ({ children, title = null, description = null }) => {
+const TemplateWrapper = ({
+  children,
+  title = null,
+  description = null,
+  location,
+}) => {
   const {
     title: siteMetaTitle,
     description: siteMetaDescription,
@@ -55,7 +60,7 @@ const TemplateWrapper = ({ children, title = null, description = null }) => {
         />
       </Helmet>
 
-      <Header />
+      <Header {...{ location }} />
 
       {children}
 

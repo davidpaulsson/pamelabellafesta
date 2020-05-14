@@ -3,17 +3,17 @@ import React from 'react';
 import Layout from '../components/Layout';
 
 export const ProjectPageTemplate = ({ title, html }) => (
-  <>
+  <div>
     <h2>{title}</h2>
     <div dangerouslySetInnerHTML={{ __html: html }} />
-  </>
+  </div>
 );
 
-const ProjectPage = ({ data }) => {
+const ProjectPage = ({ data, location }) => {
   const { frontmatter, html } = data.markdownRemark;
 
   return (
-    <Layout>
+    <Layout {...{ location }}>
       <ProjectPageTemplate title={frontmatter.title} html={html} />
     </Layout>
   );

@@ -41,7 +41,20 @@ collections:
 
           - label: Title
             name: title
-            widget: string
+            widget: hidden
+            default: Information
+
+          - label: Biography
+            name: bio
+            widget: markdown
+            buttons: [link]
+            editorComponents: []
+
+          - label: Clients
+            name: clients
+            widget: markdown
+            buttons: [heading-four, bulleted-list]
+            editorComponents: []
 
   - name: projects
     label: Projects

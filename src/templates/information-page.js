@@ -1,20 +1,52 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
-
-export const InformationPageTemplate = ({ title, html }) => (
-  <>
-    <h2>{title}</h2>
-    <div dangerouslySetInnerHTML={{ __html: html }} />
-  </>
-);
-
-const InformationPage = ({ data }) => {
-  const { frontmatter, html } = data.markdownRemark;
+import styles from './information-page.module.scss';
+import ReactMarkdown from 'react-markdown';
+export const InformationPageTemplate = ({
+  title,
+  bio,
+  clients,
+  phone,
+  email,
+  instagram,
+  representation,
+}) => {
+  console.log({ title, bio, clients, phone, email, instagram, representation });
 
   return (
-    <Layout title="Information">
-      <InformationPageTemplate title={frontmatter.title} html={html} />
+    <>
+      <div className={styles.wrapper}>
+        <h3 className={styles.title}>Bio</h3>
+        <ReactMarkdown className={styles.content} source={bio} />
+      </div>
+
+      <div className={styles.wrapper}>
+        <h3 className={styles.title}>Clients</h3>
+        <ReactMarkdown className={styles.content} source={clients} />
+      </div>
+    </>
+  );
+};
+
+const InformationPage = ({ data, location }) => {
+  const {
+    frontmatter: {
+      title,
+      bio,
+      clients,
+      phone,
+      email,
+      instagram,
+      representation,
+    },
+  } = data.markdownRemark;
+
+  return (
+    <Layout title="Information" {...{ location }}>
+      <InformationPageTemplate
+        {...{ title, bio, clients, phone, email, instagram, representation }}
+      />
     </Layout>
   );
 };
@@ -26,8 +58,13 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "information-page" } }) {
       frontmatter {
         title
+        bio
+        clients
+        phone
+        email
+        instagram
+        representation
       }
-      html
     }
   }
 `;

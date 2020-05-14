@@ -10,11 +10,11 @@ export const ProjectCategoryPageTemplate = ({ category, projects }) => (
   </>
 );
 
-const ProjectCategoryPage = ({ data }) => {
+const ProjectCategoryPage = ({ data, location }) => {
   const { frontmatter } = data.markdownRemark;
 
   return (
-    <Layout>
+    <Layout {...{ location }}>
       <ProjectCategoryPageTemplate
         category={frontmatter.category}
         projects={data.projects.edges}

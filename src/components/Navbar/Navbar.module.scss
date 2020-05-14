@@ -1,5 +1,5 @@
 .nav {
-  margin-top: calculateRem(8px);
+  margin: calculateRem(8px) 0;
 }
 
 .list {
@@ -9,11 +9,58 @@
 }
 
 .navItem {
+  padding: calculateRem(8px) 0;
+
   border-bottom: 1px solid #e6e6e6;
+}
+
+.navItemCurrent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .navItemLink {
+    flex: 1;
+
+    color: var(--color-dark-gray);
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .navItemLink {
   display: block;
 
-  padding: calculateRem(8px) 0;
+  transform: translateY(2px);
+}
+
+.btn {
+  display: flex;
+  overflow: visible;
+
+  width: auto;
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
+
+  color: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+
+  font: inherit;
+  line-height: normal;
+
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+
+  &::-moz-focus-inner {
+    padding: 0;
+
+    border: 0;
+  }
 }
