@@ -10,7 +10,7 @@ const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
 
 const Navbar = ({ location }) => {
   const [navIsOpen, toggleNavIsOpen] = useState(false);
-  const currentPath = location.pathname.split('/')[1];
+  const currentPath = location?.pathname.split('/')[1];
   const isNotHomePage =
     pages.filter((s) => (currentPath === '' ? false : s.includes(currentPath)))
       .length > 0;
