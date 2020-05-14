@@ -23,4 +23,44 @@
   ul {
     margin-bottom: 1em;
   }
+
+  &.bio {
+    @media (min-width: $bp) {
+      grid-column: span 4;
+    }
+  }
+  &.clients {
+    @media (min-width: $bp) {
+      display: grid;
+
+      grid-column: span 6;
+      column-gap: calculateRem(8px);
+      grid-template-columns: repeat(6, 1fr);
+
+      h4 {
+        grid-column: span 1;
+      }
+      ul {
+        grid-column: span 2;
+      }
+    }
+  }
+  &.contact {
+    @media (min-width: $bp) {
+      display: grid;
+
+      grid-column: span 4;
+      column-gap: calculateRem(8px);
+      grid-template-columns: repeat(4, 1fr);
+
+      h4 {
+        grid-column: span 1;
+      }
+      ul {
+        margin-bottom: 0;
+
+        grid-column: span 3;
+      }
+    }
+  }
 }

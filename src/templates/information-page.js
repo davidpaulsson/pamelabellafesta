@@ -23,33 +23,32 @@ export const InformationPageTemplate = ({
       <div className={styles.wrapper}>
         <h3 className={styles.title}>Bio</h3>
         <div
-          className={styles.content}
+          className={[styles.content, styles.bio].join(' ')}
           dangerouslySetInnerHTML={{ __html: mdToHtml(bio) }}
         />
       </div>
       <div className={styles.wrapper}>
         <h3 className={styles.title}>Clients</h3>
         <div
-          className={styles.content}
+          className={[styles.content, styles.clients].join(' ')}
           dangerouslySetInnerHTML={{ __html: mdToHtml(clients) }}
         />
       </div>
       <div className={styles.wrapper}>
         <h3 className={styles.title}>Contact</h3>
-        <div className={styles.content}>
+        <div className={[styles.content, styles.contact].join(' ')}>
           {contact.map(({ title, text, link }) => (
-            <>
+            <React.Fragment key={link}>
               <h4>{title}</h4>
               <ul>
                 <li>
                   <a href={link}>{text}</a>
                 </li>
               </ul>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
-      contact
     </>
   );
 };

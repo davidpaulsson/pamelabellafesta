@@ -12,7 +12,7 @@
   display: grid;
 
   grid-template-columns: repeat(8, 1fr);
-  gap: calculateRem(8px);
+  column-gap: calculateRem(8px);
 
   @media (min-width: $bp) {
     grid-template-columns: repeat(16, 1fr);

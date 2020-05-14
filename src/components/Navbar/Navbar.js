@@ -46,7 +46,7 @@ const Navbar = ({ location }) => {
             (page) =>
               currentPath !== page && (
                 <li className={styles.navItem}>
-                  <Link to={'/' + page} className={styles.navItemLink}>
+                  <Link to={'/' + page + '/'} className={styles.navItemLink}>
                     {capitalize(page)}
                   </Link>
                 </li>
