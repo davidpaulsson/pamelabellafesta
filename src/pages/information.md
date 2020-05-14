@@ -33,8 +33,18 @@ clients: |-
   * SSAW Magazine,
   * Rodeo,
   * Uomo Plaza.
-phone: hej
-email: hej
-instagram: hej
+contact:
+  - label: Phone
+    value: +46 735 00 59 50
+    link: tel:0046735005950
+  - label: Mail
+    value: pamela@bellafesta.se
+    link: mailto:pamela@bellafesta.se
+  - label: Instagram
+    value: "@pamelabellafesta"
+    link: https://www.instagram.com/pamelabellafesta/
 representation: hej
+phone: hej
+instagram: hej
+email: hej
 ---
