@@ -5,13 +5,23 @@ import Header from '../components/Header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 
 export const Ctx = React.createContext();
-const reducer = (state = null, action) => {
+const defaultState = {
+  title: '',
+  images: 0,
+  caseImages: [],
+};
+const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'SET_CASE':
       const {
-        project: { title, images, year },
+        project: { title, images },
       } = action;
-      return { title, images, year };
+      return { ...state, title, images };
+    case 'SET_CASE_IMAGE':
+      const {
+        project: { caseImages },
+      } = action;
+      return { ...state, caseImages };
     default:
       return;
   }
@@ -28,7 +38,7 @@ const TemplateWrapper = ({
     description: siteMetaDescription,
   } = useSiteMetadata();
 
-  const [state, dispatch] = useReducer(reducer, null);
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
   return (
     <Ctx.Provider value={{ state, dispatch }}>

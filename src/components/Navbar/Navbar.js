@@ -4,6 +4,7 @@ import styles from './Navbar.module.scss';
 import Collapse from './Collapse';
 import Expand from './Expand';
 import { Ctx } from '../Layout';
+import _ from 'lodash';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
@@ -48,8 +49,10 @@ const Navbar = ({ location }) => {
             className={[styles.navItem, styles.navItemCurrectProject].join(' ')}
           >
             <span>{state.title}</span>
-            <span>{state.year}</span>
-            <span>0/{state.images}</span>
+            <span>
+              <em>{_.padStart(_.maxBy(state.caseImages) + 1, 2, '0')}</em> /{' '}
+              {_.padStart(state.images, 2, '0')}
+            </span>
           </li>
         )}
 

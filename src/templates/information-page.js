@@ -14,10 +14,8 @@ export const InformationPageTemplate = ({
   bio,
   clients,
   contact,
-  representation,
+  // representation,
 }) => {
-  console.log({ contact });
-
   return (
     <>
       <div className={styles.wrapper}>
