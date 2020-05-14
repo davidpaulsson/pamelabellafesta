@@ -1,20 +1,38 @@
 import { graphql } from 'gatsby';
-import React from 'react';
-import Layout from '../components/Layout';
+import React, { useEffect, useContext } from 'react';
+import Layout, { Ctx } from '../components/Layout';
+import Img from '../components/PreviewCompatibleImage';
+import styles from './project-page.module.scss';
 
-export const ProjectPageTemplate = ({ title, html }) => (
-  <div>
-    <h2>{title}</h2>
-    <div dangerouslySetInnerHTML={{ __html: html }} />
-  </div>
-);
+export const ProjectPageTemplate = ({ title, images }) => {
+  const { dispatch } = useContext(Ctx);
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_CASE',
+      project: { title, images: images.length, year: 'year' },
+    });
+  }, [dispatch, title, images]);
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.images}>
+        {images.map((image, index) => (
+          <Img className={styles.image} key={index} imageInfo={image} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const ProjectPage = ({ data, location }) => {
-  const { frontmatter, html } = data.markdownRemark;
+  const {
+    frontmatter: { title, images },
+  } = data.markdownRemark;
 
   return (
     <Layout {...{ location }}>
-      <ProjectPageTemplate title={frontmatter.title} html={html} />
+      <ProjectPageTemplate {...{ title, images }} />
     </Layout>
   );
 };
@@ -27,8 +45,16 @@ export const pageQuery = graphql`
       frontmatter {
         title
         category
+        images {
+          image {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
-      html
     }
   }
 `;

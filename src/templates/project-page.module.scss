@@ -1,5 +1,19 @@
 .wrapper {
-  margin-top: 1em;
+  @media (min-width: $bp) {
+    @include grid;
+  }
+}
 
-  @include grid;
+.images {
+  @media (min-width: $bp) {
+    grid-column: 5 / span 8;
+  }
+}
+
+.image {
+  margin-bottom: calculateRem(8px);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

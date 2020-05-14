@@ -1,8 +1,9 @@
 import { Link } from 'gatsby';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from './Navbar.module.scss';
 import Collapse from './Collapse';
 import Expand from './Expand';
+import { Ctx } from '../Layout';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
@@ -18,6 +19,8 @@ const Navbar = ({ location }) => {
   useEffect(() => {
     toggleNavIsOpen(!isNotHomePage);
   }, [isNotHomePage]);
+
+  const { state } = useContext(Ctx);
 
   return (
     <nav className={styles.nav}>
@@ -40,12 +43,22 @@ const Navbar = ({ location }) => {
           </li>
         )}
 
+        {state && (
+          <li
+            className={[styles.navItem, styles.navItemCurrectProject].join(' ')}
+          >
+            <span>{state.title}</span>
+            <span>{state.year}</span>
+            <span>0/{state.images}</span>
+          </li>
+        )}
+
         {/** MENU */}
         {(navIsOpen || !isNotHomePage) &&
           pages.map(
             (page) =>
               currentPath !== page && (
-                <li className={styles.navItem}>
+                <li key={page} className={styles.navItem}>
                   <Link to={'/' + page + '/'} className={styles.navItemLink}>
                     {capitalize(page)}
                   </Link>

@@ -95,3 +95,12 @@ collections:
             value: Commercial
           - label: Film
             value: Film
+
+      - label: Images
+        name: images
+        widget: list
+        summary: { { fields.image } }
+        fields:
+          - label: Image
+            name: image
+            widget: image

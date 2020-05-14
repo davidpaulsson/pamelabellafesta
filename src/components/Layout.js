@@ -1,9 +1,21 @@
 import { withPrefix } from 'gatsby';
-import React from 'react';
+import React, { useReducer } from 'react';
 import { Helmet } from 'react-helmet';
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
+
+export const Ctx = React.createContext();
+const reducer = (state = null, action) => {
+  switch (action.type) {
+    case 'SET_CASE':
+      const {
+        project: { title, images, year },
+      } = action;
+      return { title, images, year };
+    default:
+      return;
+  }
+};
 
 const TemplateWrapper = ({
   children,
@@ -16,8 +28,10 @@ const TemplateWrapper = ({
     description: siteMetaDescription,
   } = useSiteMetadata();
 
+  const [state, dispatch] = useReducer(reducer, null);
+
   return (
-    <>
+    <Ctx.Provider value={{ state, dispatch }}>
       <Helmet>
         <html lang="en" />
         <title>{title ? `${title} | ${siteMetaTitle}` : siteMetaTitle}</title>
@@ -63,9 +77,7 @@ const TemplateWrapper = ({
       <Header {...{ location }} />
 
       {children}
-
-      <Footer />
-    </>
+    </Ctx.Provider>
   );
 };
 
