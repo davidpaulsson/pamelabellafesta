@@ -56,6 +56,21 @@ collections:
             buttons: [heading-four, bulleted-list]
             editorComponents: []
 
+          - label: Contact information
+            name: contact
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: text
+                widget: string
+              - label: Link
+                name: link
+                widget: string
+
   - name: projects
     label: Projects
     folder: src/pages/projects

@@ -11,10 +11,6 @@
 @mixin grid() {
   display: grid;
 
-  max-width: calculateRem(1680px);
-  margin: 0 auto;
-  padding: 0 calculateRem(8px);
-
   grid-template-columns: repeat(8, 1fr);
   gap: calculateRem(8px);
 

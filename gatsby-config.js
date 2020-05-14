@@ -72,13 +72,6 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
-    {
-      // purges all unused/unreferenced css rules
-      resolve: 'gatsby-plugin-purgecss',
-      options: {
-        develop: true,
-      },
-    },
     // must be after other CSS plugins
     'gatsby-plugin-netlify',
   ],

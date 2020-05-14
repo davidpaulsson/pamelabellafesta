@@ -34,14 +34,14 @@ clients: |-
   * Rodeo,
   * Uomo Plaza.
 contact:
-  - label: Phone
-    value: +46 735 00 59 50
+  - title: Phone
+    text: +46 735 00 59 50
     link: tel:0046735005950
-  - label: Mail
-    value: pamela@bellafesta.se
+  - title: Mail
+    text: pamela@bellafesta.se
     link: mailto:pamela@bellafesta.se
-  - label: Instagram
-    value: "@pamelabellafesta"
+  - title: Instagram
+    text: '@pamelabellafesta'
     link: https://www.instagram.com/pamelabellafesta/
 representation: hej
 phone: hej

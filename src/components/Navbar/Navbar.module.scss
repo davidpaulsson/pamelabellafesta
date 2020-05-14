@@ -1,10 +1,8 @@
 .nav {
-  margin: calculateRem(8px) 0;
+  margin: calculateRem(4px) 0 calculateRem(8px) 0;
 }
 
 .list {
-  margin: 0 calculateRem(8px);
-
   border-top: 1px solid #e6e6e6;
 }
 
@@ -23,6 +21,7 @@
     flex: 1;
 
     color: var(--color-dark-gray);
+
     &:hover {
       cursor: pointer;
     }
@@ -32,7 +31,7 @@
 .navItemLink {
   display: block;
 
-  transform: translateY(2px);
+  // transform: translateY(2px);
 }
 
 .btn {
