@@ -51,7 +51,7 @@ export const ProjectPageTemplate = ({ title, images }) => {
     <div className={styles.wrapper}>
       <div className={styles.images}>
         {images.map((image, index) => (
-          <ProjectImg key={image.id} {...{ image, index }} />
+          <ProjectImg key={image.image.id} {...{ image, index }} />
         ))}
       </div>
     </div>
