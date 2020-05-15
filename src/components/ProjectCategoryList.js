@@ -1,36 +1,35 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Img from '../components/PreviewCompatibleImage';
 
 const ProjectCategoryList = ({ projects }) => {
   if (projects.length === 0) {
     return <p>No projects in this category</p>;
   }
+
   return (
     <>
-      <p>Projects:</p>
-      <ul>
-        {projects.map(({ node }) => {
-          const {
-            id,
-            frontmatter: { category, title },
+      {projects.map(
+        ({
+          node: {
+            frontmatter: { title, category, featuredImage },
             fields: { slug },
-          } = node;
-
+          },
+        }) => {
           return (
-            <li key={id}>
-              <Link
-                to={
-                  '/' +
-                  String(category).toLowerCase() +
-                  slug.replace('projects/', '')
-                }
-              >
-                {title}
-              </Link>
-            </li>
+            <Link
+              key={featuredImage.id}
+              to={
+                '/' +
+                String(category).toLowerCase() +
+                slug.replace('projects/', '')
+              }
+            >
+              <Img imageInfo={featuredImage} alt={title} />
+            </Link>
           );
-        })}
-      </ul>
+        },
+      )}
     </>
   );
 };

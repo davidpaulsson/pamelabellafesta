@@ -3,11 +3,8 @@ import React from 'react';
 import Layout from '../components/Layout';
 import ProjectCategoryList from '../components/ProjectCategoryList';
 
-export const ProjectCategoryPageTemplate = ({ category, projects }) => (
-  <>
-    <h2>{category}</h2>
-    <ProjectCategoryList {...{ projects }} />
-  </>
+export const ProjectCategoryPageTemplate = ({ projects }) => (
+  <ProjectCategoryList {...{ projects }} />
 );
 
 const ProjectCategoryPage = ({ data, location }) => {
@@ -15,10 +12,7 @@ const ProjectCategoryPage = ({ data, location }) => {
 
   return (
     <Layout title={frontmatter.category} {...{ location }}>
-      <ProjectCategoryPageTemplate
-        category={frontmatter.category}
-        projects={data.projects.edges}
-      />
+      <ProjectCategoryPageTemplate projects={data.projects.edges} />
     </Layout>
   );
 };
@@ -47,6 +41,14 @@ export const pageQuery = graphql`
           frontmatter {
             title
             category
+            featuredImage {
+              id
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           fields {
             slug

@@ -55,6 +55,7 @@ const TemplateWrapper = ({
 
         {[16, 32, 48, 72, 96, 128, 144, 192, 256, 384, 512].map((sz) => (
           <link
+            key={sz}
             rel="icon"
             type="image/png"
             href={`${withPrefix('/')}img/favicon/favicon-${sz}x${sz}.png`}
