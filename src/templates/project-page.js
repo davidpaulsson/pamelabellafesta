@@ -19,12 +19,14 @@ const ProjectImg = ({ image, index }) => {
         project: { caseImages: [...state.caseImages, index] },
       });
     } else {
-      dispatch({
-        type: 'SET_CASE_IMAGE',
-        project: {
-          caseImages: state.caseImages.filter((n) => n !== index),
-        },
-      });
+      if (state.caseImages.length > 1) {
+        dispatch({
+          type: 'SET_CASE_IMAGE',
+          project: {
+            caseImages: state.caseImages.filter((n) => n !== index),
+          },
+        });
+      }
     }
   }, [dispatch, inView]);
 
