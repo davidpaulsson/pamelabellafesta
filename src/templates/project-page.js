@@ -36,9 +36,9 @@ const ProjectImg = ({ image, index }) => {
   );
 };
 
-export const ProjectPagePreviewTemplate = ({ images }) => (
+export const ProjectPagePreviewTemplate = ({ images = [] }) => (
   <div style={{ margin: '0 auto', maxWidth: '816px' }}>
-    {_.get(images, '', []).map((image, index) => (
+    {images.map((image, index) => (
       <Img
         key={index}
         imageInfo={image}
@@ -53,7 +53,7 @@ const ProjectPageTemplate = ({ title, images }) => {
   useEffect(() => {
     dispatch({
       type: 'SET_CASE',
-      project: { title, images: _.get(images, '', []).length },
+      project: { title, images: images.length },
     });
 
     dispatch({ type: 'SHOW_PROJECT_META' });
@@ -62,7 +62,7 @@ const ProjectPageTemplate = ({ title, images }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.images}>
-        {_.get(images, '', []).map((image, index) => (
+        {images.map((image, index) => (
           <ProjectImg key={index} {...{ image, index }} />
         ))}
       </div>
@@ -95,7 +95,11 @@ export const pageQuery = graphql`
             id
             childImageSharp {
               fluid(maxWidth: 800) {
-                ...GatsbyImageSharpFluid_withWebp
+                ...GatsbyImageSharpFluid
+              }
+              original {
+                height
+                width
               }
             }
           }

@@ -1,6 +1,7 @@
 ---
 templateKey: project-page
 title: Example project
+date: May 15, 2020 2:35 PM
 category: Editorial
 featuredImage: /img/example-image-2.jpg
 images:

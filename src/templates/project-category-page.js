@@ -34,12 +34,14 @@ export const pageQuery = graphql`
           templateKey: { eq: "project-page" }
         }
       }
+      sort: { order: DESC, fields: frontmatter___date }
     ) {
       edges {
         node {
           id
           frontmatter {
             title
+            date
             category
             featuredImage {
               id
