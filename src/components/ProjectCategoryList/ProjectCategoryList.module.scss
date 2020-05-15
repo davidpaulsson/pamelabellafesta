@@ -2,15 +2,20 @@
   display: grid;
 
   gap: calculateRem(8px);
+  grid-auto-flow: dense;
   grid-template-columns: 1fr 1fr;
 }
 .portrait {
+  display: block;
+
   width: 176px;
   height: 260px;
 
   grid-column: span 1;
 }
 .landscape {
+  display: block;
+
   width: 360px;
   height: 294px;
 

@@ -21,22 +21,27 @@ const ProjectCategoryList = ({ projects }) => {
         }) => {
           const { height, width } = featuredImage.childImageSharp.original;
           return (
-            <Link
+            <BackgroundImage
               key={id}
-              to={
-                '/' +
-                String(category).toLowerCase() +
-                slug.replace('projects/', '')
-              }
-              className={height > width ? styles.portrait : styles.landscape}
+              Tag="div"
+              className={[
+                styles.bg,
+                height > width ? styles.portrait : styles.landscape,
+              ].join(' ')}
+              fluid={featuredImage.childImageSharp.fluid}
+              backgroundColor={`#040e18`}
             >
-              <BackgroundImage
-                Tag="section"
-                className={styles.bg}
-                fluid={featuredImage.childImageSharp.fluid}
-                backgroundColor={`#040e18`}
-              />
-            </Link>
+              <Link
+                to={
+                  '/' +
+                  String(category).toLowerCase() +
+                  slug.replace('projects/', '')
+                }
+                className={height > width ? styles.portrait : styles.landscape}
+              >
+                {title}
+              </Link>
+            </BackgroundImage>
           );
         },
       )}
