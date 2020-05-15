@@ -1,4 +1,6 @@
 .nav {
+  position: relative;
+
   margin: calculateRem(4px) 0 calculateRem(8px) 0;
 }
 
@@ -36,6 +38,7 @@
   span {
     &:last-child {
       color: var(--color-dark-gray);
+
       em {
         color: var(--color-black);
       }

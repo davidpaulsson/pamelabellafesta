@@ -1,6 +1,13 @@
 .sticky {
   position: sticky;
+  z-index: 999;
   top: 0;
+
+  background-color: var(--color-white);
+
+  @media (min-width: $bp) {
+    z-index: 0;
+  }
 }
 
 .title {
