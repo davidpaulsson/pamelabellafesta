@@ -1,4 +1,7 @@
 .wrapper {
+  position: relative;
+  z-index: 2;
+
   @media (min-width: $bp) {
     @include grid;
   }
