@@ -1,0 +1,42 @@
+.grid {
+  display: grid;
+
+  gap: calculateRem(8px);
+  grid-template-columns: 1fr 1fr;
+}
+.portrait {
+  width: 176px;
+  height: 260px;
+
+  grid-column: span 1;
+}
+.landscape {
+  width: 360px;
+  height: 294px;
+
+  grid-column: span 2;
+}
+
+.portrait,
+.landscape {
+  position: relative;
+
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+
+  background-repeat: repeat-y;
+  background-position: bottom center;
+  background-size: cover;
+}
