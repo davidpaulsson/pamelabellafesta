@@ -44,7 +44,7 @@ const Navbar = ({ location }) => {
           </li>
         )}
 
-        {state && (
+        {state.showProjectMeta && (
           <li
             className={[styles.navItem, styles.navItemCurrectProject].join(' ')}
           >

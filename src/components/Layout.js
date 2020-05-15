@@ -9,6 +9,7 @@ const defaultState = {
   title: '',
   images: 0,
   caseImages: [],
+  showProjectMeta: false,
 };
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -22,6 +23,10 @@ const reducer = (state = defaultState, action) => {
         project: { caseImages },
       } = action;
       return { ...state, caseImages };
+    case 'SHOW_PROJECT_META':
+      return { ...state, showProjectMeta: true };
+    case 'HIDE_PROJECT_META':
+      return { ...state, showProjectMeta: false };
     default:
       return;
   }

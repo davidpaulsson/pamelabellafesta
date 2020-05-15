@@ -1,10 +1,9 @@
 import { graphql } from 'gatsby';
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import Layout, { Ctx } from '../components/Layout';
 import Img from '../components/PreviewCompatibleImage';
 import styles from './project-page.module.scss';
-import { useInView } from 'react-intersection-observer';
-import _ from 'lodash';
 
 const ProjectImg = ({ image, index }) => {
   const { state, dispatch } = useContext(Ctx);
@@ -44,13 +43,15 @@ export const ProjectPageTemplate = ({ title, images }) => {
       type: 'SET_CASE',
       project: { title, images: images.length },
     });
+
+    dispatch({ type: 'SHOW_PROJECT_META' });
   }, [dispatch, title, images]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.images}>
         {images.map((image, index) => (
-          <ProjectImg {...{ image, index }} />
+          <ProjectImg key={image.id} {...{ image, index }} />
         ))}
       </div>
     </div>
@@ -79,6 +80,7 @@ export const pageQuery = graphql`
         category
         images {
           image {
+            id
             childImageSharp {
               fluid(maxWidth: 800) {
                 ...GatsbyImageSharpFluid
