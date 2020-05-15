@@ -3,12 +3,13 @@ import React, { useReducer } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
+import _ from 'lodash';
 
 export const Ctx = React.createContext();
 const defaultState = {
   title: '',
   images: 0,
-  caseImages: [],
+  caseImages: [0],
   showProjectMeta: false,
 };
 const reducer = (state = defaultState, action) => {
@@ -22,7 +23,7 @@ const reducer = (state = defaultState, action) => {
       const {
         project: { caseImages },
       } = action;
-      return { ...state, caseImages };
+      return { ...state, caseImages: _(caseImages).sort().uniq().value() };
     case 'SHOW_PROJECT_META':
       return { ...state, showProjectMeta: true };
     case 'HIDE_PROJECT_META':

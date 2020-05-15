@@ -4,13 +4,11 @@ import { useInView } from 'react-intersection-observer';
 import Layout, { Ctx } from '../components/Layout';
 import Img from '../components/PreviewCompatibleImage';
 import styles from './project-page.module.scss';
+import _ from 'lodash';
 
 const ProjectImg = ({ image, index }) => {
   const { state, dispatch } = useContext(Ctx);
-  const [ref, inView, entry] = useInView({
-    /* Optional options */
-    threshold: 0.5,
-  });
+  const [ref, inView] = useInView({ threshold: [1, 0.5] });
 
   useEffect(() => {
     if (inView) {
@@ -19,27 +17,39 @@ const ProjectImg = ({ image, index }) => {
         project: { caseImages: [...state.caseImages, index] },
       });
     } else {
-      if (state.caseImages.length > 1) {
+      const last = _.last(state.caseImages);
+      if (last === index && last != 0) {
         dispatch({
           type: 'SET_CASE_IMAGE',
           project: {
-            caseImages: state.caseImages.filter((n) => n !== index),
+            caseImages: state.caseImages.slice(0, -1),
           },
         });
       }
     }
-  }, [dispatch, inView]);
+  }, [inView]);
 
   return (
     <div ref={ref} className={styles.image}>
-      <Img key={index} imageInfo={image} />
+      <Img imageInfo={image} />
     </div>
   );
 };
 
-export const ProjectPageTemplate = ({ title, images }) => {
-  const { dispatch } = useContext(Ctx);
+export const ProjectPagePreviewTemplate = ({ images }) => (
+  <div style={{ margin: '0 auto', maxWidth: '816px' }}>
+    {images.map((image) => (
+      <Img
+        key={image.image.id}
+        imageInfo={image}
+        style={{ width: '100%', height: 'auto', marginBottom: '8px' }}
+      />
+    ))}
+  </div>
+);
 
+const ProjectPageTemplate = ({ title, images }) => {
+  const { dispatch } = useContext(Ctx);
   useEffect(() => {
     dispatch({
       type: 'SET_CASE',

@@ -1,13 +1,13 @@
 .wrapper {
-  position: relative;
-  z-index: 2;
-
   @media (min-width: $bp) {
     @include grid;
   }
 }
 
 .images {
+  position: relative;
+  z-index: 1;
+
   @media (min-width: $bp) {
     grid-column: 5 / span 8;
   }

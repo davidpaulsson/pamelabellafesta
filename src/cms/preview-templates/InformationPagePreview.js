@@ -1,6 +1,5 @@
 import React from 'react';
 import { InformationPageTemplate } from '../../templates/information-page';
-import Header from '../../components/Header';
 
 const InformationPagePreview = ({ entry, getAsset }) => {
   const data = entry.getIn(['data']).toJS();

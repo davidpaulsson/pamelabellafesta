@@ -5,7 +5,12 @@ const IndexPagePreview = ({ entry, getAsset }) => {
   const data = entry.getIn(['data']).toJS();
 
   if (data) {
-    return <IndexPageTemplate title={data.title} />;
+    return (
+      <>
+        <div style={{ marginTop: '1em' }} />
+        <IndexPageTemplate title={data.title} />
+      </>
+    );
   } else {
     return <div>Loading...</div>;
   }
