@@ -9,7 +9,7 @@ const InformationPagePreview = ({ entry, getAsset }) => {
   if (data) {
     return (
       <>
-        <Header location={{ pathname: '/information' }} />
+        <div style={{ marginTop: '1em' }} />
         <InformationPageTemplate {...{ bio, clients, contact }} />
       </>
     );
