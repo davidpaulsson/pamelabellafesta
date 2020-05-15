@@ -76,7 +76,7 @@ const ProjectPage = ({ data, location }) => {
   } = data.markdownRemark;
 
   return (
-    <Layout {...{ location }}>
+    <Layout {...{ title, location }}>
       <ProjectPageTemplate {...{ title, images }} />
     </Layout>
   );

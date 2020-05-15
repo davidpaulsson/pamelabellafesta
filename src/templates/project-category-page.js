@@ -14,7 +14,7 @@ const ProjectCategoryPage = ({ data, location }) => {
   const { frontmatter } = data.markdownRemark;
 
   return (
-    <Layout {...{ location }}>
+    <Layout title={frontmatter.category} {...{ location }}>
       <ProjectCategoryPageTemplate
         category={frontmatter.category}
         projects={data.projects.edges}
