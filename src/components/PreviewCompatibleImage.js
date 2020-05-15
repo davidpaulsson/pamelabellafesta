@@ -1,20 +1,22 @@
-import Img from 'gatsby-image';
 import React from 'react';
+import Img from 'gatsby-image';
 
-const PreviewCompatibleImage = ({ imageInfo, ...rest }) => {
-  const { childImageSharp, image } = imageInfo;
+const PreviewCompatibleImage = ({ imageInfo }) => {
+  const imageStyle = { marginBottom: '8px' };
+  const { alt = '', childImageSharp, image } = imageInfo;
 
   if (!!image && !!image.childImageSharp) {
-    return <Img fluid={image.childImageSharp.fluid} alt="" {...rest} />;
+    return (
+      <Img style={imageStyle} fluid={image.childImageSharp.fluid} alt={alt} />
+    );
   }
 
   if (!!childImageSharp) {
-    return <Img fluid={childImageSharp.fluid} alt="" {...rest} />;
+    return <Img style={imageStyle} fluid={childImageSharp.fluid} alt={alt} />;
   }
 
-  if (!!image && typeof image === 'string') {
-    return <img src={image} alt="" {...rest} />;
-  }
+  if (!!image && typeof image === 'string')
+    return <img style={imageStyle} src={image} alt={alt} />;
 
   return null;
 };

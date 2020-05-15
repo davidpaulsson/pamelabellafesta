@@ -96,10 +96,14 @@ collections:
           - label: Film
             value: Film
 
+      - label: Featured image
+        name: featuredImage
+        widget: image
+
       - label: Images
         name: images
         widget: list
-        summary: { { fields.image } }
+        summary: '{{fields.image}}'
         fields:
           - label: Image
             name: image

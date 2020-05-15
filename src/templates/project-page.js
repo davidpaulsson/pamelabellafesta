@@ -18,7 +18,7 @@ const ProjectImg = ({ image, index }) => {
       });
     } else {
       const last = _.last(state.caseImages);
-      if (last === index && last != 0) {
+      if (last === index && last !== 0) {
         dispatch({
           type: 'SET_CASE_IMAGE',
           project: {
@@ -36,11 +36,11 @@ const ProjectImg = ({ image, index }) => {
   );
 };
 
-export const ProjectPagePreviewTemplate = ({ images }) => (
+export const ProjectPagePreviewTemplate = ({ images = [] }) => (
   <div style={{ margin: '0 auto', maxWidth: '816px' }}>
-    {images.map((image) => (
+    {images.map((image, index) => (
       <Img
-        key={image.image.id}
+        key={index}
         imageInfo={image}
         style={{ width: '100%', height: 'auto', marginBottom: '8px' }}
       />
@@ -63,7 +63,7 @@ const ProjectPageTemplate = ({ title, images }) => {
     <div className={styles.wrapper}>
       <div className={styles.images}>
         {images.map((image, index) => (
-          <ProjectImg key={image.image.id} {...{ image, index }} />
+          <ProjectImg key={index} {...{ image, index }} />
         ))}
       </div>
     </div>
