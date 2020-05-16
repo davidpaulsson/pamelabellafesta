@@ -4,6 +4,10 @@
   gap: calculateRem(8px);
   grid-auto-flow: dense;
   grid-template-columns: 1fr 1fr;
+
+  @media (min-width: $bp) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 .portrait {
   padding-bottom: 4 / 3 * 100%;
