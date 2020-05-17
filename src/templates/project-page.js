@@ -64,9 +64,10 @@ const ProjectPageTemplate = ({ title, category, images }) => {
     <>
       <div className={styles.wrapper}>
         <div className={styles.images}>
-          {images.map((image, index) => (
-            <ProjectImg key={index} {...{ image, index }} />
-          ))}
+          {images &&
+            images.map((image, index) => (
+              <ProjectImg key={index} {...{ image, index }} />
+            ))}
         </div>
       </div>
       <RelatedProjects currentProject={{ title, category }} />
