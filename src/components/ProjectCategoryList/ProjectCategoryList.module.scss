@@ -36,7 +36,19 @@
 }
 
 .bg {
+  position: relative;
+
   background-repeat: repeat-y;
   background-position: bottom center;
   background-size: cover;
+
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    opacity: 0;
+  }
 }
