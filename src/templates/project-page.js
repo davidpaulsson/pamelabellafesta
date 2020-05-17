@@ -5,6 +5,7 @@ import Layout, { Ctx } from '../components/Layout';
 import Img from '../components/PreviewCompatibleImage';
 import styles from './project-page.module.scss';
 import _ from 'lodash';
+import RelatedProjects from '../components/RelatedProjects';
 
 const ProjectImg = ({ image, index }) => {
   const { state, dispatch } = useContext(Ctx);
@@ -48,7 +49,7 @@ export const ProjectPagePreviewTemplate = ({ images = [] }) => (
   </div>
 );
 
-const ProjectPageTemplate = ({ title, images }) => {
+const ProjectPageTemplate = ({ title, category, images }) => {
   const { dispatch } = useContext(Ctx);
   useEffect(() => {
     dispatch({
@@ -60,24 +61,27 @@ const ProjectPageTemplate = ({ title, images }) => {
   }, [dispatch, title, images]);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.images}>
-        {images.map((image, index) => (
-          <ProjectImg key={index} {...{ image, index }} />
-        ))}
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.images}>
+          {images.map((image, index) => (
+            <ProjectImg key={index} {...{ image, index }} />
+          ))}
+        </div>
       </div>
-    </div>
+      <RelatedProjects currentProject={{ title, category }} />
+    </>
   );
 };
 
 const ProjectPage = ({ data, location }) => {
   const {
-    frontmatter: { title, images },
+    frontmatter: { title, category, images },
   } = data.markdownRemark;
 
   return (
     <Layout {...{ title, location }}>
-      <ProjectPageTemplate {...{ title, images }} />
+      <ProjectPageTemplate {...{ title, category, images }} />
     </Layout>
   );
 };

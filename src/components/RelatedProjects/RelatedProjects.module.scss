@@ -1,0 +1,50 @@
+.nav {
+  display: flex;
+  flex-direction: column-reverse;
+
+  height: 100vh;
+}
+
+.list {
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.listItem {
+  padding: calculateRem(8px) 0;
+
+  border-top: 1px solid var(--color-light-gray);
+
+  h3 {
+    display: block;
+
+    transform: translateY(2px);
+
+    color: var(--color-dark-gray);
+  }
+
+  a {
+    display: block;
+
+    transform: translateY(2px);
+
+    @include grid;
+
+    span {
+      &:first-child {
+        grid-column: span 2;
+
+        @media (min-width: $bp) {
+          grid-column: span 1;
+        }
+      }
+
+      &:last-child {
+        grid-column: span 6;
+
+        @media (min-width: $bp) {
+          grid-column: span 4;
+        }
+      }
+    }
+  }
+}

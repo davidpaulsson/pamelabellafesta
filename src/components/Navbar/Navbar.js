@@ -48,7 +48,7 @@ const Navbar = ({ location }) => {
           <li
             className={[styles.navItem, styles.navItemCurrectProject].join(' ')}
           >
-            <span>{state.title}</span>
+            <h2>{state.title}</h2>
             <span>
               <em>{_.padStart(state.caseImages.length, 2, '0')}</em> /{' '}
               {_.padStart(state.images, 2, '0')}
