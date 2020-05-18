@@ -31,6 +31,10 @@ const RelatedProjects = ({ currentProject }) => {
       node.frontmatter.title !== currentProject.title,
   );
 
+  if (relatedProjects.length === 0) {
+    return null;
+  }
+
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
