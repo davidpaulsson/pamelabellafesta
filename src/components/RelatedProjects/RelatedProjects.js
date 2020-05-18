@@ -6,7 +6,7 @@ const RelatedProjects = ({ currentProject }) => {
   const data = useStaticQuery(graphql`
     query AllProjects {
       projects: allMarkdownRemark(
-        sort: { fields: frontmatter___title, order: DESC }
+        sort: { fields: frontmatter___date, order: DESC }
         filter: { frontmatter: { templateKey: { eq: "project-page" } } }
       ) {
         edges {
