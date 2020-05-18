@@ -73,6 +73,7 @@ collections:
 
   - name: projects
     label: Projects
+    label_singular: Project
     folder: src/pages/projects
     create: true
     fields:
