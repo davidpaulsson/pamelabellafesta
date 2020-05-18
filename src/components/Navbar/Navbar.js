@@ -50,7 +50,7 @@ const Navbar = ({ location }) => {
           >
             <h2>{state.title}</h2>
             <span>
-              <em>{_.padStart(state.caseImages.length, 2, '0')}</em> /{' '}
+              <em>{_.padStart(_.last(state.caseImages), 2, '0')}</em> /{' '}
               {_.padStart(state.images, 2, '0')}
             </span>
           </li>

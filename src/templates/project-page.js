@@ -1,34 +1,32 @@
 import { graphql } from 'gatsby';
-import React, { useContext, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
+import React, { useContext, useRef, useEffect } from 'react';
+import useInView from 'react-cool-inview';
 import Layout, { Ctx } from '../components/Layout';
 import Img from '../components/PreviewCompatibleImage';
+import RelatedProjects from '../components/RelatedProjects';
 import styles from './project-page.module.scss';
 import _ from 'lodash';
-import RelatedProjects from '../components/RelatedProjects';
 
 const ProjectImg = ({ image, index }) => {
   const { state, dispatch } = useContext(Ctx);
-  const [ref, inView] = useInView({ threshold: [1, 0.5] });
-
-  useEffect(() => {
-    if (inView) {
+  const ref = useRef();
+  useInView(ref, {
+    threshold: 0.25,
+    onEnter: () => {
       dispatch({
         type: 'SET_CASE_IMAGE',
-        project: { caseImages: [...state.caseImages, index] },
+        project: { caseImages: [...state.caseImages, index + 1] },
       });
-    } else {
-      const last = _.last(state.caseImages);
-      if (last === index && last !== 0) {
-        dispatch({
-          type: 'SET_CASE_IMAGE',
-          project: {
-            caseImages: state.caseImages.slice(0, -1),
-          },
-        });
-      }
-    }
-  }, [inView]);
+    },
+    onLeave: () => {
+      dispatch({
+        type: 'SET_CASE_IMAGE',
+        project: {
+          caseImages: state.caseImages.filter((i) => i !== index + 1),
+        },
+      });
+    },
+  });
 
   return (
     <div ref={ref} className={styles.image}>
