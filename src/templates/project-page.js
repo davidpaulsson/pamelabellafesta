@@ -37,18 +37,6 @@ const ProjectImg = ({ image, index }) => {
   );
 };
 
-export const ProjectPagePreviewTemplate = ({ images = [] }) => (
-  <div style={{ margin: '0 auto', maxWidth: '816px' }}>
-    {images.map((image, index) => (
-      <Img
-        key={index}
-        imageInfo={image}
-        style={{ width: '100%', height: 'auto', marginBottom: '8px' }}
-      />
-    ))}
-  </div>
-);
-
 const ProjectPageTemplate = ({ title, category, images }) => {
   const { dispatch } = useContext(Ctx);
   useEffect(() => {
