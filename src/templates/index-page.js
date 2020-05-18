@@ -11,9 +11,6 @@ export const IndexPageTemplate = ({ title, html, projects }) => {
 
   return (
     <>
-      <h2>{title}</h2>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-
       <BackgroundImage
         className={styles.gallery}
         fluid={
