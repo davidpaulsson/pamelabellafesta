@@ -1,16 +1,14 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
+import BackgroundImage from 'gatsby-background-image';
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import BackgroundImage from 'gatsby-background-image';
-import Img from 'gatsby-image';
-import _ from 'lodash';
 import styles from './index-page.module.scss';
 
 export const IndexPageTemplate = ({ title, html, projects }) => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
 
   return (
-    <>
+    <div className={styles.grid}>
       <BackgroundImage
         className={styles.gallery}
         fluid={
@@ -20,7 +18,11 @@ export const IndexPageTemplate = ({ title, html, projects }) => {
       >
         {projects.edges.map((proj, index) => {
           return (
-            <div
+            <Link
+              to={proj.node.fields.slug.replace(
+                'projects',
+                proj.node.frontmatter.category.toLowerCase(),
+              )}
               className={styles.box}
               onMouseEnter={() => setSelectedProjectIndex(index)}
               key={proj.node.frontmatter.featuredImage.id}
@@ -28,7 +30,7 @@ export const IndexPageTemplate = ({ title, html, projects }) => {
           );
         })}
       </BackgroundImage>
-    </>
+    </div>
   );
 };
 

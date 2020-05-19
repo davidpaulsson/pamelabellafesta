@@ -1,5 +1,23 @@
+.grid {
+  @media (min-width: $bp) {
+    // position: absolute;
+    // top: 0;
+    // left: calculateRem(4px);
+    width: 100vw;
+    height: 100vh;
+
+    @include grid;
+  }
+}
+
 .gallery {
   display: flex;
+
+  @media (min-width: $bp) {
+    margin-right: calculateRem(8px);
+
+    grid-column: 5 / 13;
+  }
 }
 
 .box {

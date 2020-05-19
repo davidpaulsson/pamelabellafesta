@@ -10,10 +10,8 @@ html {
 body {
   font-family: 'HelveticaNeueLTPro-Roman', 'Helvetica Neue', Helvetica, Arial,
     'Lucida Grande', sans-serif;
-  line-height: 16px;
+  font-size: calculateRem(14px);
   line-height: calculateRem(16px);
-
-  @include fontSize(14px);
 }
 
 a {

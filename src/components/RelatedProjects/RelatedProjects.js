@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styles from './RelatedProjects.module.scss';
 
 const RelatedProjects = ({ currentProject }) => {
@@ -43,15 +43,15 @@ const RelatedProjects = ({ currentProject }) => {
         </li>
         {relatedProjects.map(({ node }) => (
           <li className={styles.listItem}>
-            <a
-              href={node.fields.slug.replace(
+            <Link
+              to={node.fields.slug.replace(
                 'projects',
                 node.frontmatter.category.toLowerCase(),
               )}
             >
               <span>{currentProject.category}</span>
               <span>{node.frontmatter.title}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
