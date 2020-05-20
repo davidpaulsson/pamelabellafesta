@@ -1,4 +1,6 @@
 .grid {
+  pointer-events: none;
+
   @media (min-width: $bp) {
     position: absolute;
     top: 0;
@@ -15,6 +17,8 @@
   z-index: 2;
 
   display: flex;
+
+  pointer-events: auto;
 
   @media (min-width: $bp) {
     grid-column: 5 / 13;
