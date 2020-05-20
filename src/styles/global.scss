@@ -4,6 +4,10 @@
 
 body {
   padding: 0 calculateRem(8px);
+
+  @media (min-width: $bp) {
+    padding: 0 calculateRem(16px);
+  }
 }
 
 img {
