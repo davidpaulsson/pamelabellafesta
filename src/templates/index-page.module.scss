@@ -1,9 +1,9 @@
 .grid {
   @media (min-width: $bp) {
-    // position: absolute;
-    // top: 0;
-    // left: calculateRem(4px);
-    width: 100vw;
+    position: absolute;
+    top: 0;
+
+    width: 98.5vw;
     height: 100vh;
 
     @include grid;
@@ -11,13 +11,23 @@
 }
 
 .gallery {
+  position: relative;
+  z-index: 2;
+
   display: flex;
 
   @media (min-width: $bp) {
-    margin-right: calculateRem(8px);
-
     grid-column: 5 / 13;
+    grid-row: 1 / 2;
   }
+}
+
+.img {
+  position: relative;
+  z-index: 1;
+
+  grid-column: 5 / 13;
+  grid-row: 1 / 2;
 }
 
 .box {

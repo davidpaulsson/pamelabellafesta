@@ -6,16 +6,23 @@ import styles from './index-page.module.scss';
 
 export const IndexPageTemplate = ({ title, html, projects }) => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-
   return (
     <div className={styles.grid}>
-      <BackgroundImage
-        className={styles.gallery}
-        fluid={
-          projects.edges[selectedProjectIndex].node.frontmatter.featuredImage
-            .childImageSharp.fluid
-        }
-      >
+      {projects.edges.map((proj, index) => {
+        return (
+          <div
+            className={styles.img}
+            key={proj.node.frontmatter.featuredImage.id}
+            style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
+          >
+            <BackgroundImage
+              style={{ height: '100vh', width: '100%' }}
+              fluid={proj.node.frontmatter.featuredImage.childImageSharp.fluid}
+            />
+          </div>
+        );
+      })}
+      <div className={styles.gallery}>
         {projects.edges.map((proj, index) => {
           return (
             <Link
@@ -29,7 +36,7 @@ export const IndexPageTemplate = ({ title, html, projects }) => {
             />
           );
         })}
-      </BackgroundImage>
+      </div>
     </div>
   );
 };
@@ -74,7 +81,7 @@ export const pageQuery = graphql`
               id
               childImageSharp {
                 fluid(maxWidth: 1600, quality: 100) {
-                  ...GatsbyImageSharpFluid_withWebp
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
                 }
                 original {
                   height

@@ -42,7 +42,7 @@ const RelatedProjects = ({ currentProject }) => {
           <h3>Browse more</h3>
         </li>
         {relatedProjects.map(({ node }) => (
-          <li className={styles.listItem}>
+          <li className={styles.listItem} key={node.id}>
             <Link
               to={node.fields.slug.replace(
                 'projects',
