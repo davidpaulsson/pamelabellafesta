@@ -39,3 +39,27 @@
 
   padding-bottom: 4 / 3 * 100%;
 }
+
+.projectInfo {
+  display: none;
+  @media (min-width: $bp) {
+    display: grid;
+    align-self: end;
+
+    padding: calculateRem(10px) 0 calculateRem(6px);
+
+    border-top: 1px solid var(--color-light-gray);
+
+    grid-column: span 4;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: calculateRem(8px);
+
+    .category {
+      grid-column: span 1;
+    }
+
+    .title {
+      grid-column: span 3;
+    }
+  }
+}

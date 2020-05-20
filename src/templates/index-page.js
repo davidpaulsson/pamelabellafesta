@@ -8,6 +8,14 @@ export const IndexPageTemplate = ({ title, html, projects }) => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
   return (
     <div className={styles.grid}>
+      <div className={styles.projectInfo}>
+        <div className={styles.category}>
+          {projects.edges[selectedProjectIndex].node.frontmatter.category}
+        </div>
+        <div className={styles.title}>
+          {projects.edges[selectedProjectIndex].node.frontmatter.title}
+        </div>
+      </div>
       {projects.edges.map((proj, index) => {
         return (
           <div
