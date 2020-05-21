@@ -11,6 +11,9 @@
 }
 
 .title {
+  margin-top: calculateRem(2px);
+  margin-bottom: calculateRem(10px);
+
   @include grid;
 }
 
