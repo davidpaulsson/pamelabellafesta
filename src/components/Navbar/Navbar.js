@@ -32,6 +32,14 @@ const Navbar = ({ location }) => {
     }, 300);
   };
 
+  const getCurrentImg = () => {
+    const nr = _.padStart(_.last(state.caseImages), 2, '0');
+    if (nr === '00') {
+      return _.padStart(state.images, 2, '0');
+    }
+    return nr;
+  };
+
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
@@ -59,8 +67,7 @@ const Navbar = ({ location }) => {
           >
             <h2 className={navIsOpen && styles.gray}>{state.title}</h2>
             <span>
-              <em>{_.padStart(_.last(state.caseImages), 2, '0')}</em> /{' '}
-              {_.padStart(state.images, 2, '0')}
+              <em>{getCurrentImg()}</em> / {_.padStart(state.images, 2, '0')}
             </span>
           </li>
         )}
@@ -88,18 +95,6 @@ const Navbar = ({ location }) => {
               ),
           )}
         </motion.div>
-
-        {/* {(navIsOpen || !isNotHomePage) &&
-          pages.map(
-            (page) =>
-              currentPath !== page && (
-                <li key={page} className={styles.navItem}>
-                  <Link to={'/' + page + '/'} className={styles.navItemLink}>
-                    {capitalize(page)}
-                  </Link>
-                </li>
-              ),
-          )} */}
       </ul>
     </nav>
   );
