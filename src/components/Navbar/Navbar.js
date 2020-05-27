@@ -8,7 +8,7 @@ import _ from 'lodash';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
-const capitalize = (word) => word?.charAt(0).toUpperCase() + word.slice(1);
+const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
 
 const Navbar = ({ location }) => {
   const [navIsOpen, toggleNavIsOpen] = useState(false);
@@ -44,7 +44,8 @@ const Navbar = ({ location }) => {
             className={styles.navItemLink}
             onClick={() => toggleNavIsOpen(!navIsOpen)}
           >
-            {capitalize(currentPath === '' ? 'navigation' : currentPath)}
+            {currentPath &&
+              capitalize(currentPath === '' ? 'navigation' : currentPath)}
           </h2>
           <button
             className={styles.btn}
