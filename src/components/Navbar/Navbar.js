@@ -17,10 +17,6 @@ const Navbar = ({ location }) => {
     pages.filter((s) => (currentPath === '' ? false : s.includes(currentPath)))
       .length > 0;
 
-  useEffect(() => {
-    toggleNavIsOpen(!isNotHomePage);
-  }, [isNotHomePage]);
-
   const { state } = useContext(Ctx);
 
   const getCurrentImg = () => {
@@ -35,22 +31,21 @@ const Navbar = ({ location }) => {
     <nav className={styles.nav}>
       <ul className={styles.list}>
         {/** CURRENT PAGE */}
-        {isNotHomePage && (
-          <li className={[styles.navItem, styles.navItemCurrent].join(' ')}>
-            <h2
-              className={styles.navItemLink}
-              onClick={() => toggleNavIsOpen(!navIsOpen)}
-            >
-              {capitalize(currentPath)}
-            </h2>
-            <button
-              className={styles.btn}
-              onClick={() => toggleNavIsOpen(!navIsOpen)}
-            >
-              {navIsOpen ? <Collapse /> : <Expand />}
-            </button>
-          </li>
-        )}
+
+        <li className={[styles.navItem, styles.navItemCurrent].join(' ')}>
+          <h2
+            className={styles.navItemLink}
+            onClick={() => toggleNavIsOpen(!navIsOpen)}
+          >
+            {capitalize(currentPath === '' ? 'navigation' : currentPath)}
+          </h2>
+          <button
+            className={styles.btn}
+            onClick={() => toggleNavIsOpen(!navIsOpen)}
+          >
+            {navIsOpen ? <Collapse /> : <Expand />}
+          </button>
+        </li>
 
         {state.showProjectMeta && (
           <li
@@ -64,7 +59,7 @@ const Navbar = ({ location }) => {
         )}
 
         {/** MENU */}
-        {(navIsOpen || !isNotHomePage) &&
+        {navIsOpen &&
           pages.map(
             (page) =>
               currentPath !== page && (

@@ -1,4 +1,7 @@
 .grid {
+  height: 100vh;
+  max-height: 100vh;
+
   pointer-events: none;
 
   @media (min-width: $bp) {
@@ -6,7 +9,6 @@
     top: 0;
 
     width: 98.5vw;
-    height: 100vh;
 
     @include grid;
   }
@@ -17,6 +19,9 @@
   z-index: 2;
 
   display: flex;
+
+  height: 100vh;
+  max-height: 100vh;
 
   pointer-events: auto;
 
@@ -36,12 +41,11 @@
 
 .box {
   flex: 1;
-
-  padding-bottom: 4 / 3 * 100%;
 }
 
 .projectInfo {
   display: none;
+
   @media (min-width: $bp) {
     display: grid;
     align-self: end;
