@@ -1,11 +1,10 @@
 import { graphql } from 'gatsby';
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import useInView from 'react-cool-inview';
 import Layout, { Ctx } from '../components/Layout';
 import Img from '../components/PreviewCompatibleImage';
 import RelatedProjects from '../components/RelatedProjects';
 import styles from './project-page.module.scss';
-import _ from 'lodash';
 
 const ProjectImg = ({ image, index }) => {
   const { state, dispatch } = useContext(Ctx);
