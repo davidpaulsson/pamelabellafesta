@@ -27,11 +27,18 @@ const Navbar = ({ location }) => {
     return nr;
   };
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth > 768 && currentPath === '') {
+        toggleNavIsOpen(true);
+      }
+    }
+  }, []);
+
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
         {/** CURRENT PAGE */}
-
         <li className={[styles.navItem, styles.navItemCurrent].join(' ')}>
           <h2
             className={styles.navItemLink}

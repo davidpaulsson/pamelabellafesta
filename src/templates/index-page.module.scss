@@ -1,31 +1,30 @@
 .grid {
-  height: 100vh;
-  max-height: 100vh;
-
-  pointer-events: none;
-
   @media (min-width: $bp) {
     position: absolute;
     top: 0;
 
     width: 98.5vw;
+    height: 100vh;
+    max-height: 100vh;
+
+    pointer-events: none;
 
     @include grid;
   }
 }
 
 .gallery {
-  position: relative;
-  z-index: 2;
-
-  display: flex;
-
-  height: 100vh;
-  max-height: 100vh;
-
-  pointer-events: auto;
-
   @media (min-width: $bp) {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    height: 100vh;
+    max-height: 100vh;
+
+    pointer-events: auto;
+
     grid-column: 5 / 13;
     grid-row: 1 / 2;
   }
