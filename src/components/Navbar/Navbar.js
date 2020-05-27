@@ -8,7 +8,7 @@ import _ from 'lodash';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
-const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
+const capitalize = (word) => word?.charAt(0).toUpperCase() + word.slice(1);
 
 const Navbar = ({ location }) => {
   const [navIsOpen, toggleNavIsOpen] = useState(false);
