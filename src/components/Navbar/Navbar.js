@@ -5,17 +5,17 @@ import Collapse from './Collapse';
 import Expand from './Expand';
 import { Ctx } from '../Layout';
 import _ from 'lodash';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
-const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
+const capitalize = (word) =>
+  word ? word.charAt(0).toUpperCase() + word.slice(1) : 'Navigation';
 
 const Navbar = ({ location }) => {
-  const [navIsOpen, toggleNavIsOpen] = useState(false);
+  const { width } = useWindowSize();
+  const [navIsOpen, toggleNavIsOpen] = useState(width > 768);
   const currentPath = location?.pathname.split('/')[1];
-  const isNotHomePage =
-    pages.filter((s) => (currentPath === '' ? false : s.includes(currentPath)))
-      .length > 0;
 
   const { state } = useContext(Ctx);
 
@@ -27,14 +27,6 @@ const Navbar = ({ location }) => {
     return nr;
   };
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth > 768 && currentPath === '') {
-        toggleNavIsOpen(true);
-      }
-    }
-  }, []);
-
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
@@ -44,8 +36,7 @@ const Navbar = ({ location }) => {
             className={styles.navItemLink}
             onClick={() => toggleNavIsOpen(!navIsOpen)}
           >
-            {currentPath &&
-              capitalize(currentPath === '' ? 'navigation' : currentPath)}
+            {capitalize(currentPath)}
           </h2>
           <button
             className={styles.btn}
