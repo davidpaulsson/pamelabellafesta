@@ -24,6 +24,7 @@
 .landscape {
   position: relative;
 
+  display: flex;
   overflow: hidden;
 
   img {
@@ -33,14 +34,6 @@
     bottom: 0;
     left: 0;
   }
-}
-
-.bg {
-  position: relative;
-
-  background-repeat: repeat-y;
-  background-position: bottom center;
-  background-size: cover;
 
   a {
     position: absolute;
@@ -49,6 +42,34 @@
     bottom: 0;
     left: 0;
 
-    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s;
+    text-align: center;
+
+    div {
+      transition: all 0.3s;
+
+      opacity: 0;
+      color: var(--color-white);
+    }
+
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.5);
+
+      div {
+        opacity: 1;
+      }
+    }
   }
+}
+
+.bg {
+  position: relative;
+
+  background-repeat: repeat-y;
+  background-position: bottom center;
+  background-size: cover;
 }

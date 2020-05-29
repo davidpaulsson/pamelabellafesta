@@ -37,9 +37,8 @@ const ProjectCategoryList = ({ projects }) => {
                   String(category).toLowerCase() +
                   slug.replace('projects/', '')
                 }
-                className={height > width ? styles.portrait : styles.landscape}
               >
-                {title}
+                <div>{title}</div>
               </Link>
             </BackgroundImage>
           );
