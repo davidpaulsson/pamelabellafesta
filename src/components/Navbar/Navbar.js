@@ -10,7 +10,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
 const capitalize = (word) =>
-  word ? word.charAt(0).toUpperCase() + word.slice(1) : 'Navigation';
+  word ? word.charAt(0).toUpperCase() + word.slice(1) : 'Browse';
 
 const Navbar = ({ location }) => {
   const { width } = useWindowSize();
