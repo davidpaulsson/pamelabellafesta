@@ -41,6 +41,17 @@
       cursor: pointer;
     }
   }
+  svg {
+    fill: var(--color-black);
+  }
+  &:hover {
+    h2 {
+      color: var(--color-dark-gray) !important;
+    }
+    svg {
+      fill: var(--color-dark-gray);
+    }
+  }
 }
 
 .navItemCurrectProject {
