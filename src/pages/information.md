@@ -40,6 +40,7 @@ contact:
   - title: Mail
     text: pamela@bellafesta.se
     link: mailto:pamela@bellafesta.se
+social:
   - title: Instagram
     text: '@pamelabellafesta'
     link: https://www.instagram.com/pamelabellafesta/

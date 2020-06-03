@@ -14,6 +14,7 @@ export const InformationPageTemplate = ({
   bio,
   clients,
   contact,
+  social,
   // representation,
 }) => {
   return (
@@ -47,13 +48,28 @@ export const InformationPageTemplate = ({
           ))}
         </div>
       </div>
+      <div className={styles.wrapper}>
+        <h3 className={styles.title}>Social</h3>
+        <div className={[styles.content, styles.contact].join(' ')}>
+          {social.map(({ title, text, link }) => (
+            <React.Fragment key={link}>
+              <h4>{title}</h4>
+              <ul>
+                <li>
+                  <a href={link}>{text}</a>
+                </li>
+              </ul>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
     </>
   );
 };
 
 const InformationPage = ({ data, location }) => {
   const {
-    frontmatter: { bio, clients, contact, representation },
+    frontmatter: { bio, clients, contact, social, representation },
   } = data.markdownRemark;
 
   return (
@@ -63,6 +79,7 @@ const InformationPage = ({ data, location }) => {
           bio,
           clients,
           contact,
+          social,
           representation,
         }}
       />
@@ -79,6 +96,11 @@ export const pageQuery = graphql`
         bio
         clients
         contact {
+          title
+          text
+          link
+        }
+        social {
           title
           text
           link
