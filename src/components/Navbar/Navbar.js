@@ -43,7 +43,11 @@ const Navbar = ({ location }) => {
         {/** CURRENT PAGE */}
         <li className={[styles.navItem, styles.navItemCurrent].join(' ')}>
           <h2
-            className={styles.navItemLink}
+            className={
+              navIsOpen || state.showProjectMeta
+                ? styles.navItemLinkGray
+                : styles.navItemLinkBlack
+            }
             onClick={() => toggleNavIsOpen(!navIsOpen)}
           >
             {capitalize(currentPath)}

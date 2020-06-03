@@ -23,10 +23,19 @@
   align-items: center;
   justify-content: space-between;
 
-  .navItemLink {
+  .navItemLinkGray {
     flex: 1;
 
     color: var(--color-dark-gray);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .navItemLinkBlack {
+    flex: 1;
+
+    color: var(--color-black);
 
     &:hover {
       cursor: pointer;
