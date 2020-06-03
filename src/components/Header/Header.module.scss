@@ -11,9 +11,13 @@
 }
 
 .title {
-  margin-bottom: calculateRem(10px);
+  margin-bottom: calculateRem(8px);
 
   @include grid;
+
+  @media (min-width: $bp) {
+    margin-bottom: calculateRem(16px);
+  }
 }
 
 .link {
