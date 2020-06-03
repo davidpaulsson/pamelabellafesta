@@ -1,3 +1,16 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexInner {
+  flex: 1 0 auto;
+}
+
+.social {
+  flex-shrink: 0;
+}
+
 .wrapper {
   margin-bottom: calculateRem(8px);
   padding-bottom: calculateRem(24px);
