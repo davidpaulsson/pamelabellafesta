@@ -15,7 +15,7 @@ const capitalize = (word) =>
 const Navbar = ({ location }) => {
   const { width } = useWindowSize();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [navIsOpen, toggleNavIsOpen] = useState(true);
+  const [navIsOpen, toggleNavIsOpen] = useState(false);
   const currentPath = location?.pathname.split('/')[1];
 
   useEffect(() => {
