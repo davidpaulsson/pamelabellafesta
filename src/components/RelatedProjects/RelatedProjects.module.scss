@@ -3,10 +3,15 @@
   flex-direction: column-reverse;
 
   height: 100vh;
+  margin-bottom: calculateRem(16px);
 }
 
 .list {
   border-bottom: 1px solid var(--color-light-gray);
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .listItem {
