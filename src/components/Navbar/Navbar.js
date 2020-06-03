@@ -15,15 +15,17 @@ const capitalize = (word) =>
 const Navbar = ({ location }) => {
   const { width } = useWindowSize();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [navIsOpen, toggleNavIsOpen] = useState(false);
+  const [navIsOpen, toggleNavIsOpen] = useState(true);
   const currentPath = location?.pathname.split('/')[1];
 
   useEffect(() => {
-    if (width && isFirstLoad) {
-      toggleNavIsOpen(width > 768);
-      setIsFirstLoad(false);
+    if (location?.pathname === '/') {
+      if (width && isFirstLoad) {
+        toggleNavIsOpen(width > 768);
+        setIsFirstLoad(false);
+      }
     }
-  }, [width, isFirstLoad, setIsFirstLoad]);
+  }, [width, isFirstLoad, setIsFirstLoad, location]);
 
   const { state } = useContext(Ctx);
 
