@@ -3,7 +3,6 @@
   flex-direction: column-reverse;
 
   height: 100vh;
-  margin-bottom: calculateRem(16px);
 }
 
 .list {
@@ -21,14 +20,12 @@
 
   h3 {
     display: block;
-    // transform: translateY(2px);
 
     color: var(--color-dark-gray);
   }
 
   a {
     display: block;
-    // transform: translateY(2px);
 
     @include grid;
 

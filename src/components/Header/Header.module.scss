@@ -11,7 +11,6 @@
 }
 
 .title {
-  margin-top: calculateRem(2px);
   margin-bottom: calculateRem(10px);
 
   @include grid;
@@ -21,7 +20,7 @@
   display: block;
 
   width: 100%;
-  margin-top: calculateRem(4px);
+  margin-top: calculateRem(8px);
   padding-bottom: 5.446822686766054%;
 
   text-indent: -9999px;
@@ -34,7 +33,7 @@
   grid-column: 1 / -1;
 
   @media (min-width: $bp) {
-    margin-top: calculateRem(8px);
+    margin-top: calculateRem(16px);
     padding-bottom: calculateRem(8px);
 
     grid-column: 1 / 4;
