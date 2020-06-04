@@ -1,10 +1,9 @@
 import { withPrefix } from 'gatsby';
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import _ from 'lodash';
-import useDimensions from 'react-use-dimensions';
 
 export const Ctx = React.createContext();
 const defaultState = {
@@ -12,16 +11,9 @@ const defaultState = {
   images: 0,
   caseImages: [0],
   showProjectMeta: false,
-  headerHeight: 0,
 };
-
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'SET_HEADER_HEIGHT':
-      return {
-        ...state,
-        headerHeight: action.headerHeight,
-      };
     case 'SET_CASE':
       const {
         project: { title, images },
@@ -54,11 +46,6 @@ const TemplateWrapper = ({
 
   const [state, dispatch] = useReducer(reducer, defaultState);
 
-  const [ref, { height }] = useDimensions();
-  useEffect(() => {
-    dispatch({ type: 'SET_HEADER_HEIGHT', headerHeight: height });
-  }, [height]);
-
   return (
     <Ctx.Provider value={{ state, dispatch }}>
       <Helmet>
@@ -90,9 +77,7 @@ const TemplateWrapper = ({
         />
       </Helmet>
 
-      <div ref={ref}>
-        <Header {...{ location }} />
-      </div>
+      <Header {...{ location }} />
 
       {children}
     </Ctx.Provider>
