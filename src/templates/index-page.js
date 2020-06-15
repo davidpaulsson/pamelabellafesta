@@ -46,7 +46,11 @@ export const IndexPageTemplate = ({ title, html, projects }) => {
               style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
             >
               <BackgroundImage
-                style={{ height: '100vh', width: '100%' }}
+                style={{
+                  height: '100vh',
+                  width: '100%',
+                  backgroundPosition: 'top center',
+                }}
                 fluid={
                   proj.node.frontmatter.featuredImage.childImageSharp.fluid
                 }
@@ -125,7 +129,7 @@ export const pageQuery = graphql`
             featuredImage {
               id
               childImageSharp {
-                fluid(maxWidth: 1600, quality: 100) {
+                fluid(maxWidth: 1600, maxHeight: 1600, quality: 100) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
                 original {
