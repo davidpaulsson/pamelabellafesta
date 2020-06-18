@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Peak Performance
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/peak_performance-1.jpg
 images:
   - image: /img/peak_performance-1.jpg
