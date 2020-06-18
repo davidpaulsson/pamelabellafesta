@@ -1,6 +1,6 @@
 ---
 templateKey: project-page
-title: Apoteket Hjärtat
+title: Apotek Hjärtat
 date: May 15, 2020 2:35 PM
 category: Commercial
 featuredImage: /img/apotek-hjartat-01.jpg
