@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Apoteket Hjärtat
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/apotek-hjartat-01.jpg
 images:
   - image: /img/apotek-hjartat-01.jpg
