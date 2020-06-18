@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Kappahl
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/kappahl-01.jpg
 images:
   - image: /img/kappahl-01.jpg
