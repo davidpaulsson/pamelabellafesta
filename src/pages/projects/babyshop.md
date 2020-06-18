@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Babyshop
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/babyshop-aw17-01.jpg
 images:
   - image: /img/babyshop-aw17-01.jpg
