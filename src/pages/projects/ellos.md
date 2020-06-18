@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Ellos
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/ellos-1.jpg
 images:
   - image: /img/ellos-1.jpg
