@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Twist & Tango
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/twist_and_tango-1.jpg
 images:
   - image: /img/twist_and_tango-1.jpg
