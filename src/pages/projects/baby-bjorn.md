@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Baby Björn
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/baby-bjorn-01.jpg
 images:
   - image: /img/baby-bjorn-01.jpg
