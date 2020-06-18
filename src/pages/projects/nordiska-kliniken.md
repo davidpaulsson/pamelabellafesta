@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Nordiska Kliniken
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/nordiska-kliniken-01.jpg
 images:
   - image: /img/nordiska-kliniken-01.jpg
