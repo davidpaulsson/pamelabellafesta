@@ -1,6 +1,6 @@
 ---
 templateKey: project-page
-title: Odd Molly Valbauer
+title: Odd Molly
 date: May 15, 2020 2:35 PM
 category: Commercial
 featuredImage: /img/odd-molly-valbauer-01.jpg
