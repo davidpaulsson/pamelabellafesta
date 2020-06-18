@@ -2,7 +2,7 @@
 templateKey: project-page
 title: Odd Molly
 date: May 15, 2020 2:35 PM
-category: Editorial
+category: Commercial
 featuredImage: /img/odd-molly-01.jpg
 images:
   - image: /img/odd-molly-01.jpg
