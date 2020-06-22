@@ -13,6 +13,12 @@ local_backend: true
 media_folder: static/img
 public_folder: /img
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dhsj3lvlp
+    api_key: 872194532572424
+
 collections:
   - name: pages
     label: Pages
