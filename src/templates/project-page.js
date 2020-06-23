@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import React, { useContext, useEffect, useRef } from 'react';
 import useInView from 'react-cool-inview';
 import Layout, { Ctx } from '../components/Layout';
-import Img from '../components/PreviewCompatibleImage';
+import Img from 'gatsby-image';
 import RelatedProjects from '../components/RelatedProjects';
 import styles from './project-page.module.scss';
 
@@ -29,7 +29,7 @@ const ProjectImg = ({ image, index }) => {
 
   return (
     <div ref={ref} className={styles.image}>
-      <Img imageInfo={image} />
+      <Img fluid={image.image.childImageSharp.fluid} />
     </div>
   );
 };

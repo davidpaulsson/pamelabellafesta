@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Img from '../../components/PreviewCompatibleImage';
 import styles from './ProjectCategoryList.module.scss';
 import BackgroundImage from 'gatsby-background-image';
 
