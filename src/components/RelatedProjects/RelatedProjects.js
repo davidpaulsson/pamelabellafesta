@@ -5,30 +5,27 @@ import styles from './RelatedProjects.module.scss';
 const RelatedProjects = ({ currentProject }) => {
   const data = useStaticQuery(graphql`
     query AllProjects {
-      projects: allMarkdownRemark(
-        sort: { fields: frontmatter___date, order: DESC }
-        filter: { frontmatter: { templateKey: { eq: "project-page" } } }
-      ) {
+      projects: allWordpressPost(sort: { order: DESC, fields: date }) {
         edges {
           node {
             id
-            frontmatter {
-              title
-              category
+            title
+            categories {
+              name
             }
-            fields {
-              slug
-            }
+            path
           }
         }
       }
     }
   `);
 
+  console.log(data.projects);
+
   const relatedProjects = data.projects.edges.filter(
     ({ node }) =>
-      node.frontmatter.category === currentProject.category &&
-      node.frontmatter.title !== currentProject.title,
+      node.categories[0].name === currentProject.category &&
+      node.title !== currentProject.title,
   );
 
   if (relatedProjects.length === 0) {
@@ -43,14 +40,9 @@ const RelatedProjects = ({ currentProject }) => {
         </li>
         {relatedProjects.map(({ node }) => (
           <li className={styles.listItem} key={node.id}>
-            <Link
-              to={node.fields.slug.replace(
-                'projects',
-                node.frontmatter.category.toLowerCase(),
-              )}
-            >
+            <Link to={node.path}>
               <span>{currentProject.category}</span>
-              <span>{node.frontmatter.title}</span>
+              <span>{node.title}</span>
             </Link>
           </li>
         ))}

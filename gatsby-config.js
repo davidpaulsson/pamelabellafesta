@@ -23,7 +23,12 @@ module.exports = {
         protocol: 'http',
         restApiRoutePrefix: 'wp-json',
         hostingWPCOM: false,
-        useACF: true,
+        useACF: false,
+        includedRoutes: ['**/posts', '**/pages', '**/media', '**/categories'],
+        // searchAndReplaceContentUrls: {
+        //   sourceUrl: 'https://source-url.com',
+        //   replacementUrl: 'https://replacement-url.com',
+        // },
         plugins: [
           {
             resolve: `@draftbox-co/gatsby-wordpress-inline-images`,
@@ -31,6 +36,8 @@ module.exports = {
               baseUrl: `pamelabellafesta.local`,
               protocol: `http`,
               withWebp: true,
+              maxWidth: 2048,
+              quality: 100,
             },
           },
         ],

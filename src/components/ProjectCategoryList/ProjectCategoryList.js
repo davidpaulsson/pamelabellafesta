@@ -8,41 +8,29 @@ const ProjectCategoryList = ({ projects }) => {
     return <p>No projects in this category</p>;
   }
 
+  console.log({ projects });
+
   return (
     <div className={styles.grid}>
-      {projects.map(
-        ({
-          node: {
-            id,
-            frontmatter: { title, category, featuredImage },
-            fields: { slug },
-          },
-        }) => {
-          const { height, width } = featuredImage.childImageSharp.original;
-          return (
-            <BackgroundImage
-              key={id}
-              Tag="div"
-              className={[
-                styles.bg,
-                height > width ? styles.portrait : styles.landscape,
-              ].join(' ')}
-              fluid={featuredImage.childImageSharp.fluid}
-              backgroundColor={`#040e18`}
-            >
-              <Link
-                to={
-                  '/' +
-                  String(category).toLowerCase() +
-                  slug.replace('projects/', '')
-                }
-              >
-                <div>{title}</div>
-              </Link>
-            </BackgroundImage>
-          );
-        },
-      )}
+      {projects.map(({ node: { id, title, featured_media, path } }) => {
+        const { height, width } = featured_media.media_details;
+        return (
+          <BackgroundImage
+            key={id}
+            Tag="div"
+            className={[
+              styles.bg,
+              height > width ? styles.portrait : styles.landscape,
+            ].join(' ')}
+            fluid={featured_media.localFile.childImageSharp.fluid}
+            backgroundColor={`#040e18`}
+          >
+            <Link to={path}>
+              <div>{title}</div>
+            </Link>
+          </BackgroundImage>
+        );
+      })}
     </div>
   );
 };
