@@ -45,5 +45,10 @@ exports.createPages = ({ actions, graphql }) => {
         context: { id: node.id },
       });
     });
+
+    createPage({
+      path: '/',
+      component: path.resolve(`src/templates/index-page.js`),
+    });
   });
 };
