@@ -1,0 +1,8 @@
+.wp-video,
+.gatsby-image-wrapper {
+  margin-bottom: calculateRem(8px);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

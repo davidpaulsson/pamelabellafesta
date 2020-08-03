@@ -14,65 +14,34 @@ module.exports = {
         `,
       },
     },
-    {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
-      },
-    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-source-wordpress',
       options: {
+        baseUrl: 'pamelabellafesta.local',
+        protocol: 'http',
+        restApiRoutePrefix: 'wp-json',
+        hostingWPCOM: false,
+        useACF: false,
+        includedRoutes: ['**/posts', '**/pages', '**/media', '**/categories'],
+        // searchAndReplaceContentUrls: {
+        //   sourceUrl: 'https://source-url.com',
+        //   replacementUrl: 'https://replacement-url.com',
+        // },
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
+            resolve: `@draftbox-co/gatsby-wordpress-inline-images`,
             options: {
-              name: 'uploads',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 1024,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'static',
+              baseUrl: `pamelabellafesta.local`,
+              protocol: `http`,
+              withWebp: true,
+              maxWidth: 2048,
+              quality: 100,
             },
           },
         ],
       },
     },
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
-    // must be after other CSS plugins
-    'gatsby-plugin-netlify',
   ],
 };

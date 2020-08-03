@@ -1,24 +1,23 @@
-const _ = require('lodash');
 const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
-const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
   return graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      categories: allWordpressCategory {
         edges {
           node {
             id
-            fields {
-              slug
-            }
-            frontmatter {
-              templateKey
-              category
-            }
+            slug
+          }
+        }
+      }
+      projects: allWordpressPost {
+        edges {
+          node {
+            id
+            path
           }
         }
       }
@@ -29,42 +28,27 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    const posts = result.data.allMarkdownRemark.edges;
-
-    posts.forEach((edge) => {
-      const id = edge.node.id;
-      const category = edge.node.frontmatter.category;
-      const slug =
-        String(edge.node.frontmatter.templateKey) === 'project-page'
-          ? String(edge.node.frontmatter.category).toLowerCase() +
-            String(edge.node.fields.slug).replace('projects/', '')
-          : edge.node.fields.slug;
-
+    const posts = result.data.projects.edges;
+    posts.forEach(({ node }) => {
       createPage({
-        path: slug,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`,
-        ),
-        // additional data can be passed via context
-        context: {
-          id,
-          category,
-        },
+        path: node.path,
+        component: path.resolve(`src/templates/project-page.js`),
+        context: { id: node.id },
       });
     });
-  });
-};
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
-  fmImagesToRelative(node); // convert image paths for gatsby images
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
+    const categories = result.data.categories.edges;
+    categories.forEach(({ node }) => {
+      createPage({
+        path: node.slug,
+        component: path.resolve(`src/templates/project-category-page.js`),
+        context: { id: node.id },
+      });
     });
-  }
+
+    createPage({
+      path: '/',
+      component: path.resolve(`src/templates/index-page.js`),
+    });
+  });
 };

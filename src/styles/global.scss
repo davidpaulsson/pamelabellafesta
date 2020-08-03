@@ -13,6 +13,29 @@ body {
 img {
   display: block;
 
-  width: 100%;
+  width: 100% !important;
   height: auto;
+}
+
+.wp-video {
+  position: relative;
+
+  overflow: hidden;
+
+  max-width: 100%;
+  padding-bottom: 56.25%;
+
+  .wp-video-shortcode {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    max-width: 100%;
+    height: 100%;
+  }
+}
+
+.wp-video iframe,
+.wp-video object,
+.wp-video embed {
 }

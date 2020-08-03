@@ -12,11 +12,3 @@
     grid-column: 5 / span 8;
   }
 }
-
-.image {
-  margin-bottom: calculateRem(8px);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
