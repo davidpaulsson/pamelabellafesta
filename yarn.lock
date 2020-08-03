@@ -11942,11 +11942,6 @@ react-codemirror2@^6.0.0:
   resolved "https://registry.yarnpkg.com/react-codemirror2/-/react-codemirror2-6.0.1.tgz#7daba40795eb2a52637926b6fe0b73a6e9090723"
   integrity sha512-rutEKVgvFhWcy/GeVA1hFbqrO89qLqgqdhUr7YhYgIzdyICdlRQv+ztuNvOFQMXrO0fLt0VkaYOdMdYdQgsSUA==
 
-react-cool-inview@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-cool-inview/-/react-cool-inview-1.0.0.tgz#56e7fc9409e4f1ba60c564fe77026acbabd8ce03"
-  integrity sha512-Y+mn0IMRDoN6JFfWuDGU0Jv280ZQ1EEz4lFv+DnSnXDyFzlrEoBdambA1HpqiGJqnmWvqcAFyb4vs0LtlgjBvw==
-
 react-datetime@^2.16.3:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-2.16.3.tgz#7f9ac7d4014a939c11c761d0c22d1fb506cb505e"
