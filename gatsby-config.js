@@ -19,22 +19,22 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: 'pamelabellafesta.local',
-        protocol: 'http',
+        baseUrl: 'data.pamelabellafesta.se',
+        protocol: 'https',
         restApiRoutePrefix: 'wp-json',
         hostingWPCOM: false,
-        useACF: false,
+        useACF: true,
         includedRoutes: ['**/posts', '**/pages', '**/media', '**/categories'],
         // searchAndReplaceContentUrls: {
-        //   sourceUrl: 'https://source-url.com',
-        //   replacementUrl: 'https://replacement-url.com',
+        //   sourceUrl: 'data.pamelabellafesta.se',
+        //   replacementUrl: 'pamelabellafesta.se',
         // },
         plugins: [
           {
-            resolve: `@draftbox-co/gatsby-wordpress-inline-images`,
+            resolve: '@draftbox-co/gatsby-wordpress-inline-images',
             options: {
-              baseUrl: `pamelabellafesta.local`,
-              protocol: `http`,
+              baseUrl: 'data.pamelabellafesta.se',
+              protocol: 'https',
               withWebp: true,
               maxWidth: 2048,
               quality: 100,
