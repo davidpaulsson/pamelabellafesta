@@ -13,6 +13,10 @@
   grid-column: span 2;
 }
 
+.gray {
+  color: var(--color-dark-gray);
+}
+
 .content {
   grid-column: span 6;
 
@@ -37,11 +41,12 @@
       column-gap: calculateRem(8px);
       grid-template-columns: repeat(6, 1fr);
 
-      h4 {
-        grid-column: span 1;
-      }
-      ul {
+      div {
         grid-column: span 2;
+
+        h4 {
+          grid-column: span 1;
+        }
       }
     }
   }
