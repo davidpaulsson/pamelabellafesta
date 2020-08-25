@@ -20,8 +20,6 @@ const RelatedProjects = ({ currentProject }) => {
     }
   `);
 
-  console.log(data.projects);
-
   const relatedProjects = data.projects.edges.filter(
     ({ node }) =>
       node.categories[0].name === currentProject.category &&

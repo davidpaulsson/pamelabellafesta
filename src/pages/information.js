@@ -45,7 +45,7 @@ const InformationPage = ({ location }) => {
                   __html: `${data.wordpressPage.acf.commercial_clients}`,
                 }}
               />
-              <h4>Editorial</h4>
+              <h4 className={styles.secondh2}>Editorial</h4>
               <div
                 dangerouslySetInnerHTML={{
                   __html: `${data.wordpressPage.acf.editorial_clients}`,

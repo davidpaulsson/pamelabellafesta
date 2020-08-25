@@ -6,10 +6,10 @@
 @mixin grid() {
   display: grid;
 
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   column-gap: calculateRem(8px);
 
   @media (min-width: $bp) {
-    grid-template-columns: repeat(16, 1fr);
+    grid-template-columns: repeat(16, minmax(0, 1fr));
   }
 }

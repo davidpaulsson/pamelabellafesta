@@ -30,9 +30,8 @@
   "scripts": {
     "clean": "gatsby clean",
     "build": "yarn clean && gatsby build",
-    "dev": "gatsby develop",
+    "start": "gatsby develop",
     "serve": "gatsby serve",
-    "dev:cms": "npx netlify-cms-proxy-server",
     "format": "prettier --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

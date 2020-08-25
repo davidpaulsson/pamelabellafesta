@@ -47,7 +47,7 @@
   border-top: 1px solid var(--color-light-gray);
 
   grid-column: span 4;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: calculateRem(8px);
 
   .category {
