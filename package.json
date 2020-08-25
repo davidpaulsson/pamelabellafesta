@@ -29,7 +29,7 @@
   },
   "scripts": {
     "clean": "gatsby clean",
-    "build": "yarn clean && gatsby build",
+    "build": "gatsby build",
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "format": "prettier --write \"{gatsby-*.js,src/**/*.js}\"",
