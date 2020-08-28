@@ -13,19 +13,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use cache
+      - name: NPM cache folder
         uses: actions/cache@v2
         with:
-          path: |
-            .cache
-            **/node_modules
+          path: path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Install Dependencies
-        run: yarn
+        - name: Gatsby cache folder
+          uses: actions/cache@v2
+          with:
+            path: .cache
+            key: ${{ runner.os }}-cache-gatsby
+            restore-keys: |
+              ${{ runner.os }}-cache-gatsby
+
+        - name: Gatsby public folder
+          uses: actions/cache@v2
+          with:
+            path: public/
+            key: ${{ runner.os }}-public-gatsby
+            restore-keys: |
+              ${{ runner.os }}-public-gatsby
+
+      - name: Install dependencies
+        run: yarn install --pure-lockfile
 
       - name: Build
-        run: yarn build
+        run: yarn build --log-pages
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          NODE_ENV: production
+            CI: true
 
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
