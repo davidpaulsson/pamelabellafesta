@@ -64,3 +64,4 @@ jobs:
           ftp-server: ftp://ftp.pamelabellafesta.se/
           ftp-username: ${{ secrets.FTP_USER }}
           ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: public/
