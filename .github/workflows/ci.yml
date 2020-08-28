@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel redundant jobs
+        uses: technote-space/auto-cancel-redundant-job@v1
+
       - name: Checkout
         uses: actions/checkout@v2
 
