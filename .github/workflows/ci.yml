@@ -16,7 +16,7 @@ jobs:
       - name: NPM cache folder
         uses: actions/cache@v2
         with:
-          path: path: '**/node_modules'
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
         - name: Gatsby cache folder
