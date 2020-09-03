@@ -17,6 +17,12 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
+      resolve: '@mkitio/gatsby-theme-password-protect',
+      options: {
+        password: 'kryddhylla',
+      },
+    },
+    {
       resolve: 'gatsby-source-wordpress',
       options: {
         baseUrl: 'data.pamelabellafesta.se',
