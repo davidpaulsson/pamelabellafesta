@@ -1,6 +1,6 @@
 const path = require('path');
 
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
   return graphql(`
@@ -38,6 +38,7 @@ exports.createPages = ({ actions, graphql }) => {
     });
 
     const categories = result.data.categories.edges;
+
     categories.forEach(({ node }) => {
       createPage({
         path: node.slug,
