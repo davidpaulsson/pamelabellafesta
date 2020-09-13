@@ -16,12 +16,12 @@ module.exports = {
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    {
-      resolve: '@mkitio/gatsby-theme-password-protect',
-      options: {
-        password: 'kryddhylla',
-      },
-    },
+    // {
+    //   resolve: '@mkitio/gatsby-theme-password-protect',
+    //   options: {
+    //     password: 'kryddhylla',
+    //   },
+    // },
     {
       resolve: 'gatsby-source-wordpress',
       options: {
@@ -37,7 +37,7 @@ module.exports = {
         // },
         plugins: [
           {
-            resolve: '@draftbox-co/gatsby-wordpress-inline-images',
+            resolve: 'gatsby-wordpress-inline-images',
             options: {
               baseUrl: 'data.pamelabellafesta.se',
               protocol: 'https',
