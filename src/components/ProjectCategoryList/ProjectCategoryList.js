@@ -8,8 +8,6 @@ const ProjectCategoryList = ({ projects }) => {
     return <p>No projects in this category</p>;
   }
 
-  console.log({ projects });
-
   return (
     <div className={styles.grid}>
       {projects.map(({ node: { id, title, featured_media, path } }) => {
@@ -26,7 +24,7 @@ const ProjectCategoryList = ({ projects }) => {
             backgroundColor={`#040e18`}
           >
             <Link to={path}>
-              <div>{title}</div>
+              <div dangerouslySetInnerHTML={{ __html: title }} />
             </Link>
           </BackgroundImage>
         );

@@ -50,9 +50,9 @@ const ProjectPageWithCtx = ({ title, content }) => {
         dangerouslySetInnerHTML={{
           __html: content
             .replace('<html><head></head><body>', '')
-            .replace('</body></html>', '')
-            .replace('<p><div', '<div')
-            .replace('</p>\n', ''),
+            .replace('</body></html>', ''),
+          // .replace('<p><div', '<div'),
+          // .replace('</p>\n', ''),
         }}
       />
     </div>

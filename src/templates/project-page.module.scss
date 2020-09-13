@@ -2,6 +2,11 @@
   @media (min-width: $bp) {
     @include grid;
   }
+
+  p {
+    height: 0;
+    margin-bottom: calculateRem(8px);
+  }
 }
 
 .images {

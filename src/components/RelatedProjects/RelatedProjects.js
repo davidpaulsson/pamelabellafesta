@@ -40,7 +40,7 @@ const RelatedProjects = ({ currentProject }) => {
           <li className={styles.listItem} key={node.id}>
             <Link to={node.path}>
               <span>{currentProject.category}</span>
-              <span>{node.title}</span>
+              <span dangerouslySetInnerHTML={{ __html: node.title }} />
             </Link>
           </li>
         ))}

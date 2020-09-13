@@ -64,9 +64,10 @@ const Navbar = ({ location }) => {
           <li
             className={[styles.navItem, styles.navItemCurrectProject].join(' ')}
           >
-            <h2 className={navIsOpen ? styles.gray : undefined}>
-              {state.title}
-            </h2>
+            <h2
+              className={navIsOpen ? styles.gray : undefined}
+              dangerouslySetInnerHTML={{ __html: state.title }}
+            />
             <span>
               <em>{getCurrentImg()}</em> / {_.padStart(state.images, 2, '0')}
             </span>
