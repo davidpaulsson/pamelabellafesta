@@ -5,6 +5,15 @@ import RelatedProjects from '../components/RelatedProjects';
 import styles from './project-page.module.scss';
 import './project-page.scss';
 
+const parsePostContents = (contents) =>
+  contents
+    .replace('<html><head></head><body>', '')
+    .replace('</body></html>', '')
+    .replace('<p><div', '<div')
+    .replace('<p></p>', '')
+    .replace('</p>\n', '')
+    .replace(/<\/noscript><\/div>/g, '</noscript></div></div>');
+
 const ProjectPageWithCtx = ({ title, content }) => {
   const { state, dispatch } = useContext(Ctx);
 
@@ -48,11 +57,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
       <div
         className={styles.images}
         dangerouslySetInnerHTML={{
-          __html: content
-            .replace('<html><head></head><body>', '')
-            .replace('</body></html>', ''),
-          // .replace('<p><div', '<div'),
-          // .replace('</p>\n', ''),
+          __html: parsePostContents(content),
         }}
       />
     </div>
