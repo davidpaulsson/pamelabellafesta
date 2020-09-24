@@ -21,7 +21,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
     const options = { rootMargin: '0px' };
 
     const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
-    els.forEach((el, index) => {
+    const observers = [...els].map((el, index) => {
       const observer = new IntersectionObserver(function (entries, observer) {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) {
@@ -36,7 +36,11 @@ const ProjectPageWithCtx = ({ title, content }) => {
       }, options);
 
       observer.observe(el);
+
+      return { observer, el };
     });
+
+    return () => observers.map(({ observer, el }) => observer.unobserve(el));
   }, []);
 
   useEffect(() => {
