@@ -14,11 +14,22 @@ const RelatedProjects = ({ currentProject }) => {
               name
             }
             path
+            featured_media {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1600, quality: 100) {
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   `);
+
+  // const []
 
   const relatedProjects = data.projects.edges.filter(
     ({ node }) =>
@@ -44,6 +55,9 @@ const RelatedProjects = ({ currentProject }) => {
             </Link>
           </li>
         ))}
+        <div className={styles.preview}>
+          <div className={styles.previewImage}>test</div>
+        </div>
       </ul>
     </nav>
   );

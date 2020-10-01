@@ -31,10 +31,10 @@ module.exports = {
         hostingWPCOM: false,
         useACF: true,
         includedRoutes: ['**/posts', '**/pages', '**/media', '**/categories'],
-        // searchAndReplaceContentUrls: {
-        //   sourceUrl: 'data.pamelabellafesta.se',
-        //   replacementUrl: 'pamelabellafesta.se',
-        // },
+        searchAndReplaceContentUrls: {
+          sourceUrl: 'data.pamelabellafesta.se',
+          replacementUrl: 'pamelabellafesta.se',
+        },
         plugins: [
           {
             resolve: 'gatsby-wordpress-inline-images',
