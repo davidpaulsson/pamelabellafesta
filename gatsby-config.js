@@ -16,12 +16,12 @@ module.exports = {
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    // {
-    //   resolve: '@mkitio/gatsby-theme-password-protect',
-    //   options: {
-    //     password: 'kryddhylla',
-    //   },
-    // },
+    {
+      resolve: '@mkitio/gatsby-theme-password-protect',
+      options: {
+        password: 'kryddhylla',
+      },
+    },
     {
       resolve: 'gatsby-source-wordpress',
       options: {
@@ -31,10 +31,10 @@ module.exports = {
         hostingWPCOM: false,
         useACF: true,
         includedRoutes: ['**/posts', '**/pages', '**/media', '**/categories'],
-        searchAndReplaceContentUrls: {
-          sourceUrl: 'data.pamelabellafesta.se',
-          replacementUrl: 'pamelabellafesta.se',
-        },
+        // searchAndReplaceContentUrls: {
+        //   sourceUrl: 'data.pamelabellafesta.se',
+        //   replacementUrl: 'pamelabellafesta.se',
+        // },
         plugins: [
           {
             resolve: 'gatsby-wordpress-inline-images',
@@ -42,8 +42,8 @@ module.exports = {
               baseUrl: 'data.pamelabellafesta.se',
               protocol: 'https',
               withWebp: true,
-              tracedSVG: false, 
-              base64: false,
+              // tracedSVG: false,
+              // base64: false,
             },
           },
         ],

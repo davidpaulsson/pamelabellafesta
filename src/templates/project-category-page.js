@@ -34,7 +34,7 @@ export const pageQuery = graphql`
             }
             localFile {
               childImageSharp {
-                fluid(maxWidth: 1600, quality: 100) {
+                fluid {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
@@ -68,8 +68,8 @@ export const pageQuery = graphql`
     #         featuredImage {
     #           id
     #           childImageSharp {
-    #             fluid(maxWidth: 1600, quality: 100) {
-    #               ...GatsbyImageSharpFluid_withWebp_noBase64
+    #             fluid {
+    #               ...GatsbyImageSharpFluid
     #             }
     #             original {
     #               height
