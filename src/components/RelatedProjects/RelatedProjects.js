@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styles from './RelatedProjects.module.scss';
+import Img from 'gatsby-image';
 
 const RelatedProjects = ({ currentProject }) => {
   const data = useStaticQuery(graphql`
@@ -29,7 +30,7 @@ const RelatedProjects = ({ currentProject }) => {
     }
   `);
 
-  // const []
+  const [hover, setHover] = useState(null);
 
   const relatedProjects = data.projects.edges.filter(
     ({ node }) =>
@@ -48,7 +49,12 @@ const RelatedProjects = ({ currentProject }) => {
           <h3>Browse more</h3>
         </li>
         {relatedProjects.map(({ node }) => (
-          <li className={styles.listItem} key={node.id}>
+          <li
+            className={styles.listItem}
+            key={node.id}
+            onMouseEnter={() => setHover(node)}
+            onMouseLeave={() => setHover(null)}
+          >
             <Link to={node.path}>
               <span>{currentProject.category}</span>
               <span dangerouslySetInnerHTML={{ __html: node.title }} />
@@ -56,7 +62,13 @@ const RelatedProjects = ({ currentProject }) => {
           </li>
         ))}
         <div className={styles.preview}>
-          <div className={styles.previewImage}>test</div>
+          <div className={styles.previewImage}>
+            {hover && (
+              <Img
+                fluid={hover?.featured_media.localFile.childImageSharp.fluid}
+              />
+            )}
+          </div>
         </div>
       </ul>
     </nav>

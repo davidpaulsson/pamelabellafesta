@@ -56,7 +56,6 @@
   display: none;
 
   @media (min-width: $bp) {
-    background-color: rgba(blue, 0.5);
     pointer-events: none;
     position: absolute;
     top: 33px;
@@ -69,6 +68,5 @@
 }
 
 .previewImage {
-  background-color: red;
   grid-column: 6 / 10;
 }
