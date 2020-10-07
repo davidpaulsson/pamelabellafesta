@@ -16,7 +16,7 @@ body {
 
 a {
   text-decoration: none;
-
+  transition: color 0.2s ease;
   color: var(--color-black);
 
   &:hover {
