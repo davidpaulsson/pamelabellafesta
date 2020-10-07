@@ -39,22 +39,25 @@
 }
 
 .projectInfo {
-  @include grid;
+  // @include grid;
 
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
+  display: flex;
 
   padding: calculateRem(10px) 0 calculateRem(6px);
 
   border-top: 1px solid var(--color-light-gray);
 
   .category {
-    grid-column: span 1;
+    margin-right: 2em;
+    width: 100px;
+    // grid-column: span 1;
   }
 
   .title {
-    grid-column: span 3;
+    // grid-column: span 3;
   }
 }
