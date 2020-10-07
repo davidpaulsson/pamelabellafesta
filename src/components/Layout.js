@@ -37,6 +37,7 @@ const TemplateWrapper = ({
   children,
   title = null,
   description = null,
+  isCategoryPage = false,
   location,
 }) => {
   const {
@@ -45,7 +46,7 @@ const TemplateWrapper = ({
   } = useSiteMetadata();
 
   const [state, dispatch] = useReducer(reducer, defaultState);
-
+  console.log({ location });
   return (
     <Ctx.Provider value={{ state, dispatch }}>
       <Helmet>
@@ -75,6 +76,8 @@ const TemplateWrapper = ({
           property="og:image"
           content={`${withPrefix('/')}img/share/og-image.png`}
         />
+
+        {isCategoryPage && <body className="category-page" />}
       </Helmet>
 
       <Header {...{ location }} />

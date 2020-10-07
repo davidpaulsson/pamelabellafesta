@@ -7,6 +7,10 @@
 
   @media (min-width: $bp) {
     z-index: 0;
+
+    body.category-page & {
+      z-index: 999;
+    }
   }
 }
 

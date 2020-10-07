@@ -8,6 +8,12 @@ body {
   @media (min-width: $bp) {
     padding: 0 calculateRem(16px) calculateRem(16px);
   }
+
+  &.category-page {
+    .sticky {
+      z-index: 999;
+    }
+  }
 }
 
 img {

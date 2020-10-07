@@ -4,7 +4,7 @@ import Navbar from '../Navbar';
 import styles from './Header.module.scss';
 
 const Header = ({ location }) => (
-  <header className={styles.sticky}>
+  <header className={`${styles.sticky} sticky`}>
     <h1 className={styles.title}>
       <Link to="/" className={styles.link} title="Pamela Bellafesta">
         Pamela Bellafesta

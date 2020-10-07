@@ -4,6 +4,8 @@
   gap: calculateRem(8px);
   grid-auto-flow: dense;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  position: relative;
+  z-index: 0;
 
   @media (min-width: $bp) {
     grid-template-columns: repeat(4, minmax(0, 1fr));

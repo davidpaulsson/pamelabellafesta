@@ -5,7 +5,11 @@ import ProjectCategoryList from '../components/ProjectCategoryList';
 
 const ProjectCategoryPage = ({ data, location }) => {
   return (
-    <Layout title={data.wordpressCategory.name} {...{ location }}>
+    <Layout
+      title={data.wordpressCategory.name}
+      {...{ location }}
+      isCategoryPage={true}
+    >
       <ProjectCategoryList projects={data.allWordpressPost.edges} />
     </Layout>
   );
@@ -34,7 +38,7 @@ export const pageQuery = graphql`
             }
             localFile {
               childImageSharp {
-                fluid {
+                fluid(quality: 95, maxWidth: 1200) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
