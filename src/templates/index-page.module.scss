@@ -39,16 +39,16 @@
 }
 
 .projectInfo {
-  display: grid;
-  align-self: end;
+  @include grid;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
   padding: calculateRem(10px) 0 calculateRem(6px);
 
   border-top: 1px solid var(--color-light-gray);
-
-  grid-column: span 4;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: calculateRem(8px);
 
   .category {
     grid-column: span 1;

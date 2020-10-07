@@ -34,9 +34,12 @@ const IndexPageTemplate = ({ projects }) => {
           <div className={styles.category}>
             {projects.edges[selectedProjectIndex].node.categories[0].name}
           </div>
-          <div className={styles.title}>
-            {projects.edges[selectedProjectIndex].node.title}
-          </div>
+          <div
+            className={styles.title}
+            dangerouslySetInnerHTML={{
+              __html: projects.edges[selectedProjectIndex].node.title,
+            }}
+          />
         </div>
 
         {projects.edges.map((proj, index) => (
