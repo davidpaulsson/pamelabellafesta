@@ -96,7 +96,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexPage {
-    projects: allWordpressPost(sort: { order: DESC, fields: date }) {
+    projects: allWordpressPost(sort: { order: DESC, fields: date }, limit: 10) {
       edges {
         node {
           id
