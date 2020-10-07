@@ -6,6 +6,7 @@ import Expand from './Expand';
 import { Ctx } from '../Layout';
 import _ from 'lodash';
 import useWindowSize from '../../hooks/useWindowSize';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
@@ -73,19 +74,32 @@ const Navbar = ({ location }) => {
             </span>
           </li>
         )}
-
-        {/** MENU */}
-        {navIsOpen &&
-          pages.map(
-            (page) =>
-              currentPath !== page && (
-                <li key={page} className={styles.navItem}>
-                  <Link to={'/' + page + '/'} className={styles.navItemLink}>
-                    {capitalize(page)}
-                  </Link>
-                </li>
-              ),
-          )}
+        <AnimatePresence>
+          {/** MENU */}
+          {navIsOpen &&
+            pages.map(
+              (page) =>
+                currentPath !== page && (
+                  <motion.div
+                    style={{ overflow: 'hidden' }}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    key={page}
+                  >
+                    <li className={styles.navItem}>
+                      <Link
+                        to={'/' + page + '/'}
+                        className={styles.navItemLink}
+                      >
+                        {capitalize(page)}
+                      </Link>
+                    </li>
+                  </motion.div>
+                ),
+            )}
+        </AnimatePresence>
       </ul>
     </nav>
   );
