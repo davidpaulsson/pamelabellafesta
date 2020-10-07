@@ -41,7 +41,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
     });
 
     return () => observers.map(({ observer, el }) => observer.unobserve(el));
-  }, []);
+  }, [dispatch, state.caseImages]);
 
   useEffect(() => {
     const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
@@ -54,7 +54,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
     dispatch({ type: 'SHOW_PROJECT_META' });
 
     return () => dispatch({ type: 'HIDE_PROJECT_META' });
-  }, [title]);
+  }, [dispatch, title]);
 
   return (
     <div className={styles.wrapper}>
