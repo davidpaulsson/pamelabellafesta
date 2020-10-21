@@ -18,30 +18,33 @@ const ProjectPageWithCtx = ({ title, content }) => {
   const { state, dispatch } = useContext(Ctx);
 
   useEffect(() => {
-    const options = { rootMargin: '0px' };
+    let observers;
 
-    const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
-    const observers = [...els].map((el, index) => {
-      const observer = new IntersectionObserver(function (entries, observer) {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          } else {
-            dispatch({
-              type: 'SET_CASE_IMAGE',
-              project: { caseImages: [...state.caseImages, index + 1] },
-            });
-          }
-        });
-      }, options);
+    if ('IntersectionObserver' in window) {
+      const options = { threshold: [0.5, 0.5] };
+      const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
+      observers = [...els].map((el, index) => {
+        const observer = new IntersectionObserver(function (entries, observer) {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            } else {
+              dispatch({
+                type: 'SET_CASE_IMAGE',
+                project: { caseImages: [...state.caseImages, index + 1] },
+              });
+            }
+          });
+        }, options);
 
-      observer.observe(el);
+        observer.observe(el);
 
-      return { observer, el };
-    });
+        return { observer, el };
+      });
+    }
 
     return () => observers.map(({ observer, el }) => observer.unobserve(el));
-  }, [dispatch, state.caseImages]);
+  }, [dispatch, state.images]);
 
   useEffect(() => {
     const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');

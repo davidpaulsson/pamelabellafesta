@@ -46,7 +46,7 @@ const TemplateWrapper = ({
   } = useSiteMetadata();
 
   const [state, dispatch] = useReducer(reducer, defaultState);
-  console.log({ location });
+
   return (
     <Ctx.Provider value={{ state, dispatch }}>
       <Helmet>
