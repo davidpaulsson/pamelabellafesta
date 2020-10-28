@@ -23,7 +23,7 @@ const reducer = (state = defaultState, action) => {
       const {
         project: { caseImages },
       } = action;
-      return { ...state, caseImages: _(caseImages).sort().uniq().value() };
+      return { ...state, caseImages: _.sortedUniq(caseImages.sort()) };
     case 'SHOW_PROJECT_META':
       return { ...state, showProjectMeta: true };
     case 'HIDE_PROJECT_META':

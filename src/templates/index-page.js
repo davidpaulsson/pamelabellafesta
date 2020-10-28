@@ -55,6 +55,8 @@ const IndexPageTemplate = ({ projects }) => {
                 backgroundPosition: 'top center',
               }}
               fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
+              loading="eager"
+              critical
             />
           </div>
         ))}

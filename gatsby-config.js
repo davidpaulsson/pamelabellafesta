@@ -19,6 +19,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
+        minimizeDeprecationNotice: true,
         baseUrl: 'data.pamelabellafesta.se',
         protocol: 'https',
         restApiRoutePrefix: 'wp-json',

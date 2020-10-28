@@ -6,7 +6,7 @@
   background-color: var(--color-white);
 
   @media (min-width: $bp) {
-    z-index: 0;
+    z-index: 1;
 
     body.category-page & {
       z-index: 999;

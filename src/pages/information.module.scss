@@ -28,25 +28,23 @@
     margin-bottom: 1em;
   }
 
-  &.bio {
-    @media (min-width: $bp) {
-      grid-column: span 4;
-    }
+  &.bio p {
+      max-width: 54ch
   }
   &.clients {
     @media (min-width: $bp) {
       display: grid;
 
-      grid-column: span 6;
+      grid-column: span 8;
       column-gap: calculateRem(8px);
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+
+      h4 {
+        grid-column: span 2;
+      }
 
       div {
         grid-column: span 2;
-
-        h4 {
-          grid-column: span 1;
-        }
       }
     }
   }
@@ -59,12 +57,26 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
 
       h4 {
-        grid-column: span 1;
+        grid-column: span 2;
       }
       ul {
         margin-bottom: 0;
 
-        grid-column: span 3;
+        grid-column: span 2;
+      }
+    }
+    @media (min-width: $bpl) {
+      grid-column: span 8;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+
+      h4 {
+        grid-column: span 2;
+      }
+      
+      ul {
+        margin-bottom: 0;
+
+        grid-column: span 6;
       }
     }
   }
@@ -91,5 +103,6 @@
 
   ul {
     margin-bottom: 0;
+    grid-column: span 2;
   }
 }

@@ -39,8 +39,6 @@
 }
 
 .projectInfo {
-  // @include grid;
-
   position: absolute;
   right: 0;
   bottom: 0;
@@ -54,10 +52,5 @@
   .category {
     margin-right: 2em;
     width: 100px;
-    // grid-column: span 1;
-  }
-
-  .title {
-    // grid-column: span 3;
   }
 }
