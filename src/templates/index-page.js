@@ -55,8 +55,6 @@ const IndexPageTemplate = ({ projects }) => {
                 backgroundPosition: 'top center',
               }}
               fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
-              loading="eager"
-              critical
             />
           </div>
         ))}
@@ -115,7 +113,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(quality: 95, maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid_withWebp
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
                 }
               }
             }
