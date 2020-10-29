@@ -6,16 +6,24 @@ import Layout from '../components/Layout';
 import useInterval from '../hooks/useInterval';
 import useWindowSize from '../hooks/useWindowSize';
 import styles from './index-page.module.scss';
+import Fade from '../components/Fade';
 
 const IndexPageTemplate = ({ projects }) => {
   const { width } = useWindowSize();
 
   const [isMobile, setIsMobile] = useState(width < 768);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+  const [showImages, setShowImages] = useState(false);
 
   useEffect(() => {
     setIsMobile(width < 768);
   }, [width, setIsMobile]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowImages(true);
+    }, 500);
+  }, [])
 
   useInterval(() => {
     if (isMobile) {
@@ -29,47 +37,50 @@ const IndexPageTemplate = ({ projects }) => {
 
   if (!isMobile) {
     return (
-      <div className={styles.grid}>
-        <div className={styles.projectInfo}>
-          <div className={styles.category}>
-            {projects.edges[selectedProjectIndex].node.categories[0].name}
-          </div>
-          <div
-            className={styles.title}
-            dangerouslySetInnerHTML={{
-              __html: projects.edges[selectedProjectIndex].node.title,
-            }}
-          />
-        </div>
-
-        {projects.edges.map((proj, index) => (
-          <div
-            className={styles.img}
-            key={proj.node.id}
-            style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
-          >
-            <BackgroundImage
-              style={{
-                height: '100vh',
-                width: '100%',
-                backgroundPosition: 'top center',
+      <Fade>
+        <div className={styles.grid}>
+          <div className={styles.projectInfo}>
+            <div className={styles.category}>
+              {projects.edges[selectedProjectIndex].node.categories[0].name}
+            </div>
+            <div
+              className={styles.title}
+              dangerouslySetInnerHTML={{
+                __html: projects.edges[selectedProjectIndex].node.title,
               }}
-              fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
             />
           </div>
-        ))}
 
-        <div className={styles.gallery}>
           {projects.edges.map((proj, index) => (
-            <Link
-              to={proj.node.path}
-              className={styles.box}
-              onMouseEnter={() => setSelectedProjectIndex(index)}
+            <div
+              className={styles.img}
               key={proj.node.id}
-            />
+              style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
+            >
+              <BackgroundImage
+                style={{
+                  height: '100vh',
+                  width: '100%',
+                  backgroundPosition: 'top center',
+                }}
+                fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
+              />
+            </div>
           ))}
+          {showImages && (
+            <div className={styles.gallery}>
+              {projects.edges.map((proj, index) => (
+                <Link
+                  to={proj.node.path}
+                  className={styles.box}
+                  onMouseEnter={() => setSelectedProjectIndex(index)}
+                  key={proj.node.id}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+      </Fade>
     );
   }
 
@@ -112,8 +123,8 @@ export const pageQuery = graphql`
             }
             localFile {
               childImageSharp {
-                fluid(quality: 80, maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                fluid(quality: 75, maxWidth: 1024) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

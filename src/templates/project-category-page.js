@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
 import ProjectCategoryList from '../components/ProjectCategoryList';
+import Fade from '../components/Fade';
 
 const ProjectCategoryPage = ({ data, location }) => {
   return (
@@ -10,7 +11,9 @@ const ProjectCategoryPage = ({ data, location }) => {
       {...{ location }}
       isCategoryPage={true}
     >
-      <ProjectCategoryList projects={data.allWordpressPost.edges} />
+      <Fade>
+        <ProjectCategoryList projects={data.allWordpressPost.edges} />
+      </Fade>
     </Layout>
   );
 };
@@ -38,8 +41,8 @@ export const pageQuery = graphql`
             }
             localFile {
               childImageSharp {
-                fluid(quality: 80, maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                fluid(quality: 75, maxWidth: 1024) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

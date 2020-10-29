@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React, { useContext, useEffect } from 'react';
 import Layout, { Ctx } from '../components/Layout';
 import RelatedProjects from '../components/RelatedProjects';
+import Fade from '../components/Fade';
 import styles from './project-page.module.scss';
 import './project-page.scss';
 
@@ -60,14 +61,16 @@ const ProjectPageWithCtx = ({ title, content }) => {
   }, [dispatch, title]);
 
   return (
-    <div className={styles.wrapper}>
-      <div
-        className={styles.images}
-        dangerouslySetInnerHTML={{
-          __html: parsePostContents(content),
-        }}
-      />
-    </div>
+    <Fade>
+      <div className={styles.wrapper}>
+        <div
+          className={styles.images}
+          dangerouslySetInnerHTML={{
+            __html: parsePostContents(content),
+          }}
+        />
+      </div>
+    </Fade>
   );
 };
 

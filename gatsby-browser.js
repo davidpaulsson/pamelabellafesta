@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const superSecurePassword = 'kryddhylla';
 
 const LogInCheck = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [pw, setPw] = useState('');
 
   const handleSubmit = () => {
