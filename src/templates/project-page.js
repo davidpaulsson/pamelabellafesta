@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React, { useContext, useEffect } from 'react';
+import _ from 'lodash';
 import Layout, { Ctx } from '../components/Layout';
 import RelatedProjects from '../components/RelatedProjects';
 import Fade from '../components/Fade';
@@ -17,6 +18,21 @@ const parsePostContents = (contents) =>
 
 const ProjectPageWithCtx = ({ title, content }) => {
   const { state, dispatch } = useContext(Ctx);
+
+  const fixVideoAspectRatio = () => {
+    const videos = document.querySelectorAll('video');
+    [...videos].map((video) => {
+      if (video.videoHeight > video.videoWidth) {
+        const percentage = `${video.videoHeight / video.videoWidth * 100}%`;
+        video.parentElement.style.paddingBottom = percentage;
+      }
+    });
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', _.throttle(fixVideoAspectRatio, 1000))
+    return window.removeEventListener('scroll', _.throttle(fixVideoAspectRatio, 1000))
+  }, []);
 
   useEffect(() => {
     let observers;
