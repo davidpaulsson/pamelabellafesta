@@ -15,35 +15,32 @@
 }
 
 .title {
-  margin-bottom: calculateRem(8px);
+  padding: calculateRem(8px) calculateRem(8px) calculateRem(8px) 0;
 
   @include grid;
 
   @media (min-width: $bp) {
-    margin-bottom: calculateRem(16px);
+    padding: calculateRem(16px) calculateRem(16px) calculateRem(16px) 0;
+  }
+
+  a {
+    height: calculateRem(16px);
   }
 }
 
 .link {
-  display: block;
-
-  width: 100%;
-  margin-top: calculateRem(8px);
-  padding-bottom: 5.446822686766054%;
-
-  text-indent: -9999px;
-
-  background-image: url('./Wordmark.svg');
-  background-repeat: no-repeat;
-  background-position: 0 center;
-  background-size: contain;
-
   grid-column: 1 / -1;
+}
 
-  @media (min-width: $bp) {
-    margin-top: calculateRem(16px);
-    padding-bottom: calculateRem(8px);
-
-    grid-column: 1 / 4;
-  }
+.screenReaderText {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
 }

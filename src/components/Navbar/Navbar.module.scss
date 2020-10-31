@@ -1,7 +1,7 @@
 .nav {
   position: relative;
 
-  margin: calculateRem(4px) 0 calculateRem(8px) 0;
+  margin-bottom: calculateRem(8px);
 }
 
 .list {
@@ -9,7 +9,7 @@
 }
 
 .navItem {
-  padding: calculateRem(10px) 0 calculateRem(6px);
+  padding: calculateRem(9px) 0 calculateRem(6px) 0;
 
   border-bottom: 1px solid var(--color-light-gray);
 }
