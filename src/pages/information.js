@@ -105,7 +105,7 @@ const InformationPage = ({ location }) => {
                 <h4>Design</h4>
                 <ul>
                   <li>
-                    <a href="http://www.jornlov.se/">Per Jörnlöv</a>,
+                    <a href="https://perjornlov.com/">Per Jörnlöv</a>,
                   </li>
                   <li>
                     <a href="https://niklasrosen.se/">Niklas Rosén</a>
