@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import './src/styles/global.scss';
 
 import React, { useState } from 'react';
@@ -5,7 +6,7 @@ import React, { useState } from 'react';
 const superSecurePassword = 'kryddhylla';
 
 const LogInCheck = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [pw, setPw] = useState('');
 
   const handleSubmit = () => {
@@ -35,6 +36,5 @@ const LogInCheck = ({ children }) => {
   return children;
 };
 
-export const wrapRootElement = ({ element }) => {
-  return <LogInCheck>{element}</LogInCheck>;
-};
+// eslint-disable-next-line import/prefer-default-export
+export const wrapRootElement = ({ element }) => <LogInCheck>{element}</LogInCheck>;

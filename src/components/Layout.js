@@ -1,10 +1,10 @@
 import { withPrefix } from 'gatsby';
 import React, { useReducer } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from '../components/Header';
-import useSiteMetadata from '../hooks/useSiteMetadata';
 import _ from 'lodash';
 import { AnimatePresence } from 'framer-motion';
+import Header from './Header';
+import useSiteMetadata from '../hooks/useSiteMetadata';
 
 export const Ctx = React.createContext();
 const defaultState = {
@@ -30,7 +30,6 @@ const reducer = (state = defaultState, action) => {
     case 'HIDE_PROJECT_META':
       return { ...state, showProjectMeta: false };
     default:
-      return;
   }
 };
 
@@ -82,9 +81,9 @@ const TemplateWrapper = ({
       </Helmet>
 
       <Header {...{ location }} />
-      
+
       <AnimatePresence exitBeforeEnter>
-        {children}
+        <div key={location?.pathname}>{children}</div>
       </AnimatePresence>
     </Ctx.Provider>
   );

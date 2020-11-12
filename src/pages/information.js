@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Layout from '../components/Layout';
 import useDimensions from 'react-use-dimensions';
+import Layout from '../components/Layout';
 import styles from './information.module.scss';
 import Fade from '../components/Fade';
 
@@ -87,7 +87,8 @@ const InformationPage = ({ location }) => {
                     <a
                       href={`https://instagram.com/${data.wordpressPage.acf.instagram}`}
                     >
-                      @{data.wordpressPage.acf.instagram}
+                      @
+                      {data.wordpressPage.acf.instagram}
                     </a>
                   </li>
                 </ul>
@@ -105,7 +106,8 @@ const InformationPage = ({ location }) => {
                 <h4>Design</h4>
                 <ul>
                   <li>
-                    <a href="https://perjornlov.com/">Per Jörnlöv</a>,
+                    <a href="https://perjornlov.com/">Per Jörnlöv</a>
+                    ,
                   </li>
                   <li>
                     <a href="https://niklasrosen.se/">Niklas Rosén</a>

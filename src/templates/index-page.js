@@ -23,7 +23,7 @@ const IndexPageTemplate = ({ projects }) => {
     setTimeout(() => {
       setShowImages(true);
     }, 500);
-  }, [])
+  }, []);
 
   useInterval(() => {
     if (isMobile) {
@@ -37,54 +37,53 @@ const IndexPageTemplate = ({ projects }) => {
 
   if (!isMobile) {
     return (
-      <Fade>
-        <div className={styles.grid}>
-          <div className={styles.projectInfo}>
-            <div className={styles.category}>
-              {projects.edges[selectedProjectIndex].node.categories[0].name}
-            </div>
-            <div
-              className={styles.title}
-              dangerouslySetInnerHTML={{
-                __html: projects.edges[selectedProjectIndex].node.title,
+      <div className={styles.grid}>
+        <div className={styles.projectInfo}>
+          <div className={styles.category}>
+            {projects.edges[selectedProjectIndex].node.categories[0].name}
+          </div>
+          <div
+            className={styles.title}
+            dangerouslySetInnerHTML={{
+              __html: projects.edges[selectedProjectIndex].node.title,
+            }}
+          />
+        </div>
+
+        {projects.edges.map((proj, index) => (
+          <div
+            className={styles.img}
+            key={proj.node.id}
+            style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
+          >
+            <BackgroundImage
+              style={{
+                height: '100vh',
+                width: '100%',
+                backgroundPosition: 'top center',
               }}
+              backgroundColor="#fefefe"
+              fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
             />
           </div>
-
+        ))}
+        {showImages && (
+        <div className={styles.gallery}>
           {projects.edges.map((proj, index) => (
-            <div
-              className={styles.img}
+            <Link
+              to={proj.node.path}
+              className={styles.box}
+              onMouseEnter={() => setSelectedProjectIndex(index)}
               key={proj.node.id}
-              style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
-            >
-              <BackgroundImage
-                style={{
-                  height: '100vh',
-                  width: '100%',
-                  backgroundPosition: 'top center',
-                }}
-                fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
-              />
-            </div>
+            />
           ))}
-          {showImages && (
-            <div className={styles.gallery}>
-              {projects.edges.map((proj, index) => (
-                <Link
-                  to={proj.node.path}
-                  className={styles.box}
-                  onMouseEnter={() => setSelectedProjectIndex(index)}
-                  key={proj.node.id}
-                />
-              ))}
-            </div>
-          )}
         </div>
-      </Fade>
+        )}
+      </div>
     );
   }
 
-  const node = projects.edges[selectedProjectIndex].node;
+  const { node } = projects.edges[selectedProjectIndex];
 
   return (
     <Link to={node.path}>

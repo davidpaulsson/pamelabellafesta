@@ -1,28 +1,29 @@
-import { Link } from 'gatsby';
-import React, { useState, useEffect, useContext } from 'react';
-import styles from './Navbar.module.scss';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { motion } from 'framer-motion';
+import { Link, navigate } from 'gatsby';
+import _ from 'lodash';
+import React, { useContext, useEffect, useState } from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
+import { Ctx } from '../Layout';
 import Collapse from './Collapse';
 import Expand from './Expand';
-import { Ctx } from '../Layout';
-import _ from 'lodash';
-import useWindowSize from '../../hooks/useWindowSize';
-import { AnimatePresence, motion } from 'framer-motion';
+import styles from './Navbar.module.scss';
 
 const pages = ['editorial', 'commercial', 'film', 'information'];
 
-const capitalize = (word) =>
-  word ? word.charAt(0).toUpperCase() + word.slice(1) : 'Browse';
+const capitalize = (word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : 'Browse');
 
 const Navbar = ({ location }) => {
   const { width } = useWindowSize();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [navIsOpen, toggleNavIsOpen] = useState(false);
+  const [navIsOpen, setNavIsOpen] = useState(false);
   const currentPath = location?.pathname.split('/')[1];
 
   useEffect(() => {
     if (location?.pathname === '/') {
       if (width && isFirstLoad) {
-        toggleNavIsOpen(width > 768);
+        setNavIsOpen(width > 768);
         setIsFirstLoad(false);
       }
     }
@@ -49,59 +50,70 @@ const Navbar = ({ location }) => {
                 ? styles.navItemLinkGray
                 : styles.navItemLinkBlack
             }
-            onClick={() => toggleNavIsOpen(!navIsOpen)}
+            onClick={() => setNavIsOpen(!navIsOpen)}
           >
             {capitalize(currentPath)}
           </h2>
           <button
             className={styles.btn}
-            onClick={() => toggleNavIsOpen(!navIsOpen)}
+            onClick={() => setNavIsOpen(!navIsOpen)}
+            type="button"
           >
             {navIsOpen ? <Collapse /> : <Expand />}
           </button>
         </li>
 
-        {state.showProjectMeta && (
-          <li
-            className={[styles.navItem, styles.navItemCurrectProject].join(' ')}
-          >
+        <motion.div
+          initial={false}
+          style={{ overflow: 'hidden' }}
+          animate={{ height: state.showProjectMeta ? 'auto' : 0 }}
+          transition={{ ease: 'easeOut', delay: 0.6 }}
+        >
+          <li className={[styles.navItem, styles.navItemCurrectProject].join(' ')}>
             <h2
               className={navIsOpen ? styles.gray : undefined}
               dangerouslySetInnerHTML={{ __html: state.title }}
             />
             <span>
-              <em>{getCurrentImg()}</em> / {_.padStart(state.images, 2, '0')}
+              <em>{getCurrentImg()}</em>
+              {' '}
+              /
+              {' '}
+              {_.padStart(state.images, 2, '0')}
             </span>
           </li>
-        )}
-      </ul>
-      <AnimatePresence>
-        {/** MENU */}
-        {navIsOpen &&
-          pages.map(
-            (page) =>
-              currentPath !== page &&
-               (
-                <motion.div
-                  style={{ overflow: 'hidden' }}
-                  initial={{ height: 0 }}
-                  animate={{ height: 'auto' }}
-                  exit={{ height: 0 }}
-                  transition={{ ease: [0.25, 0.1, 0.25, 1], duration: 0.2 }}
-                  key={page}
-                >
+        </motion.div>
 
-                  <ul>
-                    <li className={styles.navItem}>
-                      <Link to={'/' + page + '/'} className={styles.navItemLink}>
-                        {capitalize(page)}
-                      </Link>
-                    </li>
-                  </ul>
-                </motion.div>
-              ),
-          )}
-      </AnimatePresence>
+      </ul>
+      {/** MENU */}
+
+      <motion.div
+        initial={false}
+        style={{ overflow: 'hidden' }}
+        animate={{ height: navIsOpen ? 'auto' : 0 }}
+        transition={{ ease: 'easeOut', duration: 0.2 }}
+      >
+        <ul>
+          {pages.filter((page) => page !== currentPath).map((page) => (
+            <li className={styles.navItem}>
+              <a
+                href={`/${page}/`}
+                className={styles.navItemLink}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setNavIsOpen(false);
+                  setTimeout(() => { navigate(`/${page}/`); }, 300);
+                }}
+              >
+                {capitalize(page)}
+              </a>
+              {/* <Link to={`/${page}/`} className={styles.navItemLink} delay={200}>
+              </Link> */}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
     </nav>
   );
 };
