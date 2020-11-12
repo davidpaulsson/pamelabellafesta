@@ -33,7 +33,8 @@
       @include grid;
     }
 
-    span {
+    span,
+    div {
       &:first-child {
         margin-right: 2em;
 
@@ -57,17 +58,17 @@
 
   @media (min-width: $bp) {
     pointer-events: none;
-    position: absolute;
-    top: 33px;
-    right: 0;
-    top: 0;
-    left: 0;
+    // display:block;
+    // position: absolute;
+    // top: 33px;
+    // right: 0;
+    // top: 0;
+    // left: 0;
 
     @include grid;
   }
 }
 
 .previewImage {
-  grid-column: 6 / 10;
-  overflow: hidden;
+  min-width: 300px;
 }

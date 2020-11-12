@@ -1,7 +1,41 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import styles from './RelatedProjects.module.scss';
 import Img from 'gatsby-image';
+import { Tooltip } from 'react-tippy';
+import styles from './RelatedProjects.module.scss';
+import './tippy.css';
+
+const RelatedProject = ({
+  linkSlug, category, title, featuredMedia,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <li
+        className={styles.listItem}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+      >
+        <Tooltip
+          position="right-end"
+          open={isOpen}
+          theme="transparent"
+          animation="none"
+          html={(
+            <Link to={linkSlug} className={styles.preview}>
+              <Img fluid={featuredMedia} className={styles.previewImage} />
+            </Link>
+          )}
+        >
+          <Link to={linkSlug}>
+            <span>{category}</span>
+            <span dangerouslySetInnerHTML={{ __html: title }} />
+          </Link>
+        </Tooltip>
+      </li>
+    </>
+  );
+};
 
 const RelatedProjects = ({ currentProject }) => {
   const data = useStaticQuery(graphql`
@@ -30,12 +64,9 @@ const RelatedProjects = ({ currentProject }) => {
     }
   `);
 
-  const [hover, setHover] = useState(null);
-
   const relatedProjects = data.projects.edges.filter(
-    ({ node }) =>
-      node.categories[0].name === currentProject.category &&
-      node.title !== currentProject.title,
+    ({ node }) => node.categories[0].name === currentProject.category
+      && node.title !== currentProject.title,
   );
 
   if (relatedProjects.length === 0) {
@@ -49,27 +80,14 @@ const RelatedProjects = ({ currentProject }) => {
           <h3>Browse more</h3>
         </li>
         {relatedProjects.map(({ node }) => (
-          <li
-            className={styles.listItem}
+          <RelatedProject
             key={node.id}
-            onMouseEnter={() => setHover(node)}
-            onMouseLeave={() => setHover(null)}
-          >
-            <Link to={node.path}>
-              <span>{currentProject.category}</span>
-              <span dangerouslySetInnerHTML={{ __html: node.title }} />
-            </Link>
-          </li>
+            linkSlug={node.path}
+            category={currentProject.category}
+            title={node.title}
+            featuredMedia={node.featured_media.localFile.childImageSharp.fluid}
+          />
         ))}
-        <div className={styles.preview}>
-          <div className={styles.previewImage}>
-            {hover && (
-              <Img
-                fluid={hover?.featured_media.localFile.childImageSharp.fluid}
-              />
-            )}
-          </div>
-        </div>
       </ul>
     </nav>
   );
