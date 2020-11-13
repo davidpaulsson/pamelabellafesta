@@ -99,7 +99,9 @@ const InformationPage = ({ location }) => {
           <div className={styles.social} ref={ref}>
             <div
               className={styles.wrapper}
-              style={{ borderBottom: 'none', marginBottom: 0, paddingBottom: 0 }}
+              style={{
+                borderTop: '1px solid var(--color-light-gray)', paddingTop: 8, borderBottom: 'none', marginBottom: 0, paddingBottom: 0,
+              }}
             >
               <h3 className={styles.title}>Credits</h3>
               <div className={[styles.content, styles.clients].join(' ')}>
