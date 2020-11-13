@@ -2,11 +2,11 @@ import { graphql, Link } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 import Img from 'gatsby-image';
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/Layout';
 import useInterval from '../hooks/useInterval';
 import useWindowSize from '../hooks/useWindowSize';
 import styles from './index-page.module.scss';
-import Fade from '../components/Fade';
 
 const IndexPageTemplate = ({ projects }) => {
   const { width } = useWindowSize();
@@ -67,17 +67,18 @@ const IndexPageTemplate = ({ projects }) => {
             />
           </div>
         ))}
+
         {showImages && (
-        <div className={styles.gallery}>
-          {projects.edges.map((proj, index) => (
-            <Link
-              to={proj.node.path}
-              className={styles.box}
-              onMouseEnter={() => setSelectedProjectIndex(index)}
-              key={proj.node.id}
-            />
-          ))}
-        </div>
+          <div className={styles.gallery}>
+            {projects.edges.map((proj, index) => (
+              <Link
+                to={proj.node.path}
+                className={styles.box}
+                onMouseEnter={() => setSelectedProjectIndex(index)}
+                key={proj.node.id}
+              />
+            ))}
+          </div>
         )}
       </div>
     );
@@ -86,9 +87,18 @@ const IndexPageTemplate = ({ projects }) => {
   const { node } = projects.edges[selectedProjectIndex];
 
   return (
-    <Link to={node.path}>
-      <Img fluid={node.featured_media.localFile.childImageSharp.fluid} />
-    </Link>
+    <AnimatePresence exitBeforeEnter>
+      <motion.div
+        key={selectedProjectIndex}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <Link to={node.path}>
+          <Img fluid={node.featured_media.localFile.childImageSharp.fluid} />
+        </Link>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
