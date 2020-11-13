@@ -38,7 +38,7 @@ module.exports = {
               protocol: 'https',
               withWebp: true,
               maxWidth: 1440,
-              quality: 75,
+              quality: 100,
               tracedSVG: false,
               // base64: false,
             },
