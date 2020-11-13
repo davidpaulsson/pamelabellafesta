@@ -72,10 +72,14 @@ const TemplateWrapper = ({
           property="og:title"
           content={title ? `${title} | ${siteMetaTitle}` : siteMetaTitle}
         />
+
+        <meta name="description" content="Pamela Bellafesta predominantly work with leading fashion magazines both Swedish and international and have also worked a lot with television. During her years as a creative fashion editor for Swedens most respected fashion magazine for men, King, she developed a fondness for men s fashion. Something that has led her to jobs for example L Uomo Vouge and Eton." />
+        <meta property="og:description" content="Pamela Bellafesta predominantly work with leading fashion magazines both Swedish and international and have also worked a lot with television. During her years as a creative fashion editor for Swedens most respected fashion magazine for men, King, she developed a fondness for men s fashion. Something that has led her to jobs for example L Uomo Vouge and Eton." />
+
         <meta property="og:url" content="/" />
         <meta
           property="og:image"
-          content={`//pamelabellafesta.se${shareImage || withPrefix('/')}img/share/pamela-bellafesta-share.jpg`}
+          content={shareImage || `${withPrefix('/')}img/share/pamela-bellafesta-share.jpg`}
         />
 
         {isCategoryPage && <body className="category-page" />}
