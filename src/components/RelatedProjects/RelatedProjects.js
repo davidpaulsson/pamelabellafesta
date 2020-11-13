@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { Tooltip } from 'react-tippy';
@@ -19,8 +19,8 @@ const RelatedProject = ({
         <Tooltip
           position="right-end"
           open={isOpen}
-          theme="transparent"
           animation="none"
+          unmountHTMLWhenHide
           html={(
             <Link to={linkSlug} className={styles.preview}>
               <Img fluid={featuredMedia} className={styles.previewImage} />
@@ -72,6 +72,10 @@ const RelatedProjects = ({ currentProject }) => {
   if (relatedProjects.length === 0) {
     return null;
   }
+
+  useEffect(() => {
+    document.querySelectorAll('.tippy-popper').forEach((e) => e.remove());
+  }, []);
 
   return (
     <nav className={styles.nav}>
