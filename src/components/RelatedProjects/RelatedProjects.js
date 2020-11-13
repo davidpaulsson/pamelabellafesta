@@ -55,8 +55,8 @@ const RelatedProjects = ({ currentProject }) => {
             featured_media {
               localFile {
                 childImageSharp {
-                  fluid(quality: 90, maxWidth: 1440) {
-                    ...GatsbyImageSharpFluid_withWebp
+                  fluid(quality: 80, maxWidth: 1440) {
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
                   }
                 }
               }
