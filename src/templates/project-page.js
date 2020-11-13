@@ -7,14 +7,13 @@ import Fade from '../components/Fade';
 import styles from './project-page.module.scss';
 import './project-page.scss';
 
-const parsePostContents = (contents) =>
-  contents
-    .replace('<html><head></head><body>', '')
-    .replace('</body></html>', '')
-    .replace('<p><div', '<div')
-    .replace('<p></p>', '')
-    .replace('</p>\n', '')
-    .replace(/<\/noscript><\/div>/g, '</noscript></div></div>');
+const parsePostContents = (contents) => contents
+  .replace('<html><head></head><body>', '')
+  .replace('</body></html>', '')
+  .replace('<p><div', '<div')
+  .replace('<p></p>', '')
+  .replace('</p>\n', '')
+  .replace(/<\/noscript><\/div>/g, '</noscript></div></div>');
 
 const ProjectPageWithCtx = ({ title, content }) => {
   const { state, dispatch } = useContext(Ctx);
@@ -27,11 +26,11 @@ const ProjectPageWithCtx = ({ title, content }) => {
         video.parentElement.style.paddingBottom = percentage;
       }
     });
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', _.throttle(fixVideoAspectRatio, 1000))
-    return window.removeEventListener('scroll', _.throttle(fixVideoAspectRatio, 1000))
+    window.addEventListener('scroll', _.throttle(fixVideoAspectRatio, 1000));
+    return window.removeEventListener('scroll', _.throttle(fixVideoAspectRatio, 1000));
   }, []);
 
   useEffect(() => {
@@ -41,10 +40,10 @@ const ProjectPageWithCtx = ({ title, content }) => {
       const options = { threshold: [0.5, 0.5] };
       const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
       observers = [...els].map((el, index) => {
-        const observer = new IntersectionObserver(function (entries, observer) {
+        const observer = new IntersectionObserver(((entries, observer) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) {
-              return;
+
             } else {
               dispatch({
                 type: 'SET_CASE_IMAGE',
@@ -52,7 +51,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
               });
             }
           });
-        }, options);
+        }), options);
 
         observer.observe(el);
 
@@ -91,10 +90,16 @@ const ProjectPageWithCtx = ({ title, content }) => {
 };
 
 const ProjectPage = ({ data, location }) => {
-  const { title, content, categories } = data.wordpressPost;
+  const {
+    // eslint-disable-next-line camelcase
+    title, content, categories, featured_media,
+  } = data.wordpressPost;
 
   return (
-    <Layout {...{ location, title }}>
+    <Layout
+      {...{ location, title }}
+      shareImage={featured_media?.localFile?.childImageSharp?.original?.src}
+    >
       <ProjectPageWithCtx {...{ title, content }} />
       <RelatedProjects
         currentProject={{ title, category: categories[0].name }}
@@ -113,6 +118,15 @@ export const pageQuery = graphql`
         name
       }
       content
+      featured_media {
+        localFile {
+          childImageSharp {
+            original {
+              src
+            }
+          }
+        }
+      }
     }
   }
 `;

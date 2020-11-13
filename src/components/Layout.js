@@ -37,6 +37,7 @@ const TemplateWrapper = ({
   children,
   title = null,
   description = null,
+  shareImage = null,
   isCategoryPage = false,
   location,
 }) => {
@@ -74,7 +75,7 @@ const TemplateWrapper = ({
         <meta property="og:url" content="/" />
         <meta
           property="og:image"
-          content={`${withPrefix('/')}img/share/og-image.png`}
+          content={`//pamelabellafesta.se${shareImage || withPrefix('/')}img/share/pamela-bellafesta-share.jpg`}
         />
 
         {isCategoryPage && <body className="category-page" />}
