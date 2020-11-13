@@ -58,17 +58,13 @@
 
   @media (min-width: $bp) {
     pointer-events: none;
-    // display:block;
-    // position: absolute;
-    // top: 33px;
-    // right: 0;
-    // top: 0;
-    // left: 0;
-
+    
     @include grid;
+    width:100vw;
+    transform:translateY(-32px)
   }
 }
 
 .previewImage {
-  min-width: 300px;
+  grid-column: span 3;
 }

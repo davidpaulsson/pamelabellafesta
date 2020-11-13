@@ -11,28 +11,31 @@ const RelatedProject = ({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <li
-        className={styles.listItem}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
-      >
-        <Tooltip
-          position="right-end"
-          open={isOpen}
-          animation="none"
-          unmountHTMLWhenHide
-          html={(
-            <Link to={linkSlug} className={styles.preview}>
-              <Img fluid={featuredMedia} className={styles.previewImage} />
+
+      <Tooltip
+        position="right-end"
+        open={isOpen}
+        animation="none"
+        unmountHTMLWhenHide
+        html={(
+          <div className={styles.preview}>
+            <Link to={linkSlug} className={styles.previewImage}>
+              <Img fluid={featuredMedia} />
             </Link>
+          </div>
           )}
+      >
+        <li
+          className={styles.listItem}
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
         >
           <Link to={linkSlug}>
             <span>{category}</span>
             <span dangerouslySetInnerHTML={{ __html: title }} />
           </Link>
-        </Tooltip>
-      </li>
+        </li>
+      </Tooltip>
     </>
   );
 };

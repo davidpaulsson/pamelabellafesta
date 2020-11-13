@@ -12,6 +12,11 @@
 	perspective: 800px;
 	z-index: 9999;
 	outline: 0;
-  pointer-events: none;
-  left: 40% !important;
+	pointer-events: none;
+	transition-duration: 0 !important;
+	left: 40% !important;
+	
+	div {
+		transition-duration: 0 !important;
+	}
 }
