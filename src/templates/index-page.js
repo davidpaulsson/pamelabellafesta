@@ -1,8 +1,8 @@
 import { graphql, Link } from 'gatsby';
-import BackgroundImage from 'gatsby-background-image';
 import Img from 'gatsby-image';
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { GatsbyImage } from 'gatsby-plugin-image/compat';
 import Layout from '../components/Layout';
 import useInterval from '../hooks/useInterval';
 import useWindowSize from '../hooks/useWindowSize';
@@ -56,13 +56,11 @@ const IndexPageTemplate = ({ projects }) => {
             key={proj.node.id}
             style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
           >
-            <BackgroundImage
+            <GatsbyImage
               style={{
                 height: '100vh',
                 width: '100%',
-                backgroundPosition: 'top center',
               }}
-              backgroundColor="#fefefe"
               fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
             />
           </div>
@@ -95,7 +93,7 @@ const IndexPageTemplate = ({ projects }) => {
         exit={{ opacity: 0 }}
       >
         <Link to={node.path}>
-          <Img fluid={node.featured_media.localFile.childImageSharp.fluid} />
+          <GatsbyImage fluid={node.featured_media.localFile.childImageSharp.fluid} />
         </Link>
       </motion.div>
     </AnimatePresence>
