@@ -37,7 +37,7 @@ module.exports = {
               baseUrl: 'data.pamelabellafesta.se',
               protocol: 'https',
               withWebp: true,
-              maxWidth: 1024,
+              maxWidth: 1440,
               quality: 75,
               tracedSVG: false,
               // base64: false,
