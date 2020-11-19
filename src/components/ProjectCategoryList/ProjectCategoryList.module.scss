@@ -9,6 +9,7 @@
   z-index: 0;
 
   @media (min-width: $bp) {
+    margin-top: calculateRem(16px);
     gap: calculateRem(16px);
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
