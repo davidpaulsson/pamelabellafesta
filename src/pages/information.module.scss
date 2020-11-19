@@ -84,6 +84,7 @@
 
 .secondh2 {
   margin-top: 1em;
+
   @media (min-width: $bp) {
     margin-top: unset;
   }
@@ -104,5 +105,15 @@
   ul {
     margin-bottom: 0;
     grid-column: span 2;
+
+    
+  }
+}
+
+.space {
+  margin-bottom: 1em !important;
+  
+  @media (min-width: $bp) {
+    margin-bottom: 0;
   }
 }

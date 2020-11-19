@@ -106,7 +106,7 @@ const InformationPage = ({ location }) => {
               <h3 className={styles.title}>Credits</h3>
               <div className={[styles.content, styles.clients].join(' ')}>
                 <h4>Design</h4>
-                <ul>
+                <ul className={styles.space}>
                   <li>
                     <a href="https://perjornlov.com/">Per Jörnlöv</a>
                     ,

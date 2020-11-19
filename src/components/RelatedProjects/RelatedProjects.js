@@ -11,7 +11,6 @@ const RelatedProject = ({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-
       <Tooltip
         position="right-end"
         open={isOpen}
