@@ -50,9 +50,9 @@ const TemplateWrapper = ({
 
   return (
     <Ctx.Provider value={{ state, dispatch }}>
-      <Helmet>
+      <Helmet encodeSpecialCharacters={false}>
         <html lang="en" />
-        <title>{title ? `${title} | ${siteMetaTitle}` : siteMetaTitle}</title>
+        <title>{title ? `${title.replace('&#038;', '&')} | ${siteMetaTitle}` : siteMetaTitle}</title>
         <meta name="description" content={description || siteMetaDescription} />
 
         {[16, 32, 48, 72, 96, 128, 144, 192, 256, 384, 512].map((sz) => (
