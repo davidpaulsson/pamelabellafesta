@@ -91,7 +91,7 @@ const Navbar = ({ location }) => {
         initial={false}
         style={{ overflow: 'hidden' }}
         animate={{ height: navIsOpen ? 'auto' : 0 }}
-        transition={{ ease: 'easeOut', duration: 0.2 }}
+        transition={{ ease: 'easeOut', duration: 0.1 }}
       >
         <ul>
           {pages.filter((page) => page !== currentPath).map((page) => (
