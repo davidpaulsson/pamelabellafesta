@@ -16,7 +16,7 @@ const RelatedProject = ({
     </Link>
     <div className={styles.preview}>
       <div className={styles.previewImageWrapper}>
-        <Img className={styles.previewImage} fluid={featuredMedia} />
+        <Img className={styles.previewImage} fluid={featuredMedia} loading="eager" />
       </div>
     </div>
   </li>
