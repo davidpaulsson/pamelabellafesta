@@ -16,18 +16,19 @@
 }
 
 .listItem {
-  padding: calculateRem(10px) 0 calculateRem(6px);
-
+  
+  position: relative;
   border-top: 1px solid var(--color-light-gray);
 
   h3 {
     display: block;
-
     color: var(--color-dark-gray);
+    padding: calculateRem(10px) 0 calculateRem(6px);
   }
 
   a {
     display: block;
+    padding: calculateRem(10px) 0 calculateRem(6px);
 
     @media (min-width: $bp) {
       @include grid;
@@ -51,19 +52,34 @@
       }
     }
   }
-}
 
-.preview {
-  display: none;
+  .preview {
+    display: none;
+  }
 
-  @media (min-width: $bp) {
-    pointer-events: none;
-    
-    @include grid;
-    width:100vw;
-    transform:translateY(-32px)
+  &:hover {
+    .preview {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      pointer-events: none;
+    }
+    .previewImageWrapper {
+      display:grid;
+      column-gap: calculateRem(8px);
+      grid-template-columns: repeat(16, minmax(0, 1fr));
+      position: relative;
+    }
+    .previewImage {
+      position: absolute;
+      grid-column: 6 / 9;
+    }
   }
 }
+
+
 
 .previewImage {
   grid-column: span 3;

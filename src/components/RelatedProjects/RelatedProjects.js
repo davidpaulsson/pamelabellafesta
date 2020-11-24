@@ -1,43 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import { Tooltip } from 'react-tippy';
+import React, { useEffect } from 'react';
 import styles from './RelatedProjects.module.scss';
 import './tippy.css';
 
 const RelatedProject = ({
   linkSlug, category, title, featuredMedia,
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <>
-      <Tooltip
-        position="right-end"
-        open={isOpen}
-        animation="none"
-        unmountHTMLWhenHide
-        html={(
-          <div className={styles.preview}>
-            <Link to={linkSlug} className={styles.previewImage}>
-              <Img fluid={featuredMedia} />
-            </Link>
-          </div>
-          )}
-      >
-        <li
-          className={styles.listItem}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-        >
-          <Link to={linkSlug}>
-            <span>{category}</span>
-            <span dangerouslySetInnerHTML={{ __html: title }} />
-          </Link>
-        </li>
-      </Tooltip>
-    </>
-  );
-};
+}) => (
+  <li
+    className={styles.listItem}
+  >
+    <Link to={linkSlug}>
+      <span>{category}</span>
+      <span dangerouslySetInnerHTML={{ __html: title }} />
+    </Link>
+    <div className={styles.preview}>
+      <div className={styles.previewImageWrapper}>
+        <Img className={styles.previewImage} fluid={featuredMedia} />
+      </div>
+    </div>
+  </li>
+
+);
 
 const RelatedProjects = ({ currentProject }) => {
   const data = useStaticQuery(graphql`
