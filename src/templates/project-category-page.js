@@ -1,20 +1,26 @@
 import { graphql } from 'gatsby';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
 import ProjectCategoryList from '../components/ProjectCategoryList';
 import Fade from '../components/Fade';
 
-const ProjectCategoryPage = ({ data, location }) => (
-  <Layout
-    title={data.wordpressCategory.name}
-    {...{ location }}
-    isCategoryPage
-  >
-    <Fade>
-      <ProjectCategoryList projects={data.allWordpressPost.edges} />
-    </Fade>
-  </Layout>
-);
+const ProjectCategoryPage = ({ data, location }) => {
+  useEffect(() => {
+    document.body.style.overflow = 'auto';
+  }, []);
+
+  return (
+    <Layout
+      title={data.wordpressCategory.name}
+      {...{ location }}
+      isCategoryPage
+    >
+      <Fade>
+        <ProjectCategoryList projects={data.allWordpressPost.edges} />
+      </Fade>
+    </Layout>
+  );
+};
 
 export default ProjectCategoryPage;
 

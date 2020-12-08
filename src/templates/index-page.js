@@ -17,6 +17,10 @@ const IndexPageTemplate = ({ projects }) => {
     setIsMobile(width < 768);
   }, [width, setIsMobile]);
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
+
   useInterval(() => {
     if (isMobile) {
       let idx = selectedProjectIndex + 1;

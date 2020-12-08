@@ -95,6 +95,10 @@ const ProjectPage = ({ data, location }) => {
     title, content, categories, featured_media,
   } = data.wordpressPost;
 
+  useEffect(() => {
+    document.body.style.overflow = 'auto';
+  }, []);
+
   return (
     <Layout
       {...{ location, title }}

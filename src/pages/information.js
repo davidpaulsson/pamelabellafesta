@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import useDimensions from 'react-use-dimensions';
 import Layout from '../components/Layout';
@@ -22,6 +22,10 @@ const InformationPage = ({ location }) => {
   `);
 
   const [ref, { height }] = useDimensions();
+
+  useEffect(() => {
+    document.body.style.overflow = 'auto';
+  }, []);
 
   return (
     <Layout title="Information" {...{ location }}>

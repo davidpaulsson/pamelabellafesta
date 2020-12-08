@@ -15,21 +15,22 @@
 }
 
 .title {
-  padding: calculateRem(8px) calculateRem(8px) calculateRem(8px) 0;
+  padding: calculateRem(8px) 0 calculateRem(8px) 0;
 
   @include grid;
 
   @media (min-width: $bp) {
-    padding: calculateRem(16px) calculateRem(16px) calculateRem(16px) 0;
+    padding: calculateRem(16px) calculateRem(16px) calculateRem(8px) 0;
   }
 
-  a {
-    height: calculateRem(16px);
-  }
 }
 
 .link {
   grid-column: 1 / -1;
+  
+  @media (min-width: $bp) {
+    grid-column: 1 / 5;
+  }
 }
 
 .screenReaderText {
