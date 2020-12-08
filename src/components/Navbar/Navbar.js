@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { motion } from 'framer-motion';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import _ from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
@@ -95,7 +95,7 @@ const Navbar = ({ location }) => {
       >
         <ul>
           {pages.filter((page) => page !== currentPath).map((page) => (
-            <li className={styles.navItem}>
+            <li className={styles.navItem} key={page}>
               <a
                 href={`/${page}/`}
                 className={styles.navItemLink}
@@ -107,8 +107,6 @@ const Navbar = ({ location }) => {
               >
                 {capitalize(page)}
               </a>
-              {/* <Link to={`/${page}/`} className={styles.navItemLink} delay={200}>
-              </Link> */}
             </li>
           ))}
         </ul>

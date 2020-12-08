@@ -1,8 +1,7 @@
-import { graphql, Link } from 'gatsby';
-import Img from 'gatsby-image';
-import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image/compat';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import useInterval from '../hooks/useInterval';
 import useWindowSize from '../hooks/useWindowSize';
@@ -13,17 +12,10 @@ const IndexPageTemplate = ({ projects }) => {
 
   const [isMobile, setIsMobile] = useState(width < 768);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-  const [showImages, setShowImages] = useState(false);
 
   useEffect(() => {
     setIsMobile(width < 768);
   }, [width, setIsMobile]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowImages(true);
-    }, 500);
-  }, []);
 
   useInterval(() => {
     if (isMobile) {
@@ -57,6 +49,7 @@ const IndexPageTemplate = ({ projects }) => {
             style={{ opacity: selectedProjectIndex === index ? 1 : 0 }}
           >
             <GatsbyImage
+              loading="eager"
               style={{
                 height: '100vh',
                 width: '100%',
@@ -66,18 +59,17 @@ const IndexPageTemplate = ({ projects }) => {
           </div>
         ))}
 
-        {showImages && (
-          <div className={styles.gallery}>
-            {projects.edges.map((proj, index) => (
-              <Link
-                to={proj.node.path}
-                className={styles.box}
-                onMouseEnter={() => setSelectedProjectIndex(index)}
-                key={proj.node.id}
-              />
-            ))}
-          </div>
-        )}
+        <div className={styles.gallery}>
+          {projects.edges.map((proj, index) => (
+            <Link
+              to={proj.node.path}
+              className={styles.box}
+              onMouseEnter={() => setSelectedProjectIndex(index)}
+              key={proj.node.id}
+            />
+          ))}
+        </div>
+
       </div>
     );
   }
