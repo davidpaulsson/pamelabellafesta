@@ -33,7 +33,7 @@ const InformationPage = ({ location }) => {
         <div className={styles.flex}>
           <div
             className={styles.flexInner}
-            style={{ minHeight: `calc(100vh - ${height + 24 + 90}px)` }}
+            style={{ minHeight: `calc(100vh - ${height + 12 + 90}px)` }}
           >
             <div className={styles.wrapper}>
               <h3 className={styles.title}>Bio</h3>
@@ -72,7 +72,7 @@ const InformationPage = ({ location }) => {
                 </ul>
 
                 <h4>Mail</h4>
-                <ul>
+                <ul style={{ marginBottom: 0 }}>
                   <li>
                     <a href={`mailto:${data.wordpressPage.acf.mail}`}>
                       {data.wordpressPage.acf.mail}
@@ -82,11 +82,11 @@ const InformationPage = ({ location }) => {
               </div>
             </div>
 
-            <div className={styles.wrapper} style={{ borderBottom: 0 }}>
+            <div className={styles.wrapper} style={{ borderBottom: 0, marginBottom: 0 }}>
               <h3 className={styles.title}>Social</h3>
               <div className={[styles.content, styles.contact].join(' ')}>
                 <h4>Instagram</h4>
-                <ul>
+                <ul style={{ marginBottom: 0 }}>
                   <li>
                     <a
                       href={`https://instagram.com/${data.wordpressPage.acf.instagram}`}

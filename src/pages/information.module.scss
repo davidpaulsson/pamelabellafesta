@@ -1,10 +1,12 @@
 .wrapper {
   margin-bottom: calculateRem(8px);
-  padding-bottom: calculateRem(24px);
-
   border-bottom: 1px solid var(--color-light-gray);
 
   @include grid;
+
+  @media (min-width: $bp) {
+    padding-bottom: calculateRem(24px);
+  }
 }
 
 .title {
@@ -28,11 +30,22 @@
     margin-bottom: 1em;
   }
 
-  &.bio p {
-      max-width: 54ch
+  &.bio {
+    padding-bottom: calculateRem(24px);
+
+    @media (min-width: $bp) {
+      padding-bottom: unset;
+    }
+    
+    p {
+      max-width: 54ch;
+    }
   }
   &.clients {
+    padding-bottom: calculateRem(24px);
+
     @media (min-width: $bp) {
+      padding-bottom: unset;
       display: grid;
 
       grid-column: span 8;
@@ -49,9 +62,11 @@
     }
   }
   &.contact {
+    padding-bottom: calculateRem(24px);
+    
     @media (min-width: $bp) {
       display: grid;
-
+      padding-bottom: unset;
       grid-column: span 4;
       column-gap: calculateRem(8px);
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -105,8 +120,6 @@
   ul {
     margin-bottom: 0;
     grid-column: span 2;
-
-    
   }
 }
 
