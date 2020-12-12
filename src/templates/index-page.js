@@ -81,18 +81,23 @@ const IndexPageTemplate = ({ projects }) => {
   const { node } = projects.edges[selectedProjectIndex];
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <motion.div
-        key={selectedProjectIndex}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        <Link to={node.path}>
-          <GatsbyImage fluid={node.featured_media.localFile.childImageSharp.fluid} />
-        </Link>
-      </motion.div>
-    </AnimatePresence>
+    <div style={{ position: 'relative' }}>
+      <AnimatePresence>
+        <motion.div
+          style={{
+            position: 'absolute', top: 0, right: 0, bottom: 0, left: 0,
+          }}
+          key={selectedProjectIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <Link to={node.path}>
+            <GatsbyImage fluid={node.featured_media.localFile.childImageSharp.fluid} />
+          </Link>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 };
 
