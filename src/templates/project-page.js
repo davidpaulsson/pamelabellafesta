@@ -38,7 +38,8 @@ const ProjectPageWithCtx = ({ title, content }) => {
 
     if ('IntersectionObserver' in window) {
       const options = { threshold: [0.5, 0.5] };
-      const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
+      const wrapper = document.querySelector('#pb');
+      const els = wrapper.querySelectorAll('.gatsby-image-wrapper, .wp-video');
       observers = [...els].map((el, index) => {
         const observer = new IntersectionObserver(((entries, observer) => {
           entries.forEach((entry) => {
@@ -63,7 +64,8 @@ const ProjectPageWithCtx = ({ title, content }) => {
   }, [dispatch, state.images]);
 
   useEffect(() => {
-    const els = document.querySelectorAll('.gatsby-image-wrapper, .wp-video');
+    const wrapper = document.querySelector('#pb');
+    const els = wrapper.querySelectorAll('.gatsby-image-wrapper, .wp-video');
 
     dispatch({
       type: 'SET_CASE',
@@ -79,6 +81,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
     <Fade>
       <div className={styles.wrapper}>
         <div
+          id="pb"
           className={styles.images}
           dangerouslySetInnerHTML={{
             __html: parsePostContents(content),
