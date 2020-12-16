@@ -5,20 +5,16 @@ exports.createPages = async ({ actions, graphql }) => {
 
   return graphql(`
     {
-      categories: allWordpressCategory {
-        edges {
-          node {
-            id
-            slug
-          }
+      categories: allWpCategory {
+        nodes {
+          id
+          slug
         }
       }
-      projects: allWordpressPost {
-        edges {
-          node {
-            id
-            path
-          }
+      projects: allWpPost {
+        nodes {
+          id
+          uri
         }
       }
     }
@@ -28,28 +24,29 @@ exports.createPages = async ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    const posts = result.data.projects.edges;
-    posts.forEach(({ node }) => {
+    const posts = result.data.projects.nodes;
+    posts.forEach(({ uri, id }) => {
       createPage({
-        path: node.path,
-        component: path.resolve(`src/templates/project-page.js`),
-        context: { id: node.id },
+        path: uri,
+        component: path.resolve('src/templates/project-page.js'),
+        context: { id },
       });
     });
 
-    const categories = result.data.categories.edges;
-
-    categories.forEach(({ node }) => {
+    const categories = result.data.categories.nodes;
+    categories.forEach(({ slug, id }) => {
       createPage({
-        path: node.slug,
-        component: path.resolve(`src/templates/project-category-page.js`),
-        context: { id: node.id },
+        path: slug,
+        component: path.resolve('src/templates/project-category-page.js'),
+        context: { id },
       });
     });
 
     createPage({
       path: '/',
-      component: path.resolve(`src/templates/index-page.js`),
+      component: path.resolve('src/templates/index-page.js'),
     });
+
+    return Promise.resolve();
   });
 };

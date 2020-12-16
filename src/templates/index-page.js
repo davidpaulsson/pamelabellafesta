@@ -36,7 +36,7 @@ const IndexPageTemplate = ({ projects }) => {
       <div className={styles.grid}>
         <div className={styles.projectInfo}>
           <div className={styles.category}>
-            {projects.edges[selectedProjectIndex].node.categories[0].name}
+            {projects.edges[selectedProjectIndex].node.categories.nodes[0].name}
           </div>
           <div
             className={styles.title}
@@ -58,7 +58,7 @@ const IndexPageTemplate = ({ projects }) => {
                 height: '100vh',
                 width: '100%',
               }}
-              fluid={proj.node.featured_media.localFile.childImageSharp.fluid}
+              fluid={proj.node.featuredImage.node.localFile.childImageSharp.fluid}
             />
           </div>
         ))}
@@ -66,7 +66,7 @@ const IndexPageTemplate = ({ projects }) => {
         <div className={styles.gallery}>
           {projects.edges.map((proj, index) => (
             <Link
-              to={proj.node.path}
+              to={proj.node.uri}
               className={styles.box}
               onMouseEnter={() => setSelectedProjectIndex(index)}
               key={proj.node.id}
@@ -92,8 +92,8 @@ const IndexPageTemplate = ({ projects }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <Link to={node.path}>
-            <GatsbyImage fluid={node.featured_media.localFile.childImageSharp.fluid} />
+          <Link to={node.uri}>
+            <GatsbyImage fluid={node.featuredImage.node.localFile.childImageSharp.fluid} />
           </Link>
         </motion.div>
       </AnimatePresence>
@@ -115,24 +115,31 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexPage {
-    projects: allWordpressPost(sort: { order: DESC, fields: date }, limit: 10) {
+    projects: allWpPost(
+      sort: { fields: date, order: DESC }, 
+      limit: 10
+    ) {
       edges {
         node {
           id
           title
-          path
+          uri
           categories {
-            name
-          }
-          featured_media {
-            media_details {
-              height
-              width
+            nodes {
+              name
             }
-            localFile {
-              childImageSharp {
-                fluid(quality: 80, maxWidth: 1440) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+          }
+          featuredImage {
+            node {
+              mediaDetails {
+                height
+                width
+              }
+              localFile {
+                childImageSharp {
+                  fluid(quality: 80, maxWidth: 1440) {
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
+                  }
                 }
               }
             }

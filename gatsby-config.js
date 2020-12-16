@@ -19,33 +19,9 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: 'gatsby-source-wordpress-experimental',
       options: {
-        minimizeDeprecationNotice: true,
-        baseUrl: 'data.pamelabellafesta.se',
-        protocol: 'https',
-        restApiRoutePrefix: 'wp-json',
-        hostingWPCOM: false,
-        useACF: true,
-        includedRoutes: ['**/posts', '**/pages', '**/media', '**/categories'],
-        // searchAndReplaceContentUrls: {
-        //   sourceUrl: 'data.pamelabellafesta.se',
-        //   replacementUrl: 'pamelabellafesta.se',
-        // },
-        plugins: [
-          {
-            resolve: 'gatsby-wordpress-inline-images',
-            options: {
-              baseUrl: 'data.pamelabellafesta.se',
-              protocol: 'https',
-              withWebp: true,
-              maxWidth: 1440,
-              quality: 80,
-              tracedSVG: false,
-              base64: false,
-            },
-          },
-        ],
+        url: 'https://data.pamelabellafesta.se/graphql',
       },
     },
   ],

@@ -26,20 +26,24 @@ const RelatedProject = ({
 const RelatedProjects = ({ currentProject }) => {
   const data = useStaticQuery(graphql`
     query AllProjects {
-      projects: allWordpressPost(sort: { order: DESC, fields: date }) {
+      projects: allWpPost(sort: { order: DESC, fields: date }) {
         edges {
           node {
             id
             title
             categories {
-              name
+              nodes {
+                name
+              }
             }
-            path
-            featured_media {
-              localFile {
-                childImageSharp {
-                  fluid(quality: 80, maxWidth: 1440) {
-                    ...GatsbyImageSharpFluid_withWebp_noBase64
+            uri
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    fluid(quality: 80, maxWidth: 1440) {
+                      ...GatsbyImageSharpFluid_withWebp_noBase64
+                    }
                   }
                 }
               }
@@ -51,7 +55,7 @@ const RelatedProjects = ({ currentProject }) => {
   `);
 
   const relatedProjects = data.projects.edges.filter(
-    ({ node }) => node.categories[0].name === currentProject.category
+    ({ node }) => node.categories.nodes[0].name === currentProject.category
       && node.title !== currentProject.title,
   );
 
@@ -72,10 +76,10 @@ const RelatedProjects = ({ currentProject }) => {
         {relatedProjects.map(({ node }) => (
           <RelatedProject
             key={node.id}
-            linkSlug={node.path}
+            linkSlug={node.uri}
             category={currentProject.category}
             title={node.title}
-            featuredMedia={node.featured_media.localFile.childImageSharp.fluid}
+            featuredMedia={node.featuredImage.node.localFile.childImageSharp.fluid}
           />
         ))}
       </ul>

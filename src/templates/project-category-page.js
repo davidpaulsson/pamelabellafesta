@@ -11,12 +11,12 @@ const ProjectCategoryPage = ({ data, location }) => {
 
   return (
     <Layout
-      title={data.wordpressCategory.name}
+      title={data.wpCategory.name}
       {...{ location }}
       isCategoryPage
     >
       <Fade>
-        <ProjectCategoryList projects={data.allWordpressPost.edges} />
+        <ProjectCategoryList projects={data.allWpPost.edges} />
       </Fade>
     </Layout>
   );
@@ -26,31 +26,46 @@ export default ProjectCategoryPage;
 
 export const pageQuery = graphql`
   query ProjectCategoryPageTemplateByID($id: String!) {
-    wordpressCategory(id: { eq: $id }) {
+    wpCategory(id: { eq: $id }) {
       name
     }
-    allWordpressPost(
-      filter: { categories: { elemMatch: { id: { eq: $id } } } }
-      sort: { order: DESC, fields: date }
+    allWpPost(
+      filter: { categories: { nodes: { elemMatch: { id: { eq: $id } } } } }
+      sort: { fields: date, order: DESC }
     ) {
       edges {
         node {
           id
           title
-          path
-          featured_media {
-            media_details {
-              height
-              width
-            }
-            localFile {
-              childImageSharp {
-                fluid(quality: 80, maxWidth: 1440) {
-                  ...GatsbyImageSharpFluid_withWebp_noBase64
+          slug
+          featuredImage {
+            node {
+              mediaDetails {
+                height
+                width
+              }
+              localFile {
+                childImageSharp {
+                  fluid(quality: 80, maxWidth: 1440) {
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
+                  }
                 }
               }
             }
           }
+          # featured_media {
+          #   media_details {
+          #     height
+          #     width
+          #   }
+          #   localFile {
+          #     childImageSharp {
+          #       fluid(quality: 80, maxWidth: 1440) {
+          #         ...GatsbyImageSharpFluid_withWebp_noBase64
+          #       }
+          #     }
+          #   }
+          # }
         }
       }
     }

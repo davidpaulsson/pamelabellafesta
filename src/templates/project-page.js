@@ -1,26 +1,19 @@
 import { graphql } from 'gatsby';
 import React, { useContext, useEffect } from 'react';
 import _ from 'lodash';
+import parse from 'html-react-parser';
 import Layout, { Ctx } from '../components/Layout';
 import RelatedProjects from '../components/RelatedProjects';
 import Fade from '../components/Fade';
 import styles from './project-page.module.scss';
 import './project-page.scss';
 
-const parsePostContents = (contents) => contents
-  .replace('<html><head></head><body>', '')
-  .replace('</body></html>', '')
-  .replace('<p><div', '<div')
-  .replace('<p></p>', '')
-  .replace('</p>\n', '')
-  .replace(/<\/noscript><\/div>/g, '</noscript></div></div>');
-
 const ProjectPageWithCtx = ({ title, content }) => {
   const { state, dispatch } = useContext(Ctx);
 
   const fixVideoAspectRatio = () => {
     const videos = document.querySelectorAll('video');
-    [...videos].map((video) => {
+    [...videos].forEach((video) => {
       if (video.videoHeight > video.videoWidth) {
         const percentage = `${video.videoHeight / video.videoWidth * 100}%`;
         video.parentElement.style.paddingBottom = percentage;
@@ -39,13 +32,11 @@ const ProjectPageWithCtx = ({ title, content }) => {
     if ('IntersectionObserver' in window) {
       const options = { threshold: [0.5, 0.5] };
       const wrapper = document.querySelector('#pb');
-      const els = wrapper.querySelectorAll('.gatsby-image-wrapper, .wp-video');
+      const els = wrapper.querySelectorAll('p');
       observers = [...els].map((el, index) => {
         const observer = new IntersectionObserver(((entries, observer) => {
           entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-
-            } else {
+            if (entry.isIntersecting) {
               dispatch({
                 type: 'SET_CASE_IMAGE',
                 project: { caseImages: [...state.caseImages, index + 1] },
@@ -65,7 +56,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
 
   useEffect(() => {
     const wrapper = document.querySelector('#pb');
-    const els = wrapper.querySelectorAll('.gatsby-image-wrapper, .wp-video');
+    const els = wrapper.querySelectorAll('p');
 
     dispatch({
       type: 'SET_CASE',
@@ -83,10 +74,9 @@ const ProjectPageWithCtx = ({ title, content }) => {
         <div
           id="pb"
           className={styles.images}
-          dangerouslySetInnerHTML={{
-            __html: parsePostContents(content),
-          }}
-        />
+        >
+          {parse(content)}
+        </div>
       </div>
     </Fade>
   );
@@ -95,8 +85,8 @@ const ProjectPageWithCtx = ({ title, content }) => {
 const ProjectPage = ({ data, location }) => {
   const {
     // eslint-disable-next-line camelcase
-    title, content, categories, featured_media,
-  } = data.wordpressPost;
+    title, content, categories, featuredImage,
+  } = data.wpPost;
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
@@ -105,11 +95,11 @@ const ProjectPage = ({ data, location }) => {
   return (
     <Layout
       {...{ location, title }}
-      shareImage={featured_media?.localFile?.childImageSharp?.original?.src}
+      shareImage={featuredImage?.node?.localFile?.childImageSharp?.original?.src}
     >
       <ProjectPageWithCtx {...{ title, content }} />
       <RelatedProjects
-        currentProject={{ title, category: categories[0].name }}
+        currentProject={{ title, category: categories.nodes[0].name }}
       />
     </Layout>
   );
@@ -119,17 +109,21 @@ export default ProjectPage;
 
 export const pageQuery = graphql`
   query WordpressPost($id: String!) {
-    wordpressPost(id: { eq: $id }) {
+    wpPost(id: { eq: $id }) {
       title
       categories {
-        name
+        nodes {
+          name
+        }
       }
       content
-      featured_media {
-        localFile {
-          childImageSharp {
-            original {
-              src
+      featuredImage {
+        node {
+          localFile {
+            childImageSharp {
+              original {
+                src
+              }
             }
           }
         }

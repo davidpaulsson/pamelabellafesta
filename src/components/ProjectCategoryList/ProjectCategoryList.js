@@ -14,15 +14,15 @@ const ProjectCategoryList = ({ projects }) => {
       {projects
         .filter(({ node }) => _.has(
           node,
-          'featured_media.localFile.childImageSharp.fluid',
+          'featuredImage.node.localFile.childImageSharp.fluid',
         ))
         .map(({
           node: {
             // eslint-disable-next-line camelcase
-            id, title, featured_media, path,
+            id, title, featuredImage, slug,
           },
         }) => {
-          const { height, width } = featured_media.media_details;
+          const { height, width } = featuredImage.node.mediaDetails;
           return (
             <BackgroundImage
               key={id}
@@ -32,9 +32,9 @@ const ProjectCategoryList = ({ projects }) => {
                 height > width ? styles.portrait : styles.landscape,
               ].join(' ')}
               backgroundColor="#fefefe"
-              fluid={featured_media.localFile.childImageSharp.fluid}
+              fluid={featuredImage.node.localFile.childImageSharp.fluid}
             >
-              <Link to={path}>
+              <Link to={slug}>
                 <div dangerouslySetInnerHTML={{ __html: title }} />
               </Link>
             </BackgroundImage>

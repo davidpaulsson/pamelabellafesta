@@ -8,11 +8,11 @@ import Fade from '../components/Fade';
 const InformationPage = ({ location }) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      wordpressPage(id: { eq: "4b79dc3c-9f5e-50d0-a1a6-4f228951cb23" }) {
+      wpPage(slug: { eq:"information" }) {
         acf {
           bio
-          commercial_clients
-          editorial_clients
+          commercialClients
+          editorialClients
           phone
           mail
           instagram
@@ -39,7 +39,7 @@ const InformationPage = ({ location }) => {
               <h3 className={styles.title}>Bio</h3>
               <div
                 className={[styles.content, styles.bio].join(' ')}
-                dangerouslySetInnerHTML={{ __html: data.wordpressPage.acf.bio }}
+                dangerouslySetInnerHTML={{ __html: data.wpPage.acf.bio }}
               />
             </div>
             <div className={styles.wrapper}>
@@ -48,13 +48,13 @@ const InformationPage = ({ location }) => {
                 <h4>Commercial</h4>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `${data.wordpressPage.acf.commercial_clients}`,
+                    __html: `${data.wpPage.acf.commercialClients}`,
                   }}
                 />
                 <h4 className={styles.secondh2}>Editorial</h4>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `${data.wordpressPage.acf.editorial_clients}`,
+                    __html: `${data.wpPage.acf.editorialClients}`,
                   }}
                 />
               </div>
@@ -65,8 +65,8 @@ const InformationPage = ({ location }) => {
                 <h4>Phone</h4>
                 <ul>
                   <li>
-                    <a href={`tel:${data.wordpressPage.acf.phone}`}>
-                      {data.wordpressPage.acf.phone}
+                    <a href={`tel:${data.wpPage.acf.phone}`}>
+                      {data.wpPage.acf.phone}
                     </a>
                   </li>
                 </ul>
@@ -74,8 +74,8 @@ const InformationPage = ({ location }) => {
                 <h4>Mail</h4>
                 <ul style={{ marginBottom: 0 }}>
                   <li>
-                    <a href={`mailto:${data.wordpressPage.acf.mail}`}>
-                      {data.wordpressPage.acf.mail}
+                    <a href={`mailto:${data.wpPage.acf.mail}`}>
+                      {data.wpPage.acf.mail}
                     </a>
                   </li>
                 </ul>
@@ -89,10 +89,10 @@ const InformationPage = ({ location }) => {
                 <ul style={{ marginBottom: 0 }}>
                   <li>
                     <a
-                      href={`https://instagram.com/${data.wordpressPage.acf.instagram}`}
+                      href={`https://instagram.com/${data.wpPage.acf.instagram}`}
                     >
                       @
-                      {data.wordpressPage.acf.instagram}
+                      {data.wpPage.acf.instagram}
                     </a>
                   </li>
                 </ul>
