@@ -29,7 +29,6 @@
 .img {
   position: relative;
   z-index: 1;
-
   grid-column: 5 / 13;
   grid-row: 1 / 2;
 
@@ -67,5 +66,64 @@
   .category {
     margin-right: 2em;
     width: 100px;
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: grid;
+  background-color: black;
+  overflow: hidden;
+  align-items: center;
+}
+
+.loaderWordmarkWrapper {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  top: 0;right: 0;left: 0;bottom: 0;
+  display: grid;
+  align-items: center;
+}
+
+.loaderWordmark {
+  margin: calculateRem(8px);
+  width: 100%;
+  @media (min-width: $bp) {
+   margin: calculateRem(16px);
+  }
+}
+
+.loaderImage {
+  position:absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  margin: calculateRem(8px);
+
+  @media (min-width: $bp) {
+   margin: calculateRem(16px);
+   @include grid;
+  }
+
+
+  div {
+    grid-column: 5 / 13;
+    grid-row: 1 / 2;
+
+    @media (min-width: $bp) {
+      grid-column: 4 / 14;
+    }
+
+    @media (min-width: $bpl) {
+      grid-column: 5 / 13;
+    }
   }
 }
