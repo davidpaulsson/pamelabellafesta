@@ -154,7 +154,7 @@ const IndexPage = ({ data, location }) => {
             animate={{ opacity: 0 }}
             transition={{ duration: 0.8, delay: 4 }}
           >
-            <MemoWordmark className={styles.loaderWordmark} fill="#fff" />
+            <MemoWordmark className={styles.loaderWordmark} />
           </motion.div>
           <motion.div
             initial="hidden"
@@ -169,7 +169,7 @@ const IndexPage = ({ data, location }) => {
                 className={styles.loaderImage}
                 style={{
                   zindex: 1000 + index,
-                  top: getRandomInt(0, 400),
+                  top: index === 0 ? 0 : getRandomInt(16, 400),
                 }}
               >
                 <GatsbyImage fluid={fluid} />
