@@ -95,6 +95,7 @@
 .loaderWordmark {
   margin: calculateRem(8px);
   width: 100%;
+  max-width: 300px;
   @media (min-width: $bp) {
    margin: calculateRem(16px);
   }
