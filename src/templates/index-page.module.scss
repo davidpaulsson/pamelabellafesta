@@ -101,30 +101,21 @@
   }
 }
 
+.loaderGrid {
+  padding: 0 calculateRem(8px) calculateRem(8px);
+
+  @media (min-width: $bp) {
+    padding: 0 calculateRem(16px) calculateRem(16px);
+  }
+
+  position: relative;
+}
+
 .loaderImage {
   position:absolute;
   right: 0;
   bottom: 0;
   left: 0;
 
-  margin: calculateRem(8px);
-
-  @media (min-width: $bp) {
-   margin: calculateRem(16px);
-   @include grid;
-  }
-
-
-  div {
-    grid-column: 5 / 13;
-    grid-row: 1 / 2;
-
-    @media (min-width: $bp) {
-      grid-column: 4 / 14;
-    }
-
-    @media (min-width: $bpl) {
-      grid-column: 5 / 13;
-    }
-  }
+  
 }

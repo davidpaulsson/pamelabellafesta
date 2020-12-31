@@ -131,9 +131,9 @@ const getRandomInt = (min, max) => {
 const IndexPage = ({ data, location }) => {
   const { projects } = data;
 
-  useEffect(() => {
-    sessionStorage.setItem('seenLoader', 'true');
-  }, []);
+  // useEffect(() => {
+  //   sessionStorage.setItem('seenLoader', 'true');
+  // }, []);
 
   const fluids = projects.edges.map((edge) => edge.node.featuredImage.node.localFile.childImageSharp.fluid);
 
@@ -160,16 +160,19 @@ const IndexPage = ({ data, location }) => {
             initial="hidden"
             animate="visible"
             variants={list}
+            className={`${styles.grid} ${styles.loaderGrid}`}
           >
             {_.shuffle(fluids).map((fluid, index) => (
               <motion.div
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 variants={item}
-                className={styles.loaderImage}
+                // className={styles.loaderImage}
+                className={`${styles.img} ${styles.loaderImage}`}
                 style={{
                   zindex: 1000 + index,
                   top: index === 0 ? 0 : getRandomInt(16, 400),
+                  height: '100vh',
                 }}
               >
                 <GatsbyImage fluid={fluid} />
