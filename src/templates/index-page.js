@@ -171,7 +171,7 @@ const IndexPage = ({ data, location }) => {
                 className={`${styles.img} ${styles.loaderImage}`}
                 style={{
                   zindex: 1000 + index,
-                  top: index === 0 ? 0 : getRandomInt(16, 400),
+                  // top: index === 0 ? 0 : getRandomInt(16, 400),
                   height: '100vh',
                 }}
               >
