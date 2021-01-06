@@ -122,12 +122,6 @@ const item = {
   hidden: { opacity: 0 },
 };
 
-const getRandomInt = (min, max) => {
-  const mi = Math.ceil(min);
-  const ma = Math.floor(max);
-  return Math.floor(Math.random() * (ma - mi) + mi);
-};
-
 const IndexPage = ({ data, location }) => {
   const { projects } = data;
 
