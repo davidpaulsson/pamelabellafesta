@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 import _ from 'lodash';
+import slugify from 'slugify';
 import styles from './ProjectCategoryList.module.scss';
 
 const ProjectCategoryList = ({ projects }) => {
@@ -16,13 +17,12 @@ const ProjectCategoryList = ({ projects }) => {
           node,
           'featuredImage.node.localFile.childImageSharp.fluid',
         ))
-        .map(({
-          node: {
-            // eslint-disable-next-line camelcase
-            id, title, featuredImage, slug,
-          },
-        }) => {
+        .map(({ node }) => {
+          const {
+            id, title, featuredImage, slug, categories,
+          } = node;
           const { height, width } = featuredImage.node.mediaDetails;
+
           return (
             <BackgroundImage
               key={id}
@@ -34,7 +34,7 @@ const ProjectCategoryList = ({ projects }) => {
               backgroundColor="#fefefe"
               fluid={featuredImage.node.localFile.childImageSharp.fluid}
             >
-              <Link to={slug}>
+              <Link to={`/${slugify(categories.nodes[0].name, { lower: true })}/${slug}`}>
                 <div dangerouslySetInnerHTML={{ __html: title }} />
               </Link>
             </BackgroundImage>

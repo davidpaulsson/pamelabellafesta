@@ -38,6 +38,11 @@ export const pageQuery = graphql`
           id
           title
           slug
+          categories {
+            nodes {
+              name
+            }
+          }
           featuredImage {
             node {
               mediaDetails {
@@ -53,62 +58,8 @@ export const pageQuery = graphql`
               }
             }
           }
-          # featured_media {
-          #   media_details {
-          #     height
-          #     width
-          #   }
-          #   localFile {
-          #     childImageSharp {
-          #       fluid(quality: 80, maxWidth: 1440) {
-          #         ...GatsbyImageSharpFluid_withWebp_noBase64
-          #       }
-          #     }
-          #   }
-          # }
         }
       }
     }
-    # markdownRemark(id: { eq: $id }) {
-    #   frontmatter {
-    #     title
-    #     category
-    #   }
-    # }
-    # projects: allMarkdownRemark(
-    #   filter: {
-    #     frontmatter: {
-    #       category: { eq: $category }
-    #       templateKey: { eq: "project-page" }
-    #     }
-    #   }
-    #   sort: { order: DESC, fields: frontmatter___date }
-    # ) {
-    #   edges {
-    #     node {
-    #       id
-    #       frontmatter {
-    #         title
-    #         date
-    #         category
-    #         featuredImage {
-    #           id
-    #           childImageSharp {
-    #             fluid {
-    #               ...GatsbyImageSharpFluid
-    #             }
-    #             original {
-    #               height
-    #               width
-    #             }
-    #           }
-    #         }
-    #       }
-    #       fields {
-    #         slug
-    #       }
-    #     }
-    #   }
-    # }
   }
 `;
