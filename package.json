@@ -13,7 +13,7 @@
     "gatsby-plugin-sass": "^2.5.1",
     "gatsby-plugin-sharp": "^2.8.0",
     "gatsby-remark-images": "^3.5.1",
-    "gatsby-source-wordpress-experimental": "^5.0.2",
+    "gatsby-source-wordpress-experimental": "^6.0.0",
     "gatsby-transformer-sharp": "^2.6.0",
     "gatsby-wordpress-inline-images": "^1.2.1",
     "html-react-parser": "^1.0.0",
