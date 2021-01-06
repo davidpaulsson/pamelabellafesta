@@ -96,6 +96,7 @@
   margin: calculateRem(8px);
   width: 100%;
   max-width: 300px;
+  
   @media (min-width: $bp) {
    margin: calculateRem(16px);
   }
@@ -112,6 +113,11 @@
 }
 
 .loaderImage {
+  @media (max-width: $bp) {
+    grid-column: 1 / -1;
+    right: calculateRem(8px);
+  }
+
   position:absolute;
   right: 0;
   bottom: 0;

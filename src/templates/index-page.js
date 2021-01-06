@@ -131,9 +131,9 @@ const getRandomInt = (min, max) => {
 const IndexPage = ({ data, location }) => {
   const { projects } = data;
 
-  // useEffect(() => {
-  //   sessionStorage.setItem('seenLoader', 'true');
-  // }, []);
+  useEffect(() => {
+    sessionStorage.setItem('seenLoader', 'true');
+  }, []);
 
   const fluids = projects.edges.map((edge) => edge.node.featuredImage.node.localFile.childImageSharp.fluid);
 
