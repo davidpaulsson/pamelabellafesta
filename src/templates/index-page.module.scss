@@ -80,6 +80,10 @@
   background-color: white;
   overflow: hidden;
   align-items: center;
+
+  @media (max-width: $bp) {
+    display: none;
+  }
 }
 
 .loaderWordmarkWrapper {
