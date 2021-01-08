@@ -93,7 +93,7 @@
 }
 
 .loaderWordmark {
-  margin: -64px calculateRem(8px) calculateRem(8px) calculateRem(8px);
+  margin: calculateRem(8px);
   width: 100%;
   max-width: 300px;
   
@@ -114,16 +114,11 @@
 
 .loaderImage {
   @media (max-width: $bp) {
-    position: absolute;
-    right: calculateRem(4px);
-    bottom: 0;
-    left: 0;
-    top: 0;
-  
-    grid-column: 1 / 8;
+    grid-column: 1 / -1;
+    right: calculateRem(8px);
   }
 
-  position: absolute;
+  position:absolute;
   right: 0;
   bottom: 0;
   left: 0;
