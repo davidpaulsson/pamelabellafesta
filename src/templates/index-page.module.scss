@@ -1,14 +1,18 @@
 .grid {
-  position: absolute;
-  top: 0;
+  position: relative;
 
-  width: 98.5vw;
-  height: 100vh;
-  max-height: 100vh;
-
-  pointer-events: none;
-
-  @include grid;
+  @media (min-width: $bp) {
+    position: absolute;
+    top: 0;
+  
+    width: 98.5vw;
+    height: 100vh;
+    max-height: 100vh;
+  
+    pointer-events: none;
+  
+    @include grid;
+  }
 }
 
 .gallery {

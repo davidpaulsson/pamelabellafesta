@@ -83,8 +83,8 @@ const IndexPageTemplate = ({ projects }) => {
   const { node } = projects.edges[selectedProjectIndex];
 
   return (
-    <div style={{ position: 'relative' }}>
-      <AnimatePresence>
+    <AnimatePresence>
+      <div style={{ position: 'relative' }}>
         <motion.div
           style={{
             position: 'absolute', top: 0, right: 0, bottom: 0, left: 0,
@@ -98,8 +98,8 @@ const IndexPageTemplate = ({ projects }) => {
             <GatsbyImage fluid={node.featuredImage.node.localFile.childImageSharp.fluid} />
           </Link>
         </motion.div>
-      </AnimatePresence>
-    </div>
+      </div>
+    </AnimatePresence>
   );
 };
 
