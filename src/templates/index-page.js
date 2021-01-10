@@ -133,11 +133,8 @@ const IndexPage = ({ data, location }) => {
 
   return (
     <>
-      <Layout {...{ location }}>
-        <IndexPageTemplate {...{ projects }} />
-      </Layout>
 
-      {(typeof window !== 'undefined' && window.sessionStorage.getItem('seenLoader') !== 'true') && (
+      {(typeof window !== 'undefined' && window.sessionStorage.getItem('seenLoader') !== 'true') ? (
         <motion.div
           className={styles.loader}
           animate={{ height: 0 }}
@@ -175,6 +172,10 @@ const IndexPage = ({ data, location }) => {
 
           </motion.div>
         </motion.div>
+      ) : (
+        <Layout {...{ location }}>
+          <IndexPageTemplate {...{ projects }} />
+        </Layout>
       )}
     </>
   );
