@@ -41,7 +41,7 @@ const RelatedProjects = ({ currentProject }) => {
               node {
                 localFile {
                   childImageSharp {
-                    fluid(quality: 80, maxWidth: 1440) {
+                    fluid(quality: 90, maxWidth: 960) {
                       ...GatsbyImageSharpFluid_withWebp_noBase64
                     }
                   }

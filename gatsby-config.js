@@ -21,6 +21,9 @@ module.exports = {
       resolve: 'gatsby-source-wordpress-experimental',
       options: {
         url: 'https://data.pamelabellafesta.se/graphql',
+        html: {
+          imageMaxWidth: 960,
+        },
       },
     },
   ],
