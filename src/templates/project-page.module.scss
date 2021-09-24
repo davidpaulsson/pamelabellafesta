@@ -3,14 +3,23 @@
     @include grid;
   }
 
+  img {
+    max-width: 960px;
+  }
+
   p {
     margin-bottom: calculateRem(8px);
+    max-width: 960px;
   }
 }
 
 .images {
   position: relative;
   z-index: 1;
+
+  * {
+    width: 100% !important;
+  }
 
   @media (min-width: $bp) {
     margin-top: calculateRem(8px);
