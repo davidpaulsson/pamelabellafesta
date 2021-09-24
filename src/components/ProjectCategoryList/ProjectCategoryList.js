@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import BackgroundImage from 'gatsby-background-image';
-import _ from 'lodash';
-import slugify from 'slugify';
-import styles from './ProjectCategoryList.module.scss';
+import React from "react";
+import { Link } from "gatsby";
+import BackgroundImage from "gatsby-background-image";
+import _ from "lodash";
+import slugify from "slugify";
+import * as styles from "./ProjectCategoryList.module.scss";
 
 const ProjectCategoryList = ({ projects }) => {
   if (projects.length === 0) {
@@ -13,14 +13,11 @@ const ProjectCategoryList = ({ projects }) => {
   return (
     <div className={styles.grid}>
       {projects
-        .filter(({ node }) => _.has(
-          node,
-          'featuredImage.node.localFile.childImageSharp.fluid',
-        ))
+        .filter(({ node }) =>
+          _.has(node, "featuredImage.node.localFile.childImageSharp.fluid")
+        )
         .map(({ node }) => {
-          const {
-            id, title, featuredImage, slug, categories,
-          } = node;
+          const { id, title, featuredImage, slug, categories } = node;
           const { height, width } = featuredImage.node.mediaDetails;
 
           return (
@@ -30,11 +27,15 @@ const ProjectCategoryList = ({ projects }) => {
               className={[
                 styles.bg,
                 height > width ? styles.portrait : styles.landscape,
-              ].join(' ')}
+              ].join(" ")}
               backgroundColor="#fefefe"
               fluid={featuredImage.node.localFile.childImageSharp.fluid}
             >
-              <Link to={`/${slugify(categories.nodes[0].name, { lower: true })}/${slug}`}>
+              <Link
+                to={`/${slugify(categories.nodes[0].name, {
+                  lower: true,
+                })}/${slug}`}
+              >
                 <div dangerouslySetInnerHTML={{ __html: title }} />
               </Link>
             </BackgroundImage>

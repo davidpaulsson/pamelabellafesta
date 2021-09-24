@@ -1,13 +1,13 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { graphql, Link } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image/compat';
-import React, { useEffect, useState } from 'react';
-import _ from 'lodash';
-import MemoWordmark from '../components/Header/Wordmark';
-import Layout from '../components/Layout';
-import useInterval from '../hooks/useInterval';
-import useWindowSize from '../hooks/useWindowSize';
-import styles from './index-page.module.scss';
+import { AnimatePresence, motion } from "framer-motion";
+import { graphql, Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image/compat";
+import React, { useEffect, useState } from "react";
+import _ from "lodash";
+import MemoWordmark from "../components/Header/Wordmark";
+import Layout from "../components/Layout";
+import useInterval from "../hooks/useInterval";
+import useWindowSize from "../hooks/useWindowSize";
+import * as styles from "./index-page.module.scss";
 
 const IndexPageTemplate = ({ projects }) => {
   const { width } = useWindowSize();
@@ -20,7 +20,7 @@ const IndexPageTemplate = ({ projects }) => {
   }, [width, setIsMobile]);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   }, []);
 
   useInterval(() => {
@@ -41,7 +41,6 @@ const IndexPageTemplate = ({ projects }) => {
             {projects.edges[selectedProjectIndex].node.categories.nodes[0].name}
           </div>
           <div
-            className={styles.title}
             dangerouslySetInnerHTML={{
               __html: projects.edges[selectedProjectIndex].node.title,
             }}
@@ -57,10 +56,12 @@ const IndexPageTemplate = ({ projects }) => {
             <GatsbyImage
               loading="eager"
               style={{
-                height: '100vh',
-                width: '100%',
+                height: "100vh",
+                width: "100%",
               }}
-              fluid={proj.node.featuredImage.node.localFile.childImageSharp.fluid}
+              fluid={
+                proj.node.featuredImage.node.localFile.childImageSharp.fluid
+              }
             />
           </div>
         ))}
@@ -75,7 +76,6 @@ const IndexPageTemplate = ({ projects }) => {
             />
           ))}
         </div>
-
       </div>
     );
   }
@@ -83,11 +83,15 @@ const IndexPageTemplate = ({ projects }) => {
   const { node } = projects.edges[selectedProjectIndex];
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <AnimatePresence>
         <motion.div
           style={{
-            position: 'absolute', top: 0, right: 0, bottom: 0, left: 0,
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
           }}
           key={selectedProjectIndex}
           initial={{ opacity: 0 }}
@@ -95,7 +99,9 @@ const IndexPageTemplate = ({ projects }) => {
           exit={{ opacity: 0 }}
         >
           <Link to={node.uri}>
-            <GatsbyImage fluid={node.featuredImage.node.localFile.childImageSharp.fluid} />
+            <GatsbyImage
+              fluid={node.featuredImage.node.localFile.childImageSharp.fluid}
+            />
           </Link>
         </motion.div>
       </AnimatePresence>
@@ -108,7 +114,7 @@ const list = {
     opacity: 1,
     transition: {
       delay: 1,
-      when: 'beforeChildren',
+      when: "beforeChildren",
       staggerChildren: 0.4,
     },
   },
@@ -126,58 +132,60 @@ const IndexPage = ({ data, location }) => {
   const { projects } = data;
 
   useEffect(() => {
-    sessionStorage.setItem('seenLoader', 'true');
+    sessionStorage.setItem("seenLoader", "true");
   }, []);
 
-  const fluids = projects.edges.map((edge) => edge.node.featuredImage.node.localFile.childImageSharp.fluid);
+  const fluids = projects.edges.map(
+    (edge) => edge.node.featuredImage.node.localFile.childImageSharp.fluid
+  );
 
   return (
     <>
-      {typeof window !== 'undefined' && (
+      {typeof window !== "undefined" && (
         <Layout {...{ location }}>
           <IndexPageTemplate {...{ projects }} />
         </Layout>
       )}
 
-      {(typeof window !== 'undefined' && window.sessionStorage.getItem('seenLoader') !== 'true') && (
-        <motion.div
-          className={styles.loader}
-          animate={{ height: 0 }}
-          transition={{ duration: 0.8, delay: 6 }}
-        >
+      {typeof window !== "undefined" &&
+        window.sessionStorage.getItem("seenLoader") !== "true" && (
           <motion.div
-            className={styles.loaderWordmarkWrapper}
-            animate={{ opacity: 0 }}
-            transition={{ duration: 0.8, delay: 4 }}
+            className={styles.loader}
+            animate={{ height: 0 }}
+            transition={{ duration: 0.8, delay: 6 }}
           >
-            <MemoWordmark className={styles.loaderWordmark} />
+            <motion.div
+              className={styles.loaderWordmarkWrapper}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 0.8, delay: 4 }}
+            >
+              <MemoWordmark className={styles.loaderWordmark} />
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={list}
+              className={`${styles.grid} ${styles.loaderGrid}`}
+            >
+              {_.shuffle(fluids).map((fluid, index) => (
+                <motion.div
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  variants={item}
+                  // className={styles.loaderImage}
+                  className={`${styles.img} ${styles.loaderImage}`}
+                  style={{
+                    zindex: 1000 + index,
+                    // top: index === 0 ? 0 : getRandomInt(16, 400),
+                    height: "100vh",
+                  }}
+                >
+                  <GatsbyImage fluid={fluid} />
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={list}
-            className={`${styles.grid} ${styles.loaderGrid}`}
-          >
-            {_.shuffle(fluids).map((fluid, index) => (
-              <motion.div
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                variants={item}
-                // className={styles.loaderImage}
-                className={`${styles.img} ${styles.loaderImage}`}
-                style={{
-                  zindex: 1000 + index,
-                  // top: index === 0 ? 0 : getRandomInt(16, 400),
-                  height: '100vh',
-                }}
-              >
-                <GatsbyImage fluid={fluid} />
-              </motion.div>
-            ))}
-
-          </motion.div>
-        </motion.div>
-      )}
+        )}
     </>
   );
 };
@@ -186,10 +194,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexPage {
-    projects: allWpPost(
-      sort: { fields: date, order: DESC }, 
-      limit: 10
-    ) {
+    projects: allWpPost(sort: { fields: date, order: DESC }, limit: 10) {
       edges {
         node {
           id

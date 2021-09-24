@@ -1,8 +1,8 @@
-import { Link } from 'gatsby';
-import React from 'react';
-import Navbar from '../Navbar';
-import styles from './Header.module.scss';
-import Wordmark from './Wordmark';
+import { Link } from "gatsby";
+import React from "react";
+import Navbar from "../Navbar";
+import * as styles from "./Header.module.scss";
+import Wordmark from "./Wordmark";
 
 const Header = ({ location }) => (
   <header className={`${styles.sticky} sticky`}>

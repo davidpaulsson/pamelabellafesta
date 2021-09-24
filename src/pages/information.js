@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import useDimensions from 'react-use-dimensions';
-import Layout from '../components/Layout';
-import styles from './information.module.scss';
-import Fade from '../components/Fade';
+import React, { useEffect } from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import useDimensions from "react-use-dimensions";
+import Layout from "../components/Layout";
+import * as styles from "./information.module.scss";
+import Fade from "../components/Fade";
 
 const InformationPage = ({ location }) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      wpPage(slug: { eq:"information" }) {
+      wpPage(slug: { eq: "information" }) {
         acf {
           bio
           commercialClients
@@ -24,7 +24,7 @@ const InformationPage = ({ location }) => {
   const [ref, { height }] = useDimensions();
 
   useEffect(() => {
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   }, []);
 
   return (
@@ -38,13 +38,13 @@ const InformationPage = ({ location }) => {
             <div className={styles.wrapper}>
               <h3 className={styles.title}>Bio</h3>
               <div
-                className={[styles.content, styles.bio].join(' ')}
+                className={[styles.content, styles.bio].join(" ")}
                 dangerouslySetInnerHTML={{ __html: data.wpPage.acf.bio }}
               />
             </div>
             <div className={styles.wrapper}>
               <h3 className={styles.title}>Clients</h3>
-              <div className={[styles.content, styles.clients].join(' ')}>
+              <div className={[styles.content, styles.clients].join(" ")}>
                 <h4>Commercial</h4>
                 <div
                   dangerouslySetInnerHTML={{
@@ -61,7 +61,7 @@ const InformationPage = ({ location }) => {
             </div>
             <div className={styles.wrapper}>
               <h3 className={styles.title}>Contact</h3>
-              <div className={[styles.content, styles.contact].join(' ')}>
+              <div className={[styles.content, styles.contact].join(" ")}>
                 <h4>Phone</h4>
                 <ul>
                   <li>
@@ -82,17 +82,19 @@ const InformationPage = ({ location }) => {
               </div>
             </div>
 
-            <div className={styles.wrapper} style={{ borderBottom: 0, marginBottom: 0 }}>
+            <div
+              className={styles.wrapper}
+              style={{ borderBottom: 0, marginBottom: 0 }}
+            >
               <h3 className={styles.title}>Social</h3>
-              <div className={[styles.content, styles.contact].join(' ')}>
+              <div className={[styles.content, styles.contact].join(" ")}>
                 <h4>Instagram</h4>
                 <ul style={{ marginBottom: 0 }}>
                   <li>
                     <a
                       href={`https://instagram.com/${data.wpPage.acf.instagram}`}
                     >
-                      @
-                      {data.wpPage.acf.instagram}
+                      @{data.wpPage.acf.instagram}
                     </a>
                   </li>
                 </ul>
@@ -104,16 +106,19 @@ const InformationPage = ({ location }) => {
             <div
               className={styles.wrapper}
               style={{
-                borderTop: '1px solid var(--color-light-gray)', paddingTop: 8, borderBottom: 'none', marginBottom: 0, paddingBottom: 0,
+                borderTop: "1px solid var(--color-light-gray)",
+                paddingTop: 8,
+                borderBottom: "none",
+                marginBottom: 0,
+                paddingBottom: 0,
               }}
             >
               <h3 className={styles.title}>Credits</h3>
-              <div className={[styles.content, styles.clients].join(' ')}>
+              <div className={[styles.content, styles.clients].join(" ")}>
                 <h4>Design</h4>
                 <ul className={styles.space}>
                   <li>
-                    <a href="https://perjornlov.com/">Per Jörnlöv</a>
-                    ,
+                    <a href="https://perjornlov.com/">Per Jörnlöv</a>,
                   </li>
                   <li>
                     <a href="https://niklasrosen.se/">Niklas Rosén</a>
