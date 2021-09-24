@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Pamela Bellafesta',
-    description: '',
+    title: "Pamela Bellafesta",
+    description: "",
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     {
-      resolve: 'gatsby-plugin-sass',
+      resolve: "gatsby-plugin-sass",
       options: {
         data: `
         @import "${__dirname}/src/styles/mixins.scss";
@@ -14,13 +14,13 @@ module.exports = {
         `,
       },
     },
-    'gatsby-plugin-image',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
-      resolve: 'gatsby-source-wordpress-experimental',
+      resolve: "gatsby-source-wordpress",
       options: {
-        url: 'https://data.pamelabellafesta.se/graphql',
+        url: "https://data.pamelabellafesta.se/graphql",
         html: {
           imageMaxWidth: 960,
         },
