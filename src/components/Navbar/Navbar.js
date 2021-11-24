@@ -19,7 +19,7 @@ const Navbar = ({ location }) => {
   const { width } = useWindowSize();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [navIsOpen, setNavIsOpen] = useState(false);
-  const currentPath = location?.pathname.split("/")[1];
+  const currentPath = location?.pathname && location?.pathname.split("/")[1];
 
   useEffect(() => {
     if (location?.pathname === "/") {

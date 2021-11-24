@@ -55,6 +55,7 @@ const RelatedProjects = ({ currentProject }) => {
 
   const relatedProjects = data.projects.edges.filter(
     ({ node }) =>
+      node.featuredImage !== null &&
       node.categories.nodes[0].name === currentProject.category &&
       node.title !== currentProject.title
   );

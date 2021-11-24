@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import './src/styles/global.scss';
+import "./src/styles/global.scss";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const superSecurePassword = 'kryddhylla';
+const superSecurePassword = "kryddhylla";
 
 const LogInCheck = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [pw, setPw] = useState('');
+  const [pw, setPw] = useState("");
 
   const handleSubmit = () => {
     if (pw === superSecurePassword) {
@@ -37,4 +37,6 @@ const LogInCheck = ({ children }) => {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const wrapRootElement = ({ element }) => <LogInCheck>{element}</LogInCheck>;
+export const wrapRootElement = ({ element }) => (
+  <LogInCheck>{element}</LogInCheck>
+);

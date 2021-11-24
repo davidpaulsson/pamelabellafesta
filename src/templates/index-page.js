@@ -26,7 +26,7 @@ const IndexPageTemplate = ({ projects }) => {
   useInterval(() => {
     if (isMobile) {
       let idx = selectedProjectIndex + 1;
-      if (idx >= projects.edges.length) {
+      if (idx >= projects.length) {
         idx = 0;
       }
       setSelectedProjectIndex(idx);
@@ -38,16 +38,16 @@ const IndexPageTemplate = ({ projects }) => {
       <div className={styles.grid}>
         <div className={styles.projectInfo}>
           <div className={styles.category}>
-            {projects.edges[selectedProjectIndex].node.categories.nodes[0].name}
+            {projects[selectedProjectIndex].node.categories.nodes[0].name}
           </div>
           <div
             dangerouslySetInnerHTML={{
-              __html: projects.edges[selectedProjectIndex].node.title,
+              __html: projects[selectedProjectIndex].node.title,
             }}
           />
         </div>
 
-        {projects.edges.map((proj, index) => (
+        {projects.map((proj, index) => (
           <div
             className={styles.img}
             key={proj.node.id}
@@ -67,7 +67,7 @@ const IndexPageTemplate = ({ projects }) => {
         ))}
 
         <div className={styles.gallery}>
-          {projects.edges.map((proj, index) => (
+          {projects.map((proj, index) => (
             <Link
               to={proj.node.uri}
               className={styles.box}
@@ -135,7 +135,11 @@ const IndexPage = ({ data, location }) => {
     sessionStorage.setItem("seenLoader", "true");
   }, []);
 
-  const fluids = projects.edges.map(
+  const filteredProjects = projects.edges.filter(
+    (edge) => edge.node.featuredImage !== null
+  );
+
+  const fluids = filteredProjects.map(
     (edge) => edge.node.featuredImage.node.localFile.childImageSharp.fluid
   );
 
@@ -143,7 +147,7 @@ const IndexPage = ({ data, location }) => {
     <>
       {typeof window !== "undefined" && (
         <Layout {...{ location }}>
-          <IndexPageTemplate {...{ projects }} />
+          <IndexPageTemplate projects={filteredProjects} />
         </Layout>
       )}
 
