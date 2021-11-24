@@ -118,7 +118,9 @@ const InformationPage = ({ location }) => {
                 <h4>Design</h4>
                 <ul className={styles.space}>
                   <li>
-                    <a href="https://perjornlov.com/">Per Jörnlöv</a>,
+                    <a href="https://www.instagram.com/perjornlov/">
+                      Per Jörnlöv
+                    </a>
                   </li>
                   <li>
                     <a href="https://niklasrosen.se/">Niklas Rosén</a>
