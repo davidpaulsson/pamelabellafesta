@@ -35,7 +35,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
     if ("IntersectionObserver" in window) {
       const options = { threshold: [0.5, 0.5] };
       const wrapper = document.querySelector("#pb");
-      const els = wrapper.querySelectorAll("p");
+      const els = wrapper.querySelectorAll("p, video");
       observers = [...els].map((el, index) => {
         const observer = new IntersectionObserver((entries, observer) => {
           entries.forEach((entry) => {
@@ -59,7 +59,7 @@ const ProjectPageWithCtx = ({ title, content }) => {
 
   useEffect(() => {
     const wrapper = document.querySelector("#pb");
-    const els = wrapper.querySelectorAll("p");
+    const els = wrapper.querySelectorAll("p, video");
 
     dispatch({
       type: "SET_CASE",
