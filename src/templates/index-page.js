@@ -80,7 +80,7 @@ const IndexPageTemplate = ({ projects }) => {
     );
   }
 
-  const { node } = projects.edges[selectedProjectIndex];
+  const { node } = projects[selectedProjectIndex];
 
   return (
     <div style={{ position: "relative" }}>
